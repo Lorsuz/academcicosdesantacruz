@@ -14,7 +14,7 @@ const Header: React.FunctionComponent = () => (
 				<nav className='menu-desk'>
 					<ul>
 						<li>
-							<NavLink to='/home'>
+							<NavLink to='/'>
 								<span>Página Inicial</span>
 							</NavLink>
 						</li>
