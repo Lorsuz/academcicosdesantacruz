@@ -1,10 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
-import dataJson from '../../json/data.json';
+// import dataJson from '../../json/data.json';
 import { GoTriangleLeft, GoTriangleRight } from 'react-icons/go';
+
+import image_1 from '../../assets/images/banner/image-1.jpg';
+import image_2 from '../../assets/images/banner/image-2.jpg';
+import image_3 from '../../assets/images/banner/image-3.jpg';
+import image_4 from '../../assets/images/banner/image-4.jpg';
+import image_5 from '../../assets/images/banner/image-5.jpg';
+
 
 import styled from 'styled-components';
 const HomeBanner = (): React.FunctionComponentElement<JSX.Element> => {
-	const [banners] = useState(dataJson.banner);
+	const [banners] = useState([image_1, image_2, image_3, image_4, image_5]);
 	const [current, setCurrent] = useState(0);
 	const length = banners.length;
 	const initAutoPlayInterval = useRef<NodeJS.Timeout>();
@@ -37,7 +44,7 @@ const HomeBanner = (): React.FunctionComponentElement<JSX.Element> => {
 			<ul className='slides'>
 				<li className='slide'>
 					<div className='img'>
-						<img src={`src/assets/images/banner/${banners[current].image}`} alt={banners[current].image} />
+						<img src={banners[current]} alt='' />
 					</div>
 				</li>
 			</ul>

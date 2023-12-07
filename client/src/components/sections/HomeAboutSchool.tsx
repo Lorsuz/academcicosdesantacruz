@@ -1,4 +1,5 @@
 import React from 'react';
+import pavillion from '../../assets/images/pavillion.jpeg';
 
 import styled from 'styled-components';
 
@@ -41,7 +42,7 @@ const HomeAboutSchool = (): React.FunctionComponentElement<JSX.Element> => {
 				</div>
 				<div className='img-container'>
 					<div className='img'>
-						<img src='src/assets/images/pavillion.jpeg' alt='Pavilhão' />
+						<img src={pavillion} alt='Pavilhão' />
 					</div>
 				</div>
 			</div>

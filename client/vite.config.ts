@@ -7,7 +7,7 @@ export default defineConfig({
 	plugins: [react()],
 	// assetsInclude: ['**/*.mp3', '**/*.wav', '**/*.ogg', '**/*.jpeg', '**/*.png', '**/*.svg'],
 	assetsInclude: /\.(png|jpe?g|gif|svg)$/i,
-	base: '/gresasc',
+	base: '/home',
 	resolve: {
 		alias: {
 			'@': path.resolve(__dirname, 'src'),

@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import dataAPI from '../../json/data.json';
+// import dataAPI from '../../json/data.json';
+
+import image_1 from '../../assets/images/Sponsors/Drogamix.png';
+import image_2 from '../../assets/images/Sponsors/LFbets.png';
+import image_3 from '../../assets/images/Sponsors/Haras.png';
+import image_4 from '../../assets/images/Sponsors/La-Dame-Femme.png';
 
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 
@@ -15,7 +20,7 @@ import 'swiper/css/autoplay';
 import 'swiper/css/mousewheel';
 
 const HomeSponsors = (): React.FunctionComponentElement<JSX.Element> => {
-	const [sponsorsPathImg] = useState(dataAPI.sponsors);
+	// const [sponsorsPathImg] = useState(dataAPI.sponsors);
 	const [slidesPerView, setSlidesPerView] = useState(3);
 	const [isGrabbing, setIsGrabbing] = useState(false);
 
@@ -41,7 +46,6 @@ const HomeSponsors = (): React.FunctionComponentElement<JSX.Element> => {
 		swiperWrapper.addEventListener('mouseup', () => {
 			setIsGrabbing(false);
 			console.log('mouseup');
-			
 		});
 	}, []);
 
@@ -58,11 +62,23 @@ const HomeSponsors = (): React.FunctionComponentElement<JSX.Element> => {
 				spaceBetween={50}
 				centeredSlides={true}
 			>
-				{sponsorsPathImg.map((sponsorPathImg, index: number) => (
+				{/* {sponsorsPathImg.map((sponsorPathImg, index: number) => (
 					<SwiperSlide key={index}>
 						<img src={`src/assets/images/Sponsors/${sponsorPathImg.image}`} alt={sponsorPathImg.image} />
 					</SwiperSlide>
-				))}
+				))} */}
+				<SwiperSlide>
+					<img src={image_1} alt='' />
+				</SwiperSlide>
+				<SwiperSlide>
+					<img src={image_2} alt='' />
+				</SwiperSlide>
+				<SwiperSlide>
+					<img src={image_3} alt='' />
+				</SwiperSlide>
+				<SwiperSlide>
+					<img src={image_4} alt='' />
+				</SwiperSlide>
 			</Swiper>
 		</StyledComponent>
 	);
