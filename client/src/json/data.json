@@ -1,0 +1,49 @@
+{
+	"sponsors": [
+		{
+			"image": "Drogamix.png",
+			"alt": ""
+		},
+		{
+			"image": "Lfbets.png",
+			"alt": ""
+		},
+		{
+			"image": "Haras.png",
+			"alt": ""
+		},
+		{
+			"image": "La-Dame-Femme.jpg",
+			"alt": ""
+		}
+	],
+	"banner": [
+		{
+			"image": "image-1.jpg",
+			"alt": ""
+		},
+		{
+			"image": "image-2.jpg",
+			"alt": ""
+		},
+		{
+			"image": "image-5.jpg",
+			"alt": ""
+		},
+		{
+			"image": "image-4.jpg",
+			"alt": ""
+		},
+		{
+			"image": "image-3.jpg",
+			"alt": ""
+		}
+	],
+	"diretoria":[
+		{
+			"cargo": "Presidente",
+			"nome": "Ricardo",
+			"imagem": "diretoria-1.jpg"
+		}
+	]
+}
