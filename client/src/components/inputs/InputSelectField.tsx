@@ -48,7 +48,7 @@ const InputField = ({
 };
 
 const StyledInputField = styled.div`
-	width: 90%;
+	width: 100%;
 	margin: 0 auto 20px;
 	.label {
 		margin-bottom: 10px;

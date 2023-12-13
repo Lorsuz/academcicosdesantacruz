@@ -11,7 +11,7 @@ import image_5 from '../../assets/images/banner/image-5.jpg';
 
 import styled from 'styled-components';
 const HomeBanner = (): React.FunctionComponentElement<JSX.Element> => {
-	const [banners] = useState([image_1, image_2, image_3, image_4, image_5]);
+	const [banners] = useState([image_1, image_2, image_5, image_4, image_3]);
 	const [current, setCurrent] = useState(0);
 	const length = banners.length;
 	const initAutoPlayInterval = useRef<NodeJS.Timeout>();

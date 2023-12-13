@@ -6,24 +6,44 @@ type Props = {
 	type?: string;
 	name?: string;
 	placeholder?: string;
-	onChange?: (e?: React.ChangeEvent<HTMLInputElement>) => void;
 	error?: string;
+	regex?: RegExp;
+	required?: boolean;
+	onChange?: (e?: React.ChangeEvent<HTMLInputElement>) => void;
+	formatValueFunction?: (value: string) => string;
+	validateValueFunction?: (value: string | number) => string | number;
 };
 
 const InputField = ({
 	label = 'Label',
-	error = '',
 	name = 'name',
 	placeholder = '',
-	type = 'text'
+	type = 'text',
+	required = true,
+	formatValueFunction = (value: string): string => value
 }: Props): React.FunctionComponentElement<JSX.Element> => {
 	const [inputValue, setInputValue] = useState<string>('');
+	const [inputError, setInputError] = useState<string>('');
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-		console.log('handleInputChange');
-		setInputValue(e.target.value);
-		console.log(e.target.value);
+		formatValue(e.target.value);
+		// validateInput(e.target.value);
 	};
+
+	const formatValue = (value: string): void => {
+		const formattedValue = formatValueFunction(value);
+		setInputValue(formattedValue);
+	};
+
+	// const validateInput = (value: string | number): string | number => {
+	// 	if (value === '' && required) {
+	// 		setInputError('Campo obrrigatório');
+	// 	} else if (value !== '' && !regex.test(value)) {
+	// 		setInputError('Campo inválido');
+	// 	} else {
+	// 		setInputError('');
+	// 	}
+	// };
 
 	return (
 		<StyledInputField>
@@ -51,13 +71,13 @@ const InputField = ({
 					value={inputValue}
 				/>
 			)}
-			<span className='error-message'>{error}</span>
+			<span className='error-message'>{inputError}</span>
 		</StyledInputField>
 	);
 };
 
 const StyledInputField = styled.div`
-	width: 90%;
+	/* width: 90%; */
 	margin: 0 auto 20px;
 	.label {
 		margin-bottom: 10px;

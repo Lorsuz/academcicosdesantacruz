@@ -35,6 +35,8 @@ const StyledComponent = styled.ul<{ $footer?: boolean }>`
 	align-items: center;
 	justify-content: center;
 	gap: 10px;
+	transition: all 0.5s ease-in-out;
+
 
 	li {
 		display: flex;
@@ -44,9 +46,11 @@ const StyledComponent = styled.ul<{ $footer?: boolean }>`
 		height: 70px;
 		border-radius: 50%;
 		cursor: pointer;
-
+		transition: all 0.5s ease-in-out;
+		
 		* {
 			font-size: 2rem;
+			transition: all 0.5s ease-in-out;
 			display: flex;
 			align-items: center;
 			justify-content: center;
