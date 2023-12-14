@@ -11,9 +11,9 @@ import styled from 'styled-components';
 import { formatCPF, formatCEP, formatPhoneNumber, formatDate } from '../../utils/formatingValues';
 const LegendForFieldset = ({ children }: { children: string }): React.FunctionComponentElement<JSX.Element> => (
 	<legend>
-		<div className='before'></div>
+		{/* <div className='before'></div> */}
 		<span>{children}</span>
-		<div className='after'></div>
+		{/* <div className='after'></div> */}
 	</legend>
 );
 const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
@@ -22,7 +22,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 		<fieldset>
 			<LegendForFieldset>Dados Pessoais</LegendForFieldset>
 			<InputField name='name' label='Nome' placeholder='Ex.: João Silva' />
-			<InputField name='birth' label='Data de Nascimento' formatValueFunction={formatDate}/>
+			<InputField name='birth' label='Data de Nascimento' formatValueFunction={formatDate} />
 			<InputField name='cpf' label='CPF' placeholder='Ex.: 123.456.789-00' formatValueFunction={formatCPF} />
 		</fieldset>,
 		<fieldset>
@@ -209,51 +209,6 @@ const StyledFormFanMember = styled.main`
 	display: flex;
 	justify-content: center;
 
-	* {
-		/* outline: 1px dotted; */
-	}
-	h1 {
-		background: var(--color-primary);
-		color: #fff;
-		padding: 20px 30px;
-		font-size: 2.4rem;
-	}
-	.pagination {
-		margin: 30px 50px;
-		display: flex;
-		justify-content: space-between;
-		align-content: center;
-		align-items: center;
-		position: relative;
-
-		span {
-			align-items: center;
-			background-color: #ccc;
-			border-radius: 50%;
-			color: #fff;
-			display: flex;
-			font-size: 20px;
-			font-weight: bold;
-			height: 40px;
-			justify-content: center;
-			min-width: 40px;
-			z-index: 1;
-
-			&.active {
-				background-color: var(--color-primary-soft);
-			}
-		}
-		.line {
-			width: 100%;
-			height: 3px;
-			background: #ccc;
-
-			&.active {
-				background-color: var(--color-primary-soft);
-			}
-		}
-	}
-
 	form {
 		width: 80%;
 		min-width: 300px;
@@ -263,6 +218,63 @@ const StyledFormFanMember = styled.main`
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 		border-radius: 10px;
 		overflow: hidden;
+
+		* {
+			/* outline: 1px dotted; */
+		}
+
+		h1 {
+			background: var(--color-primary);
+			color: #fff;
+			padding: 20px 30px;
+			font-size: 2.4rem;
+			position: relative;
+
+			&::after {
+				content: 'dasdasdadsad';
+				position: absolute;
+				width: 100%;
+				height: 3px;
+				background: var(--color-primary);
+				bottom: -6px;
+				left: 0;
+			}
+		}
+		.pagination {
+			margin: 30px 50px;
+			display: flex;
+			justify-content: space-between;
+			align-content: center;
+			align-items: center;
+			position: relative;
+
+			span {
+				align-items: center;
+				background-color: #ccc;
+				border-radius: 50%;
+				color: #fff;
+				display: flex;
+				font-size: 20px;
+				font-weight: bold;
+				height: 40px;
+				justify-content: center;
+				min-width: 40px;
+				z-index: 1;
+
+				&.active {
+					background-color: var(--color-primary-soft);
+				}
+			}
+			.line {
+				width: 100%;
+				height: 3px;
+				background: #ccc;
+
+				&.active {
+					background-color: var(--color-primary-soft);
+				}
+			}
+		}
 
 		fieldset {
 			margin-bottom: 50px;
@@ -276,9 +288,11 @@ const StyledFormFanMember = styled.main`
 				background: var(--color-primary);
 				display: flex;
 				justify-content: space-between;
+				justify-content: center;
 				align-items: center;
 				border-radius: 10px 10px 0 0;
-				margin: 20px 0px;
+				margin: 20px 0px 50px;
+				/* overflow: hidden; */
 
 				span {
 					font-size: 30px;
@@ -286,7 +300,7 @@ const StyledFormFanMember = styled.main`
 					color: var(--color-white);
 					white-space: nowrap;
 					display: block;
-					padding: 10px 10px;
+					padding: 15px 10px 10px;
 				}
 
 				.before,
@@ -301,6 +315,16 @@ const StyledFormFanMember = styled.main`
 				}
 				.after {
 					right: 0;
+				}
+				::after {
+					content: '';
+					position: absolute;
+					width: 100%;
+					height: 3px;
+					background: #ffffff;
+					/* background: var(--color-primary); */
+					top: 5px;
+					left: 0;
 				}
 			}
 		}

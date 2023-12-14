@@ -82,7 +82,6 @@ const InputField = ({
 };
 
 const StyledInputField = styled.div`
-	/* width: 90%; */
 	margin: 0 auto 20px;
 	> .label {
 		margin-bottom: 10px;
@@ -94,30 +93,28 @@ const StyledInputField = styled.div`
 		height: 50px;
 		border: 1px solid #ccc;
 		border-radius: 5px;
-		/* background-color: #e2e2e2; */
 		padding: 0 10px;
 		font-size: 1.2rem;
 	}
 	.input {
 		position: relative;
 
-		> input, > input:placeholder-shown {
+		> input,
+		> input:placeholder-shown {
 			display: block;
 			width: 100%;
 			height: 50px;
 			border: 1px solid #ccc;
 			border-radius: 5px;
-			/* background-color: #e2e2e2; */
 			padding: 0 10px;
 			font-size: 1.2rem;
-			&:focus ~ label, &:not(:placeholder-shown) ~ label {
+			&:focus ~ label,
+			&:not(:placeholder-shown) ~ label {
 				top: -0px;
 				background: #fff;
-				/* left: 0; */
 				font-size: 1rem;
 				color: var(--color-primary);
 				padding: 0 5px;
-				/* border-left: 2px solid var(--color-primary); */
 			}
 			&:focus {
 			}
@@ -133,7 +130,6 @@ const StyledInputField = styled.div`
 			font-size: 1.2rem;
 			transition: all 0.2s ease;
 			pointer-events: none;
-
 		}
 	}
 	.error-message {

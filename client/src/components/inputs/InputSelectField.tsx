@@ -29,19 +29,21 @@ const InputField = ({
 
 	return (
 		<StyledInputField>
-			<label className='label' htmlFor={name}>
-				{label}
-			</label>
-			<select name={name} id={name} value={selectedValue} onChange={handleInputChange}>
-				<option value='' disabled>
-					{placeholder}
-				</option>
-				{options.map((option: string, index: number) => (
-					<option value={option} key={index}>
-						{option}
+			<div className='input'>
+				<select name={name} id={name} value={selectedValue} onChange={handleInputChange}>
+					<option value='' disabled>
+						{placeholder}
 					</option>
-				))}
-			</select>
+					{options.map((option: string, index: number) => (
+						<option value={option} key={index}>
+							{option}
+						</option>
+					))}
+				</select>
+				<label className='label' htmlFor={name}>
+					{label}
+				</label>
+			</div>
 			<span className='error-message'>{error}</span>
 		</StyledInputField>
 	);
@@ -50,26 +52,44 @@ const InputField = ({
 const StyledInputField = styled.div`
 	width: 100%;
 	margin: 0 auto 20px;
-	.label {
-		margin-bottom: 10px;
-		display: block;
-	}
-	select {
-		display: block;
-		width: 100%;
-		width:100%;
-		height: 50px;
-		border: 1px solid #ccc;
-		border-radius: 5px;
-		padding: 0 10px;
-		font-size: 1.2rem;
 
-		cursor: pointer;
-		option {
+	.input {
+		position: relative;
+
+		select {
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			display: block;
+			font-size: 1.2rem;
+			height: 50px;
+			padding: 0 10px;
+			width: 100%;
+
 			cursor: pointer;
-			&:hover {
-				background: #ccc;
+			option {
+				cursor: pointer;
+				&:hover {
+					background: #ccc;
+				}
 			}
+			&:focus {
+				& ~ label {
+				}
+			}
+		}
+		label {
+			background: #ffffff;
+			color: var(--color-primary);
+			display: block;
+			font-size: 1rem;
+			left: 10px;
+			margin-bottom: 10px;
+			padding: 0 5px;
+			pointer-events: none;
+			position: absolute;
+			top: 0px;
+			transform: translateY(-50%);
+			transition: all 0.2s ease;
 		}
 	}
 	.error-message {
