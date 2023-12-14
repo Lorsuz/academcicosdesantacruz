@@ -15,6 +15,21 @@ export const formatCPF = (value: string): string => {
 	return formattedValue;
 };
 
+export const formatDate = (value: string): string => {
+	let formattedValue = value.replace(/[^\d]/g, '');
+	
+	if (formattedValue.length >= 9) {
+		formattedValue = formattedValue.slice(0, 8);
+		formattedValue = formattedValue.replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3');
+	} else if (formattedValue.length >= 5) {
+		formattedValue = formattedValue.replace(/(\d{2})(\d{2})(\d)/, '$1/$2/$3');
+	} else if (formattedValue.length >= 3) {
+		formattedValue = formattedValue.replace(/(\d{2})(\d)/, '$1/$2');
+	}
+
+	return formattedValue;
+};
+
 export const formatPhoneNumber = (value: string): string => {
 	let formattedValue = value.replace(/[^\d]/g, '');
 	console.log(formattedValue.length);
@@ -28,9 +43,7 @@ export const formatPhoneNumber = (value: string): string => {
 		formattedValue = formattedValue.replace(/(\d{2})(\d{1})(\d{1,4})/, '($1) $2.$3');
 	} else if (formattedValue.length >= 3) {
 		formattedValue = formattedValue.replace(/(\d{2})(\d{1})/, '($1) $2');
-	} else if (formattedValue.length >= 2) {
-		formattedValue = formattedValue.replace(/(\d{1,2})/, '($1)');
-	}
+	} 
 
 	return formattedValue;
 };

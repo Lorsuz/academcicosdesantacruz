@@ -8,7 +8,7 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 
 import styled from 'styled-components';
 
-import { formatCPF, formatCEP, formatPhoneNumber } from '../../utils/formatingValues';
+import { formatCPF, formatCEP, formatPhoneNumber, formatDate } from '../../utils/formatingValues';
 const LegendForFieldset = ({ children }: { children: string }): React.FunctionComponentElement<JSX.Element> => (
 	<legend>
 		<div className='before'></div>
@@ -21,13 +21,13 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 	const [fildsetPages] = useState<Array<JSX.Element>>([
 		<fieldset>
 			<LegendForFieldset>Dados Pessoais</LegendForFieldset>
-			<InputField name='name' label='Nome:' placeholder='Ex.: João Silva' />
-			<InputField name='birth' label='Data de Nascimento:' type='date' />
-			<InputField name='cpf' label='CPF:' placeholder='Ex.: 123.456.789-00' formatValueFunction={formatCPF} />
+			<InputField name='name' label='Nome' placeholder='Ex.: João Silva' />
+			<InputField name='birth' label='Data de Nascimento' formatValueFunction={formatDate}/>
+			<InputField name='cpf' label='CPF' placeholder='Ex.: 123.456.789-00' formatValueFunction={formatCPF} />
 		</fieldset>,
 		<fieldset>
 			<LegendForFieldset>Dados de Contato</LegendForFieldset>
-			<InputField name='email' label='Email:' placeholder='Ex.: joao.silva@xpto.com.br' type='email' />
+			<InputField name='email' label='Email' placeholder='Ex.: joao.silva@xpto.com.br' type='email' />
 			<InputField
 				name='tell'
 				label='Telefone:'
@@ -38,12 +38,12 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 		</fieldset>,
 		<fieldset>
 			<LegendForFieldset>Endereço</LegendForFieldset>
-			<InputField name='street' label='Logradouro:' placeholder='Ex.: Rua Soares' />
-			<InputField name='number' label='Número:' placeholder='Ex.: 123' />
-			<InputField name='cep' label='CEP:' placeholder='Ex.: 12345-678' formatValueFunction={formatCEP} />
-			<InputField name='complement' label='Complemento:' placeholder='Ex.: Apt. 456' />
-			<InputField name='neighborhood' label='Bairro:' placeholder='Ex.: Centro' />
-			<InputField name='city' label='Cidade:' placeholder='Ex.: Juatina' />
+			<InputField name='street' label='Logradouro' placeholder='Ex.: Rua Soares' />
+			<InputField name='number' label='Número' placeholder='Ex.: 123' />
+			<InputField name='cep' label='CEP' placeholder='Ex.: 12345-678' formatValueFunction={formatCEP} />
+			<InputField name='complement' label='Complemento' placeholder='Ex.: Apt. 456' />
+			<InputField name='neighborhood' label='Bairro' placeholder='Ex.: Centro' />
+			<InputField name='city' label='Cidade' placeholder='Ex.: Juatina' />
 
 			<InputSelectField
 				name='state'
@@ -79,12 +79,12 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 					'Tocantins'
 				]}
 			/>
-			<InputField name='country' label='País:' placeholder='Ex.: Brasil' />
+			<InputField name='country' label='País' placeholder='Ex.: Brasil' />
 		</fieldset>,
 		<fieldset>
 			<LegendForFieldset>Perfil</LegendForFieldset>
-			<InputField name='height' label='Altura:' placeholder='Ex.: 1.75m' />
-			<InputField name='weight' label='Peso:' placeholder='Ex.: 65Kg' />
+			<InputField name='height' label='Altura' placeholder='Ex.: 1.75m' />
+			<InputField name='weight' label='Peso' placeholder='Ex.: 65Kg' />
 			<InputSelectField
 				name='mannequin'
 				label='Manequim:'

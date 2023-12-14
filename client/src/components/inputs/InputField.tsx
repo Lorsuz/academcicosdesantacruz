@@ -47,29 +47,34 @@ const InputField = ({
 
 	return (
 		<StyledInputField>
-			<label className='label' htmlFor={name}>
-				{label}
-			</label>
-
 			{type === 'date' ? (
-				<input
-					type={type}
-					placeholder={`${placeholder}`}
-					name={name}
-					id={name}
-					onChange={e => handleInputChange(e)}
-					value={inputValue}
-					pattern='\d{2}/\d{2}/\d{4}'
-				/>
+				<>
+					<label className='label' htmlFor={name}>
+						{label}
+					</label>
+					<input
+						type={type}
+						placeholder={`${placeholder}`}
+						name={name}
+						id={name}
+						onChange={e => handleInputChange(e)}
+						value={inputValue}
+					/>
+				</>
 			) : (
-				<input
-					type={type}
-					placeholder={`${placeholder}`}
-					name={name}
-					id={name}
-					onChange={e => handleInputChange(e)}
-					value={inputValue}
-				/>
+				<div className='input'>
+					<input
+						type={type}
+						// placeholder={`${placeholder}`}
+						name={name}
+						id={name}
+						onChange={e => handleInputChange(e)}
+						value={inputValue}
+					/>
+					<label className='label' htmlFor={name}>
+						{label}
+					</label>
+				</div>
 			)}
 			<span className='error-message'>{inputError}</span>
 		</StyledInputField>
@@ -79,11 +84,11 @@ const InputField = ({
 const StyledInputField = styled.div`
 	/* width: 90%; */
 	margin: 0 auto 20px;
-	.label {
+	> .label {
 		margin-bottom: 10px;
 		display: block;
 	}
-	input {
+	> input {
 		display: block;
 		width: 100%;
 		height: 50px;
@@ -92,6 +97,44 @@ const StyledInputField = styled.div`
 		/* background-color: #e2e2e2; */
 		padding: 0 10px;
 		font-size: 1.2rem;
+	}
+	.input {
+		position: relative;
+
+		> input, > input:placeholder-shown {
+			display: block;
+			width: 100%;
+			height: 50px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			/* background-color: #e2e2e2; */
+			padding: 0 10px;
+			font-size: 1.2rem;
+			&:focus ~ label, &:not(:placeholder-shown) ~ label {
+				top: -0px;
+				background: #fff;
+				/* left: 0; */
+				font-size: 1rem;
+				color: var(--color-primary);
+				padding: 0 5px;
+				/* border-left: 2px solid var(--color-primary); */
+			}
+			&:focus {
+			}
+		}
+		> .label {
+			margin-bottom: 10px;
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 10px;
+			transform: translateY(-50%);
+			color: #999;
+			font-size: 1.2rem;
+			transition: all 0.2s ease;
+			pointer-events: none;
+
+		}
 	}
 	.error-message {
 		color: red;
