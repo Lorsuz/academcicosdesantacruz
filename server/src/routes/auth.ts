@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { registerSchema, loginSchema } from '../middleware/validationSchemas.js';
 import dotenv from 'dotenv';
-import SendMail from '../services/sendMail.js';
+import {sendEmailFromFormContact} from '../services/sendMail.js';
 
 import { Prisma, PrismaClient } from '@prisma/client';
 
@@ -67,7 +67,7 @@ router.post('/api/register', async (req: Request, res: Response) => {
 
 		console.log('User created:', newUser);
 
-		await SendMail(newUser.email);
+		await sendEmailFromFormContact(newUser.email);
 
 		res.json({ message: 'Registration successful' });
 	} catch (error) {

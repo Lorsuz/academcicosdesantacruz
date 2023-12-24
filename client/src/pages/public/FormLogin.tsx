@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import Layout from '../../layouts/PagesLayout';
 import { loginSchema } from '../../config/LoginSchema';
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 
 export function FormLogin(): React.FunctionComponentElement<JSX.Element> {
 	const [username, setUsername] = useState('');

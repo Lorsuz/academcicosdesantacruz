@@ -5,8 +5,11 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 import indexRouter from './routes/index.js';
-import authRouter from './routes/auth.js';
+// import authRouter from './routes/auth.js';
 
 const app: Application = express();
 
@@ -18,7 +21,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/', indexRouter);
-app.use('/', authRouter);
+// app.use('/', authRouter);
 
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response, next: NextFunction) => {

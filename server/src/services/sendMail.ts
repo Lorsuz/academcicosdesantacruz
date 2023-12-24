@@ -1,29 +1,32 @@
 import nodemailer from 'nodemailer';
-import mailConfig from '../config/mail.js';
+import { nodemailerConfig } from '../config/nodemailerConfig.js';
 
-async function createNewUser(to: string): Promise<void> {
+export async function sendEmailFromFormContact(data): Promise<boolean> {
 	try {
-		const config = await mailConfig();
+		const config = await nodemailerConfig();
+		console.log(config);
+
 		const transporter = nodemailer.createTransport(config);
 
 		const info = await transporter.sendMail({
-			from: 'domap22290@ustorp.com',
-			to: to,
-			subject: 'Conta criada no Stens;Calculator',
-			text: `Conta criada com sucesso.\n\nAcesse o aplicativo `,
-			html: `<h1>Conta criada com sucesso.</h1><p>Acesse o aplicativo.</p>`
+			from: data.email,
+			to: process.env.EMAIL_USER,
+			subject: data.subject,
+			text: `Olá! Me chamo ${data.name} com o número de telefone ${data.tell} e gostaria de entrar em contato para falar sobre: ${data.subject}. Desde já agradeço! E confirmo que li e aceito os termos de uso e a política de privacidade do site e estou de acordo com todos.`
+			// html: `<h1>Conta criada com sucesso.</h1><p>Acesse o aplicativo.</p>`
 		});
 
 		if (process.env.NODE_ENV === 'development') {
 			console.log(`Send email: ${nodemailer.getTestMessageUrl(info)}`);
 		}
+
+		return true;
 	} catch (err: unknown) {
 		if (err instanceof Error) {
 			console.error('Error sending email:', err);
 		} else {
 			console.error('Unexpected error type during email sending:', err);
 		}
+		return false;
 	}
 }
-
-export default createNewUser;

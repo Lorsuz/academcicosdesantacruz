@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import Layout from '../../layouts/PagesLayout';
 import { registerSchema } from '../../config/registerSchema';
-import AuthContext from '../../context/AuthContext';
+import {AuthContext} from '../../context/AuthContext';
 
 function FormRegister(): React.FunctionComponentElement<JSX.Element> {
 	const [username, setUsername] = useState('');
@@ -13,7 +13,6 @@ function FormRegister(): React.FunctionComponentElement<JSX.Element> {
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
 		e.preventDefault();
-		console.log(username, password);
 
 		try {
 			const formData = { username, email, password };

@@ -30,6 +30,11 @@ const Header: React.FunctionComponent = () => (
 							</NavLink>
 						</li>
 						<li>
+							<NavLink to='/supporter-member'>
+								<span>Sócio Torcedor</span>
+							</NavLink>
+						</li>
+						<li>
 							<a href='#'>Créditos</a>
 						</li>
 					</ul>

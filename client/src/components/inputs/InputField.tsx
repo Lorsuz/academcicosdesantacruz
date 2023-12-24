@@ -1,141 +1,144 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 type Props = {
 	label?: string;
 	type?: string;
-	name?: string;
+	name: string;
 	placeholder?: string;
 	error?: string;
-	regex?: RegExp;
 	required?: boolean;
-	onChange?: (e?: React.ChangeEvent<HTMLInputElement>) => void;
+	onChangeFromParent: (name: string, value: string) => void;
 	formatValueFunction?: (value: string) => string;
-	validateValueFunction?: (value: string | number) => string | number;
+	validateValueFunctions?: Array<(value: string) => string>;
 };
 
 const InputField = ({
 	label = 'Label',
-	name = 'name',
-	placeholder = '',
+	name,
+	// placeholder = '',
 	type = 'text',
-	required = true,
-	formatValueFunction = (value: string): string => value
+	onChangeFromParent,
+	formatValueFunction = (value: string): string => value,
+	validateValueFunctions = []
 }: Props): React.FunctionComponentElement<JSX.Element> => {
 	const [inputValue, setInputValue] = useState<string>('');
 	const [inputError, setInputError] = useState<string>('');
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-		formatValue(e.target.value);
-		// validateInput(e.target.value);
-	};
-
-	const formatValue = (value: string): void => {
-		const formattedValue = formatValueFunction(value);
+		const formattedValue = formatValue(e.target.value);
 		setInputValue(formattedValue);
 	};
 
-	// const validateInput = (value: string | number): string | number => {
-	// 	if (value === '' && required) {
-	// 		setInputError('Campo obrrigatório');
-	// 	} else if (value !== '' && !regex.test(value)) {
-	// 		setInputError('Campo inválido');
-	// 	} else {
-	// 		setInputError('');
-	// 	}
-	// };
+	const formatValue = (value: string): string => {
+		const formattedValue = formatValueFunction(value);
+		return formattedValue;
+	};
+
+	useEffect(() => {
+		const error = validateValueFunctions.reduce((acc, validate) => {
+			const errorValidate = validate(inputValue);
+			if (errorValidate) {
+				return errorValidate;
+			}
+			return acc;
+		}, '');
+
+		setInputError(error);
+		onChangeFromParent(name, inputValue);
+	}, [inputValue]);
 
 	return (
-		<StyledInputField>
-			{type === 'date' ? (
-				<>
-					<label className='label' htmlFor={name}>
-						{label}
-					</label>
-					<input
-						type={type}
-						placeholder={`${placeholder}`}
-						name={name}
-						id={name}
-						onChange={e => handleInputChange(e)}
-						value={inputValue}
-					/>
-				</>
-			) : (
-				<div className='input'>
-					<input
-						type={type}
-						// placeholder={`${placeholder}`}
-						name={name}
-						id={name}
-						onChange={e => handleInputChange(e)}
-						value={inputValue}
-					/>
-					<label className='label' htmlFor={name}>
-						{label}
-					</label>
-				</div>
-			)}
+		<StyledInputField $hasContent={inputValue !== ''}>
+			<div className='input'>
+				<input
+					type={type}
+					// placeholder={`${placeholder}`}
+					name={name}
+					id={name}
+					onChange={e => handleInputChange(e)}
+					value={inputValue}
+				/>
+				<label className='label' htmlFor={name}>
+					{label}
+				</label>
+			</div>
 			<span className='error-message'>{inputError}</span>
 		</StyledInputField>
 	);
 };
 
-const StyledInputField = styled.div`
+const StyledInputField = styled.div<{ $hasContent?: boolean }>`
 	margin: 0 auto 20px;
-	> .label {
-		margin-bottom: 10px;
-		display: block;
-	}
-	> input {
-		display: block;
-		width: 100%;
-		height: 50px;
-		border: 1px solid #ccc;
-		border-radius: 5px;
-		padding: 0 10px;
-		font-size: 1.2rem;
-	}
+
 	.input {
 		position: relative;
 
-		> input,
-		> input:placeholder-shown {
-			display: block;
-			width: 100%;
-			height: 50px;
-			border: 1px solid #ccc;
+		> input {
+			background: transparent;
+			border-bottom: 2px solid #01c4d6;
 			border-radius: 5px;
-			padding: 0 10px;
+			border: 1px solid #ccc;
+			display: block;
 			font-size: 1.2rem;
-			&:focus ~ label,
-			&:not(:placeholder-shown) ~ label {
-				top: -0px;
-				background: #fff;
-				font-size: 1rem;
-				color: var(--color-primary);
-				padding: 0 5px;
-			}
+			height: 50px;
+			outline: none;
+			padding-left: 5px;
+			padding: 0 10px;
+			width: 100%;
+
+			${({ $hasContent }) =>
+				$hasContent
+					? `
+						border: 2px solid var(--color-primary);
+				`
+					: ''};
+
 			&:focus {
+				border: 2px solid var(--color-primary);
+
+				~ label {
+					background: #fff;
+					color: var(--color-primary);
+					font-size: 1rem;
+					padding: 0 5px;
+					top: -0px;
+					transform: translateX(5px) translateY(-50%);
+				}
 			}
 		}
 		> .label {
-			margin-bottom: 10px;
+			color: #999;
 			display: block;
+			font-size: 1.2rem;
+			left: 10px;
+			margin-bottom: 10px;
+			pointer-events: none;
 			position: absolute;
 			top: 50%;
-			left: 10px;
 			transform: translateY(-50%);
-			color: #999;
-			font-size: 1.2rem;
 			transition: all 0.2s ease;
-			pointer-events: none;
+			cursor: default;
+
+			${({ $hasContent }) =>
+				$hasContent
+					? `
+					background: #fff;
+					color: var(--color-primary);
+					font-size: 1rem;
+					padding: 0 5px;
+					top: -0px;
+					transform: translateX(5px) translateY(-50%);
+				`
+					: ''}
 		}
 	}
 	.error-message {
 		color: red;
 		display: block;
 		height: 20px;
+		font-size: 0.8rem;
+		margin: 5px 0px 0 10px;
 	}
 `;
 

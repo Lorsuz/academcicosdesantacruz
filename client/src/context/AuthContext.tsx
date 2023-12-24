@@ -1,10 +1,15 @@
 import React from 'react';
 
-type AuthContextType = {
+export type AuthContextType = {
 	apiUrl: string;
 	token: string;
 	setToken: React.Dispatch<React.SetStateAction<string>>;
 };
-const MeuContexto: React.Context<AuthContextType> = React.createContext({} as AuthContextType);
 
-export default MeuContexto;
+const defaultValue: AuthContextType = {
+	apiUrl: '',
+	token: '',
+	setToken: () => {}
+};
+
+export const AuthContext: React.Context<AuthContextType> = React.createContext(defaultValue);
