@@ -37,12 +37,13 @@ const InputField = ({
 
 	useEffect(() => {
 		const error = validateValueFunctions.reduce((acc, validate) => {
+			if (acc) return acc;
 			const errorValidate = validate(inputValue);
-			if (errorValidate) {
-				return errorValidate;
-			}
+			if (errorValidate) return errorValidate;
 			return acc;
 		}, '');
+
+		setInputError(error);
 
 		setInputError(error);
 		onChangeFromParent(name, inputValue);
@@ -76,7 +77,6 @@ const StyledInputField = styled.div<{ $hasContent?: boolean }>`
 
 		> input {
 			background: transparent;
-			border-bottom: 2px solid #01c4d6;
 			border-radius: 5px;
 			border: 1px solid #ccc;
 			display: block;
@@ -90,12 +90,12 @@ const StyledInputField = styled.div<{ $hasContent?: boolean }>`
 			${({ $hasContent }) =>
 				$hasContent
 					? `
-						border: 2px solid var(--color-primary);
+						// border: 2px solid var(--color-primary);
 				`
 					: ''};
 
 			&:focus {
-				border: 2px solid var(--color-primary);
+				border-color: var(--color-primary);
 
 				~ label {
 					background: #fff;
@@ -124,7 +124,7 @@ const StyledInputField = styled.div<{ $hasContent?: boolean }>`
 				$hasContent
 					? `
 					background: #fff;
-					color: var(--color-primary);
+					// color: var(--color-primary);
 					font-size: 1rem;
 					padding: 0 5px;
 					top: -0px;

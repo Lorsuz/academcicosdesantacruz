@@ -1,30 +1,37 @@
-export const validateLength = (value: string, minLength: number, maxLength: number): boolean | string => {
+export const validateLength = (value: string, minLength: number, maxLength: number): string => {
 	const length = value.trim().length;
-	return (
-		(length >= minLength && length <= maxLength) ||
-		`O comprimento deve estar entre ${minLength} e ${maxLength} caracteres.`
-	);
+	const isBetween = length >= minLength && length <= maxLength;
+	const response = isBetween ? '' : `O comprimento deve estar entre ${minLength} e ${maxLength} caracteres.`;
+	return response;
 };
 
-export const validateEmail = (email: string): boolean | string => {
+export const validateEmail = (email: string): string => {
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	return emailRegex.test(email) || 'Digite um endereço de e-mail válido.';
+	const isValid = emailRegex.test(email);
+	const response = isValid ? '' : 'Digite um endereço de e-mail válido.';
+	return response;
 };
 
-export const validateNoSpecialChars = (value: string): boolean | string => {
+export const validateNoSpecialChars = (value: string): string => {
 	const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(value);
-	return !hasSpecialChars || 'Este campo não pode conter caracteres especiais.';
+	const response = !hasSpecialChars ? '' : 'Este campo não pode conter caracteres especiais.';
+	return response;
 };
 
-export const validateNoLetters = (value: string): boolean | string => {
+export const validateNoLetters = (value: string): string => {
 	const hasLetters = /[a-zA-Z]/.test(value);
-	return !hasLetters || 'Este campo não pode conter letras.';
+	const isValid = !hasLetters ? '' : 'Este campo não pode conter letras.';
+	return isValid;
 };
 
-export const validateNoNumbers = (value: string): boolean | string => {
+export const validateNoNumbers = (value: string): string => {
 	const hasNumbers = /\d/.test(value);
-	return !hasNumbers || 'Este campo não pode conter números.';
+	const isValid = !hasNumbers ? '' : 'Este campo não pode conter números.';
+	return isValid;
 };
 
-export const validateNotEmpty = (value: string): boolean | string =>
-	value.trim() !== '' || 'Este campo não pode estar vazio.';
+export const validateNotEmpty = (value: string): string => {
+	const validation = value.trim() !== '';
+	const response = validation ? '' : 'Este campo não pode estar vazio.';
+	return response;
+};

@@ -12,7 +12,6 @@ import { formatCPF, formatCEP, formatPhoneNumber, formatDate } from '../../utils
 import {
 	validateNotEmpty,
 	validateEmail,
-	validateLength,
 	validateNoLetters,
 	validateNoNumbers,
 	validateNoSpecialChars
@@ -45,7 +44,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 				name='name'
 				label='Nome'
 				placeholder='Ex.: João Silva'
-				validateValueFunctions={[validateNotEmpty]}
+				validateValueFunctions={[validateNotEmpty, validateNoNumbers, validateNoSpecialChars]}
 			/>
 
 			<InputField
@@ -53,6 +52,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 				name='birth'
 				label='Data de Nascimento'
 				formatValueFunction={formatDate}
+				validateValueFunctions={[validateNotEmpty, validateNoLetters]}
 			/>
 			<InputField
 				onChangeFromParent={SendInputValueForParent}
@@ -60,6 +60,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 				label='CPF'
 				placeholder='Ex.: 123.456.789-00'
 				formatValueFunction={formatCPF}
+				validateValueFunctions={[validateNotEmpty, validateNoLetters]}
 			/>
 		</>,
 		<>
@@ -79,7 +80,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 				placeholder='Ex.: (XX) X.XXX-XXXX'
 				type='tell'
 				formatValueFunction={formatPhoneNumber}
-				va
+				validateValueFunctions={[validateNotEmpty]}
 			/>
 		</>,
 		<>
@@ -240,7 +241,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 	};
 
 	useEffect(() => {
-		console.log(formData);
+		// console.log(formData);
 	}, [formData]);
 
 	return (
