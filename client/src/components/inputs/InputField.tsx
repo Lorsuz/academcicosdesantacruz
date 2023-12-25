@@ -87,13 +87,6 @@ const StyledInputField = styled.div<{ $hasContent?: boolean }>`
 			padding: 0 10px;
 			width: 100%;
 
-			${({ $hasContent }) =>
-				$hasContent
-					? `
-						// border: 2px solid var(--color-primary);
-				`
-					: ''};
-
 			&:focus {
 				border-color: var(--color-primary);
 
@@ -124,7 +117,6 @@ const StyledInputField = styled.div<{ $hasContent?: boolean }>`
 				$hasContent
 					? `
 					background: #fff;
-					// color: var(--color-primary);
 					font-size: 1rem;
 					padding: 0 5px;
 					top: -0px;
