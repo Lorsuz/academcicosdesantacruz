@@ -1,13 +1,18 @@
 import React, { useState, useContext } from 'react';
-import Layout from '../../layouts/PagesLayout';
 import { loginSchema } from '../../config/LoginSchema';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
-export function FormLogin(): React.FunctionComponentElement<JSX.Element> {
-	const [username, setUsername] = useState('');
+import { FaEnvelope, FaLock } from 'react-icons/fa';
+
+type FormLoginProps = {
+	toggleHaveAccount: () => void;
+};
+
+export function FormLogin({ toggleHaveAccount }: FormLoginProps): React.FunctionComponentElement<JSX.Element> {
+	const [email, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-	const [loginError, setLoginError] = useState('');
+	const [error, setLoginError] = useState('');
 	const { apiUrl, token, setToken } = useContext(AuthContext);
 	console.log(token);
 	const navigate = useNavigate();
@@ -15,10 +20,10 @@ export function FormLogin(): React.FunctionComponentElement<JSX.Element> {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
 		e.preventDefault();
 
-		console.log(username, password);
+		console.log(email, password);
 
 		try {
-			const formData = { username, password };
+			const formData = { username: email, password };
 			loginSchema.parse(formData);
 		} catch (error) {
 			setLoginError('Invalid credentials');
@@ -27,7 +32,7 @@ export function FormLogin(): React.FunctionComponentElement<JSX.Element> {
 			const response = await fetch(`${apiUrl}/login`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ username, password })
+				body: JSON.stringify({ username: email, password })
 			});
 			const data = await response.json();
 			if (!response.ok) {
@@ -44,17 +49,35 @@ export function FormLogin(): React.FunctionComponentElement<JSX.Element> {
 	};
 
 	return (
-		<Layout title='Login Form'>
-			<main>
-				<h2>Login</h2>
-				<form onSubmit={handleSubmit}>
-					<input type='text' placeholder='Username' value={username} onChange={e => setUsername(e.target.value)} />
-					<input type='password' placeholder='Password' value={password} onChange={e => setPassword(e.target.value)} />
-					{loginError && <div className='error'>{loginError}</div>}
-					<button type='submit'>Login</button>
-				</form>
-			</main>
-		</Layout>
+		<>
+			<h2>Iniciar Sessão</h2>
+			<form onSubmit={handleSubmit}>
+				<div className='input-container'>
+					<span className='icon'>
+						<FaEnvelope></FaEnvelope>
+					</span>
+					<input type='text' placeholder='E-mail' value={email} onChange={e => setUsername(e.target.value)} />
+				</div>
+				<div className='input-container'>
+					<span className='icon'>
+						<FaLock></FaLock>
+					</span>
+					<input type='password' placeholder='Senha' value={password} onChange={e => setPassword(e.target.value)} />
+				</div>
+				<div className='forgot-password'>
+					<button>Esqueceu sua senha?</button>
+				</div>
+				<button type='submit' className='button-submit'>
+					Entrar
+				</button>
+				{error && <div className='error'>{error}</div>}
+			</form>
+			<div className='toggle'>
+				<span>
+					Ainda não tem uma conta? <button onClick={toggleHaveAccount}>Cadastre-se</button>
+				</span>
+			</div>
+		</>
 	);
 }
 

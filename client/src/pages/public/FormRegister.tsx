@@ -1,9 +1,14 @@
 import { useContext, useState } from 'react';
-import Layout from '../../layouts/PagesLayout';
 import { registerSchema } from '../../config/registerSchema';
-import {AuthContext} from '../../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 
-function FormRegister(): React.FunctionComponentElement<JSX.Element> {
+import { FaEnvelope, FaLock, FaUser } from 'react-icons/fa';
+
+type FormLoginProps = {
+	toggleHaveAccount: () => void;
+};
+
+function FormRegister({ toggleHaveAccount }: FormLoginProps): React.FunctionComponentElement<JSX.Element> {
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -41,16 +46,39 @@ function FormRegister(): React.FunctionComponentElement<JSX.Element> {
 	};
 
 	return (
-		<Layout title='Register Form'>
-			<h2>Register</h2>
+		<>
+			<h2>Registre-se</h2>
 			<form onSubmit={handleSubmit}>
-				<input type='text' placeholder='Username' value={username} onChange={e => setUsername(e.target.value)} />
-				<input type='email' placeholder='E-mail' value={email} onChange={e => setEmail(e.target.value)} />
-				<input type='password' placeholder='Password' value={password} onChange={e => setPassword(e.target.value)} />
+				<div className='input-container'>
+					<span className='icon'>
+						<FaUser></FaUser>
+					</span>
+					<input type='text' placeholder='Nome' value={username} onChange={e => setUsername(e.target.value)} />
+				</div>
+				<div className='input-container'>
+					<span className='icon'>
+						<FaEnvelope></FaEnvelope>
+					</span>
+					<input type='email' placeholder='E-mail' value={email} onChange={e => setEmail(e.target.value)} />
+				</div>
+				<div className='input-container'>
+					<span className='icon'>
+						<FaLock></FaLock>
+					</span>
+					<input type='password' placeholder='Senha' value={password} onChange={e => setPassword(e.target.value)} />
+				</div>
 				{registerError && <div className='error'>{registerError}</div>}
-				<button type='submit'>Register</button>
+				<button type='submit' className='button-submit'>
+					Registrar
+				</button>
 			</form>
-		</Layout>
+
+			<div className='toggle'>
+				<span>
+					Você já tem uma conta? <button onClick={toggleHaveAccount}>Clique Aqui</button>
+				</span>
+			</div>
+		</>
 	);
 }
 export default FormRegister;

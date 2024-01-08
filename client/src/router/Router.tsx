@@ -8,8 +8,7 @@ import Board from '../pages/public/Board';
 import SupporterMember from '../pages/public/SupporterMember';
 import FormFanMember from '../pages/public/FormFanMember';
 import NotFound from '../pages/public/NotFound';
-import FormRegister from '../pages/public/FormRegister';
-import FormLogin from '../pages/public/FormLogin';
+import FormSign from '../pages/public/FormSign';
 
 import Application from '../pages/private/Application';
 
@@ -21,8 +20,7 @@ const Router: React.FunctionComponent = () => (
 
 		<Route path='/form'>
 			<Route path='fan-member' element={<FormFanMember />} />
-			<Route path='login' element={<FormLogin />} />
-			<Route path='register' element={<FormRegister />} />
+			<Route path='sign' element={<FormSign />} />
 		</Route>
 
 		<Route path='/private' element={<PrivateRoutes />}>

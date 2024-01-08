@@ -6,7 +6,7 @@ type Props = {
 	name?: string;
 	options?: string[];
 	placeholder?: string;
-	onChange?: (e?: React.ChangeEvent<HTMLSelectElement>) => void;
+	onChangeFromParent: (name: string, value: string) => void;
 	error?: string;
 };
 
@@ -15,16 +15,15 @@ const InputField = ({
 	error = '',
 	name = 'name',
 	placeholder = 'Selecione seu dado',
-	options = [],
-	onChange
+	options = [] // onChangeFromParent
 }: Props): React.FunctionComponentElement<JSX.Element> => {
 	const [selectedValue, setSelectedValue] = useState<string>('');
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
 		setSelectedValue(e.target.value);
-		if (onChange) {
-			onChange(e);
-		}
+		// if (onChange) {
+		// 	onChangeFromParent(name, inputValue);
+		// }
 	};
 
 	return (

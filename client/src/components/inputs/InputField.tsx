@@ -18,16 +18,22 @@ const InputField = ({
 	name,
 	// placeholder = '',
 	type = 'text',
+	required = true,
 	onChangeFromParent,
 	formatValueFunction = (value: string): string => value,
 	validateValueFunctions = []
 }: Props): React.FunctionComponentElement<JSX.Element> => {
 	const [inputValue, setInputValue] = useState<string>('');
 	const [inputError, setInputError] = useState<string>('');
+	const [itAlreadyHasContent, setItAlreadyHasContent] = useState<boolean>(false);
+	const [colorError, setColorError] = useState<boolean>(false);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		const formattedValue = formatValue(e.target.value);
 		setInputValue(formattedValue);
+		if (inputValue !== '' && !itAlreadyHasContent) {
+			setItAlreadyHasContent(true);
+		}
 	};
 
 	const formatValue = (value: string): string => {
@@ -49,8 +55,17 @@ const InputField = ({
 		onChangeFromParent(name, inputValue);
 	}, [inputValue]);
 
+	useEffect(() => {
+		if (required && itAlreadyHasContent && inputValue === '') {
+			// setInputError('Campo obrigatório');
+			setColorError(true);
+		} else {
+			setColorError(false);
+		}
+	}, [inputValue]);
+
 	return (
-		<StyledInputField $hasContent={inputValue !== ''}>
+		<StyledInputField $hasContent={inputValue !== ''} $colorError={colorError}>
 			<div className='input'>
 				<input
 					type={type}
@@ -69,7 +84,7 @@ const InputField = ({
 	);
 };
 
-const StyledInputField = styled.div<{ $hasContent?: boolean }>`
+const StyledInputField = styled.div<{ $hasContent?: boolean; $colorError?: boolean }>`
 	margin: 0 auto 20px;
 
 	.input {
@@ -86,6 +101,12 @@ const StyledInputField = styled.div<{ $hasContent?: boolean }>`
 			padding-left: 5px;
 			padding: 0 10px;
 			width: 100%;
+			${({ $colorError }) =>
+				$colorError
+					? `
+					border-color: red;
+				`
+					: ''}
 
 			&:focus {
 				border-color: var(--color-primary);
@@ -121,6 +142,12 @@ const StyledInputField = styled.div<{ $hasContent?: boolean }>`
 					padding: 0 5px;
 					top: -0px;
 					transform: translateX(5px) translateY(-50%);
+				`
+					: ''}
+			${({ $colorError }) =>
+				$colorError
+					? `
+					color: red;
 				`
 					: ''}
 		}

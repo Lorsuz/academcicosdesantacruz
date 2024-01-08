@@ -29,9 +29,3 @@ export const validateNoNumbers = (value: string): string => {
 	const isValid = !hasNumbers ? '' : 'Este campo não pode conter números.';
 	return isValid;
 };
-
-export const validateNotEmpty = (value: string): string => {
-	const validation = value.trim() !== '';
-	const response = validation ? '' : 'Este campo não pode estar vazio.';
-	return response;
-};

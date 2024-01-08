@@ -10,7 +10,6 @@ import styled from 'styled-components';
 
 import { formatCPF, formatCEP, formatPhoneNumber, formatDate } from '../../utils/formattingValues';
 import {
-	validateNotEmpty,
 	validateEmail,
 	validateNoLetters,
 	validateNoNumbers,
@@ -44,7 +43,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 				name='name'
 				label='Nome'
 				placeholder='Ex.: João Silva'
-				validateValueFunctions={[validateNotEmpty, validateNoNumbers, validateNoSpecialChars]}
+				validateValueFunctions={[validateNoNumbers, validateNoSpecialChars]}
 			/>
 
 			<InputField
@@ -52,7 +51,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 				name='birth'
 				label='Data de Nascimento'
 				formatValueFunction={formatDate}
-				validateValueFunctions={[validateNotEmpty, validateNoLetters]}
+				validateValueFunctions={[validateNoLetters]}
 			/>
 			<InputField
 				onChangeFromParent={SendInputValueForParent}
@@ -60,7 +59,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 				label='CPF'
 				placeholder='Ex.: 123.456.789-00'
 				formatValueFunction={formatCPF}
-				validateValueFunctions={[validateNotEmpty, validateNoLetters]}
+				validateValueFunctions={[validateNoLetters]}
 			/>
 		</>,
 		<>
@@ -71,16 +70,16 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 				label='Email'
 				placeholder='Ex.: joao.silva@xpto.com.br'
 				type='email'
-				validateValueFunctions={[validateNotEmpty, validateEmail]}
+				validateValueFunctions={[validateEmail]}
 			/>
 			<InputField
 				onChangeFromParent={SendInputValueForParent}
 				name='tell'
-				label='Telefone:'
+				label='Telefone'
 				placeholder='Ex.: (XX) X.XXX-XXXX'
 				type='tell'
 				formatValueFunction={formatPhoneNumber}
-				validateValueFunctions={[validateNotEmpty]}
+				validateValueFunctions={[]}
 			/>
 		</>,
 		<>
@@ -115,7 +114,8 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 
 			<InputSelectField
 				name='state'
-				label='Estado:'
+				// onChangeFromParent={SendInputValueForParent}
+				label='Estado'
 				placeholder='Selecione seu estado'
 				options={[
 					'Acre',
@@ -155,7 +155,8 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 			<InputField onChangeFromParent={SendInputValueForParent} name='weight' label='Peso' placeholder='Ex.: 65Kg' />
 			<InputSelectField
 				name='mannequin'
-				label='Manequim:'
+				// onChangeFromParent={SendInputValueForParent}
+				label='Manequim'
 				placeholder='Selecione seu manequim'
 				options={['PP', 'P', 'M', 'G', 'GG', 'XXG']}
 			/>
@@ -164,6 +165,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 			<LegendForFieldset>Sobre Você</LegendForFieldset>
 			<InputRadioField
 				name='experience'
+				// onChangeFromParent={SendInputValueForParent}
 				placeholder='Você possui experiência em desfiles?'
 				radios={[
 					{
@@ -178,6 +180,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 			/>
 			<InputRadioField
 				name='fanMember'
+				// onChangeFromParent={SendInputValueForParent}
 				placeholder='Você é sócio torcedor da escola?'
 				radios={[
 					{
@@ -241,7 +244,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 	};
 
 	useEffect(() => {
-		// console.log(formData);
+		console.log(formData);
 	}, [formData]);
 
 	return (
@@ -466,6 +469,12 @@ const StyledFormFanMember = styled.main`
 					}
 				}
 			}
+		}
+	}
+
+	@keyframes shake {
+		50% {
+			transform: translateX(10px);
 		}
 	}
 `;
