@@ -114,7 +114,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 
 			<InputSelectField
 				name='state'
-				// onChangeFromParent={SendInputValueForParent}
+				onChangeFromParent={SendInputValueForParent}
 				label='Estado'
 				placeholder='Selecione seu estado'
 				options={[
@@ -155,7 +155,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 			<InputField onChangeFromParent={SendInputValueForParent} name='weight' label='Peso' placeholder='Ex.: 65Kg' />
 			<InputSelectField
 				name='mannequin'
-				// onChangeFromParent={SendInputValueForParent}
+				onChangeFromParent={SendInputValueForParent}
 				label='Manequim'
 				placeholder='Selecione seu manequim'
 				options={['PP', 'P', 'M', 'G', 'GG', 'XXG']}

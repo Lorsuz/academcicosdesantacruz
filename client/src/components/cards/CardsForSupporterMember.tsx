@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { FaCheck } from 'react-icons/fa';
 import styled from 'styled-components';
 import wallpapperGrayLines from '../../assets/images/wallpaper-gray-lines.avif';
@@ -16,7 +16,7 @@ type CardsForSupporterMemberProps = {
 	element: CardsForSupporterMemberElementProps;
 };
 
-const CardsForSupporterMember = ({ element }: CardsForSupporterMemberProps) => {
+const CardsForSupporterMember = ({ element }: CardsForSupporterMemberProps): React.FunctionComponentElement<JSX.Element> => {
 	console.log(wallpapperGrayLines);
 	return (
 		<StyledComponent $background={element.color}>

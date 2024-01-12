@@ -2,137 +2,165 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoPng from '../assets/images/Logo/santa-cruz-logo-removebg-preview.png';
 import styled from 'styled-components';
-import { RxHamburgerMenu } from "react-icons/rx";
+import { RxHamburgerMenu } from 'react-icons/rx';
+import LogoWritten from '../assets/images/Logo/logo_written.png';
+import ButtonOpenProfile from '../components/events/ButtonOpenProfile';
 
-const Header: React.FunctionComponent = () => (
-	<HeaderFixed>
-		<div className='wrapper'>
-			<article className='nav-bar'>
-				<section className='logo'>
-					<img src={LogoPng} alt='' />
-				</section>
-				<nav className='menu-desk'>
-					<ul>
-						<li>
-							<NavLink to='/'>
-								<span>Página Inicial</span>
-							</NavLink>
-						</li>
-						<li>
-							<a href='#'>A Escola</a>
-						</li>
-						<li>
-							<a href='#'>Nossa História</a>
-						</li>
-						<li>
-							<NavLink to='/form/fan-member'>
-								<span>Desfile Conosco</span>
-							</NavLink>
-						</li>
-						<li>
-							<NavLink to='/supporter-member'>
-								<span>Sócio Torcedor</span>
-							</NavLink>
-						</li>
-						<li>
-							<a href='#'>Créditos</a>
-						</li>
-					</ul>
-				</nav>
-				<button id='menu-drop'>
-				<RxHamburgerMenu></RxHamburgerMenu>
-				</button>
-				<nav className='menu-mobile'>
-					<ul>
-						<li>
-							<a href='./components/pages/not-found.html'>
-								<i className='fa-solid fa-house'></i>
-								<span>Página Inicial</span>
-							</a>
-						</li>
-						<li>
-							<a href='./components/pages/not-found.html'>
-								<i className='fa-solid fa-school'></i>
-								<span>A Escola</span>
-							</a>
-						</li>
-						<li>
-							<a href='./components/pages/not-found.html'>
-								<i className='fa-solid fa-clock-rotate-left'></i>
-								<span>Nossa História</span>
-							</a>
-						</li>
-						<li>
-							<a href='./components/pages/not-found.html'>
-								<i className='fa-solid fa-users'></i>
-								<span>Sócio Torcedor</span>
-							</a>
-						</li>
-						<li>
-							<a href='./components/pages/not-found.html'>
-								<i className='fa-solid fa-circle-info'></i>
-								<span>Créditos</span>
-							</a>
-						</li>
-					</ul>
-				</nav>
-			</article>
-		</div>
-	</HeaderFixed>
-);
+const Header: React.FunctionComponent = () => {
+	console.log('Header');
+
+	return (
+		<HeaderFixed>
+			<div className='wrapper'>
+				<article className='top'>
+					<section className='logo'>
+						<img src={LogoPng} alt='' className='img' />
+						<img src={LogoWritten} alt='' className='words' />
+					</section>
+					<ButtonOpenProfile />
+				</article>
+				<article className='bottom'>
+					<nav className='menu-desk'>
+						<ul>
+							<li>
+								<NavLink to='/'>
+									<span>Página Inicial</span>
+								</NavLink>
+							</li>
+							<li>
+								<NavLink to='/store/home'>
+									<span>Loja</span>
+								</NavLink>
+							</li>
+							<li>
+								<NavLink to='/store/home'>
+									<span>Galeria</span>
+								</NavLink>
+							</li>
+							<li>
+								<NavLink to='/a'>
+									<span>A Escola</span>
+								</NavLink>
+							</li>
+							<li>
+								<NavLink to='/a'>
+									<span>Nossa História</span>
+								</NavLink>
+							</li>
+							<li>
+								<NavLink to='/form/fan-member'>
+									<span>Desfile Conosco</span>
+								</NavLink>
+							</li>
+							<li>
+								<NavLink to='/supporter-member'>
+									<span>Sócio Torcedor</span>
+								</NavLink>
+							</li>
+							<li>
+								<NavLink to='/a'>
+									<span>Créditos</span>
+								</NavLink>
+							</li>
+						</ul>
+					</nav>
+					<button id='menu-drop'>
+						<RxHamburgerMenu></RxHamburgerMenu>
+					</button>
+					<nav className='menu-mobile'>
+						<ul>
+							<li>
+								<a href='./components/pages/not-found.html'>
+									<i className='fa-solid fa-house'></i>
+									<span>Página Inicial</span>
+								</a>
+							</li>
+							<li>
+								<a href='./components/pages/not-found.html'>
+									<i className='fa-solid fa-school'></i>
+									<span>A Escola</span>
+								</a>
+							</li>
+							<li>
+								<a href='./components/pages/not-found.html'>
+									<i className='fa-solid fa-clock-rotate-left'></i>
+									<span>Nossa História</span>
+								</a>
+							</li>
+							<li>
+								<a href='./components/pages/not-found.html'>
+									<i className='fa-solid fa-users'></i>
+									<span>Sócio Torcedor</span>
+								</a>
+							</li>
+							<li>
+								<a href='./components/pages/not-found.html'>
+									<i className='fa-solid fa-circle-info'></i>
+									<span>Créditos</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</article>
+			</div>
+		</HeaderFixed>
+	);
+};
 
 const HeaderFixed = styled.header`
 	width: 100vw;
-	position: fixed;
 	top: 0;
 	left: 0;
 	background: rgba(255, 255, 255, 0.95);
 	z-index: 100;
 
 	* {
-		color: rgb(218, 218, 218);
+		/* outline: 1px dotted; */
 	}
 
 	.wrapper {
-		.nav-bar {
+		row-gap: 20px;
+
+		.top {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			grid-column: 2 / 12;
+			padding: 20px 0;
 
 			section {
-				height: 70px;
-
 				&.logo {
 					display: flex;
 					align-items: center;
 					justify-content: center;
 
-					img {
-						width: 60px;
-						margin-right: 15px;
+					img.img {
+						width: 70px;
 					}
-
-					span {
-						font-size: 2rem;
-						color: var(--color-text-soft);
-						font-weight: bold;
+					img.words {
+						width: 220px;
 					}
 				}
 			}
-
+		}
+		.bottom {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			grid-column: 2 / 12;
 			nav.menu-desk {
 				display: flex;
 
 				ul {
 					display: flex;
+					column-gap: 40px;
+					align-content: center;
+					justify-content: center;
 
 					li {
-						margin: 0 20px;
-
 						span {
 							color: var(--color-text-soft);
-							font-weight: bold;
+							/* font-weight: bold; */
 							position: relative;
 							font-family: Playpen Sans;
 
@@ -141,7 +169,7 @@ const HeaderFixed = styled.header`
 								display: block;
 								transform-origin: right;
 								position: absolute;
-								height: 3px;
+								height: 4px;
 								background: var(--color-primary-soft);
 								inset: 0;
 								top: 100%;
