@@ -9,7 +9,7 @@ type CardsForSupporterMemberElementProps = {
 	status: string;
 	price: string;
 	color: string;
-	benefits: [string];
+	benefits: string[];
 };
 
 type CardsForSupporterMemberProps = {

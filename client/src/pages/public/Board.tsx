@@ -14,7 +14,7 @@ const Board = (): React.FunctionComponentElement<JSX.Element> => {
 	);
 };
 
-const CardForBoard = () => {};
+// const CardForBoard = () => {};
 
 const StyledComponent = styled.main`
 	background: #000;
