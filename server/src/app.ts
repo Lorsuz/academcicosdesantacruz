@@ -6,10 +6,13 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 import * as dotenv from 'dotenv';
+
 dotenv.config();
 
-import indexRouter from './routes/index.js';
-// import authRouter from './routes/auth.js';
+import indexRouter from './routes/index.route.js';
+import authRouter from './routes/auth.route.js';
+import userRouter from './routes/user.route.js';
+import apiRouter from './routes/api.route.js';
 
 const app: Application = express();
 
@@ -21,7 +24,9 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/', indexRouter);
-// app.use('/', authRouter);
+app.use('/auth', authRouter);
+app.use('/api', apiRouter);
+app.use('/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response, next: NextFunction) => {

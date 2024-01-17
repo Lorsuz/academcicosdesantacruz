@@ -9,7 +9,7 @@ function App(): React.FunctionComponentElement<JSX.Element> {
 	const [token, setToken] = React.useState<string>('');
 
 	const authContext: AuthContextType = {
-		apiUrl: 'http://localhost:3001/',
+		apiUrl: 'http://localhost:3001',
 		token,
 		setToken
 	};

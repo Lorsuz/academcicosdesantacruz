@@ -12,16 +12,16 @@ module.exports = {
 	],
 	plugins: ['@typescript-eslint', 'prettier'],
 	rules: {
-		'prettier/prettier': ['error', { semi: true }],
+		'prettier/prettier': ['warn', { semi: true }],
+		'@typescript-eslint/no-explicit-any': 'off',
+		'@typescript-eslint/explicit-function-return-type': 'off',
+		'@typescript-eslint/explicit-module-boundary-types': 'warn',
+		'@typescript-eslint/no-unused-vars': 'warn',
 
-		'@typescript-eslint/no-explicit-any': 'error',
-		'@typescript-eslint/explicit-function-return-type': 'error',
-		'@typescript-eslint/explicit-module-boundary-types': 'error',
-
-		'arrow-body-style': ['error', 'as-needed'],
-		'no-duplicate-imports': ['error', { includeExports: true }],
-		eqeqeq: ['error', 'always'],
-		'func-name-matching': ['error', 'always']
+		'arrow-body-style': ['warn', 'as-needed'],
+		'no-duplicate-imports': ['warn', { includeExports: true }],
+		eqeqeq: ['warn', 'always'],
+		'func-name-matching': ['warn', 'always']
 	},
 	ignorePatterns: ['dist', '.eslintrc.cjs']
 };

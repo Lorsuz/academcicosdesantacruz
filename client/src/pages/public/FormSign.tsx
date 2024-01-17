@@ -4,7 +4,6 @@ import FormLogin from './FormLogin';
 import FormRegister from './FormRegister';
 
 import Layout from '../../layouts/PagesLayout';
-
 import BackgroundForOverlay from '../../assets/images/Logo/gresasc-overlay.jpg';
 
 const FormSign = () => {
@@ -18,6 +17,7 @@ const FormSign = () => {
 	return (
 		<Layout title='Formulario de Authenticação'>
 			<StyledComponent $haveAccount={haveAccount}>
+				
 				<article>
 					<section className='in'>
 						<FormLogin toggleHaveAccount={toggleHaveAccount}></FormLogin>
@@ -39,7 +39,7 @@ const FormSign = () => {
 };
 
 const StyledComponent = styled.section<{ $haveAccount: boolean }>`
-	padding: 150px 0;
+	padding: 80px 0;
 	font-family: Playpen Sans;
 	height: 100vh;
 	* {
@@ -74,37 +74,50 @@ const StyledComponent = styled.section<{ $haveAccount: boolean }>`
 				height: 80%;
 				width: 100%;
 				flex-direction: column;
-				.input-container {
-					width: 100%;
-					display: flex;
-					justify-content: center;
-					height: 50px;
-					margin-bottom: 20px;
-					.icon {
-						width: 50px;
-						height: 50px;
-						background: var(--color-primary);
+				.input-field {
+					margin-bottom: 5px;
+					.input-container {
+						width: 100%;
 						display: flex;
 						justify-content: center;
-						align-items: center;
-						border-radius: 5px 0 0 5px;
-						* {
-							color: #fff;
+						height: 50px;
+						.icon {
+							width: 50px;
+							height: 50px;
+							background: var(--color-primary);
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							border-radius: 5px 0 0 5px;
+							* {
+								color: #fff;
+							}
+						}
+						input {
+							height: 50px;
+							border-radius: 0 5px 5px 0;
+							border: 1px solid #ccc;
+							display: block;
+							font-size: 1.2rem;
+							padding: 0 10px;
+							width: 100%;
 						}
 					}
-					input {
-						height: 50px;
-						border-radius: 0 5px 5px 0;
-						border: 1px solid #ccc;
-						display: block;
-						font-size: 1.2rem;
-						padding: 0 10px;
+					.error {
+						height: 25px;
 						width: 100%;
+						display: flex;
+						justify-content: start;
+						align-items: center;
+						span {
+							font-size: 0.8rem;
+							color: red;
+						}
 					}
 				}
 
 				.forgot-password {
-					margin: 20px 0 30px;
+					margin: 10px 0 20px;
 					button {
 						color: var(--color-primary);
 					}
@@ -117,16 +130,25 @@ const StyledComponent = styled.section<{ $haveAccount: boolean }>`
 					color: #fff;
 					border: 5px;
 					border-radius: 5px;
+					margin-bottom: 0px;
 					&:hover {
 						background: var(--color-primary-soft);
 					}
+				}
+				.error-server {
+					height: 25px;
+					width: 100%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					color: red;
+					font-size: 0.9rem;
 				}
 			}
 			.toggle {
 				width: 100%;
 				display: flex;
 				justify-content: center;
-				margin-top: 10px;
 				button {
 					background: transparent;
 					border: none;

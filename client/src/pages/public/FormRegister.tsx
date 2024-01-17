@@ -1,76 +1,99 @@
 import { useContext, useState } from 'react';
-import { registerSchema } from '../../config/registerSchema';
-import { AuthContext } from '../../context/AuthContext';
+import { FaEnvelope, FaLock, FaLockOpen } from 'react-icons/fa';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm, FormState } from 'react-hook-form';
 
-import { FaEnvelope, FaLock, FaUser } from 'react-icons/fa';
+import { AuthContext } from '../../context/AuthContext';
+import InputsForAuthForm from '../../components/inputs/InputsForAuthForm';
+
+import { toast } from 'react-toastify';
+
+import { registerSchema } from '../../schemas/authFormSchema';
 
 type FormLoginProps = {
 	toggleHaveAccount: () => void;
 };
 
 function FormRegister({ toggleHaveAccount }: FormLoginProps): React.FunctionComponentElement<JSX.Element> {
-	const [username, setUsername] = useState('');
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-
-	const [registerError, setRegisterError] = useState('');
 	const { apiUrl } = useContext(AuthContext);
+	const [errorServer, setErrorServer] = useState<string>('');
 
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-		e.preventDefault();
-
-		try {
-			const formData = { username, email, password };
-			registerSchema.parse(formData);
-		} catch (error) {
-			setRegisterError('Invalid credentials');
+	const { register, handleSubmit, formState, reset } = useForm({
+		mode: 'all',
+		resolver: zodResolver(registerSchema),
+		defaultValues: {
+			email: '',
+			password: '',
+			confirmPassword: ''
 		}
+	});
 
+	const { errors, isSubmitting } = formState;
+
+	const handleSubmitData = async (data: any) => {
 		try {
-			const response = await fetch(`${apiUrl}/register`, {
+			const formData = { email: data.email, password: data.password };
+
+			const response = await fetch(`${apiUrl}/auth/register`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ username, email, password })
+				body: JSON.stringify(formData)
 			});
-			const data = await response.json();
+
+			const responseData = await response.json();
 
 			if (!response.ok) {
-				setRegisterError(data.message);
+				throw new Error(responseData.message);
 			} else {
-				setRegisterError(data.message);
-				console.log(data.message);
+				toast.success(responseData.message, {
+					position: 'top-right',
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					closeButton: true
+				});
+				setErrorServer('');
+				reset();
 			}
 		} catch (error) {
-			console.error('Error:', error);
+			setErrorServer(error.message);
 		}
 	};
 
 	return (
 		<>
 			<h2>Registre-se</h2>
-			<form onSubmit={handleSubmit}>
-				<div className='input-container'>
-					<span className='icon'>
-						<FaUser></FaUser>
-					</span>
-					<input type='text' placeholder='Nome' value={username} onChange={e => setUsername(e.target.value)} />
-				</div>
-				<div className='input-container'>
-					<span className='icon'>
-						<FaEnvelope></FaEnvelope>
-					</span>
-					<input type='email' placeholder='E-mail' value={email} onChange={e => setEmail(e.target.value)} />
-				</div>
-				<div className='input-container'>
-					<span className='icon'>
-						<FaLock></FaLock>
-					</span>
-					<input type='password' placeholder='Senha' value={password} onChange={e => setPassword(e.target.value)} />
-				</div>
-				{registerError && <div className='error'>{registerError}</div>}
-				<button type='submit' className='button-submit'>
-					Registrar
+			<form onSubmit={handleSubmit(handleSubmitData)}>
+				<InputsForAuthForm
+					icon={<FaEnvelope />}
+					type='email'
+					placeholder='E-mail'
+					register={register('email')}
+					error={errors.email?.message}
+				/>
+
+				<InputsForAuthForm
+					icon={<FaLockOpen />}
+					type='password'
+					placeholder='Senha'
+					register={register('password')}
+					error={errors.password?.message}
+				/>
+
+				<InputsForAuthForm
+					icon={<FaLock />}
+					type='password'
+					placeholder='Confirmar Senha'
+					register={register('confirmPassword')}
+					error={errors.confirmPassword?.message}
+				/>
+
+				<button type='submit' className='button-submit' disabled={isSubmitting}>
+					{isSubmitting ? 'Registrando...' : 'Registrar'}
 				</button>
+				<div className='error-server'>{errorServer} </div>
 			</form>
 
 			<div className='toggle'>
@@ -81,4 +104,5 @@ function FormRegister({ toggleHaveAccount }: FormLoginProps): React.FunctionComp
 		</>
 	);
 }
+
 export default FormRegister;

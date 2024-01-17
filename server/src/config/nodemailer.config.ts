@@ -11,11 +11,6 @@ interface EmailConfig {
 }
 
 export async function nodemailerConfig(): Promise<EmailConfig> {
-	console.log(process.env.EMAIL_HOST);
-	console.log(process.env.EMAIL_PORT);
-	console.log(process.env.EMAIL_SECURE);
-	console.log(process.env.EMAIL_USER);
-	console.log(process.env.EMAIL_PASS);
 
 	const nodemailerConfig: EmailConfig = {
 		host: process.env.EMAIL_HOST,

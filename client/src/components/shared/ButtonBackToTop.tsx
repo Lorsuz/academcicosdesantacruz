@@ -1,6 +1,6 @@
 import React from 'react';
 import { IoIosArrowUp } from 'react-icons/io';
-import styled from 'styled-components';
+import styled, { StyleSheetManager } from 'styled-components';
 
 const ButtonBackToTop = (): React.FunctionComponentElement<JSX.Element> => {
 	const [showButton, setShowButton] = React.useState<boolean>(false);
@@ -39,9 +39,11 @@ const ButtonBackToTop = (): React.FunctionComponentElement<JSX.Element> => {
 	};
 
 	return (
-		<StyledComponent onClick={handleClick} showButton={showButton}>
-			<IoIosArrowUp />
-		</StyledComponent>
+		<StyleSheetManager shouldForwardProp={prop => prop !== 'showButton'}>
+			<StyledComponent onClick={handleClick} showButton={showButton}>
+				<IoIosArrowUp />
+			</StyledComponent>
+		</StyleSheetManager>
 	);
 };
 

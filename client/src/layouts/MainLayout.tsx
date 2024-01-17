@@ -1,4 +1,6 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Head from '../partials/Head';
 import Header from '../partials/Header';
@@ -13,6 +15,7 @@ const Layout: React.FunctionComponent<Props> = ({ children, title }: Props) => (
 	<>
 		<Head title={title} />
 		<Header />
+		<ToastContainer />
 		{children}
 		<Footer />
 	</>

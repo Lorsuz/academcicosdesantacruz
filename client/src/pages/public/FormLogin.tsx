@@ -1,48 +1,57 @@
-import React, { useState, useContext } from 'react';
-import { loginSchema } from '../../config/LoginSchema';
+import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
-
+import { zodResolver } from '@hookform/resolvers/zod';
 import { FaEnvelope, FaLock } from 'react-icons/fa';
+
+import InputsForAuthForm from '../../components/inputs/InputsForAuthForm';
+import { AuthContext } from '../../context/AuthContext';
+import { loginSchema } from '../../schemas/authFormSchema';
 
 type FormLoginProps = {
 	toggleHaveAccount: () => void;
 };
 
+type FormValues = {
+	email: string;
+	password: string;
+};
+
 export function FormLogin({ toggleHaveAccount }: FormLoginProps): React.FunctionComponentElement<JSX.Element> {
-	const [email, setUsername] = useState('');
-	const [password, setPassword] = useState('');
-	const [error, setLoginError] = useState('');
-	const { apiUrl, token, setToken } = useContext(AuthContext);
-	console.log(token);
+	const { apiUrl, setToken } = useContext(AuthContext);
+	const [errorServer, setErrorServer] = React.useState<string>('');
 	const navigate = useNavigate();
 
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-		e.preventDefault();
-
-		console.log(email, password);
-
-		try {
-			const formData = { username: email, password };
-			loginSchema.parse(formData);
-		} catch (error) {
-			setLoginError('Invalid credentials');
+	const { register, handleSubmit, formState, reset } = useForm({
+		mode: 'all',
+		resolver: zodResolver(loginSchema),
+		defaultValues: {
+			email: '',
+			password: ''
 		}
+	});
+
+	const { errors, isSubmitting } = formState;
+
+	const onSubmit = async (data: FormValues): Promise<void> => {
 		try {
+			const formData = { username: data.email, password: data.password };
+
 			const response = await fetch(`${apiUrl}/login`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ username: email, password })
+				body: JSON.stringify(formData)
 			});
-			const data = await response.json();
+
+			const responseData = await response.json();
+
 			if (!response.ok) {
-				setLoginError(data.message);
-			} else {
-				setLoginError('');
-				console.log(data.token);
-				setToken(data.token);
-				navigate('/private/application');
+				throw new Error(responseData.message);
 			}
+
+			setToken(responseData.token);
+			reset();
+			navigate('/private/application');
 		} catch (error) {
 			console.error('Error:', error);
 		}
@@ -51,26 +60,29 @@ export function FormLogin({ toggleHaveAccount }: FormLoginProps): React.Function
 	return (
 		<>
 			<h2>Iniciar Sessão</h2>
-			<form onSubmit={handleSubmit}>
-				<div className='input-container'>
-					<span className='icon'>
-						<FaEnvelope></FaEnvelope>
-					</span>
-					<input type='text' placeholder='E-mail' value={email} onChange={e => setUsername(e.target.value)} />
-				</div>
-				<div className='input-container'>
-					<span className='icon'>
-						<FaLock></FaLock>
-					</span>
-					<input type='password' placeholder='Senha' value={password} onChange={e => setPassword(e.target.value)} />
-				</div>
+			<form onSubmit={handleSubmit(onSubmit)}>
+				<InputsForAuthForm
+					icon={<FaEnvelope />}
+					type='email'
+					placeholder='E-mail'
+					register={register('email')}
+					error={errors.email?.message}
+				/>
+
+				<InputsForAuthForm
+					icon={<FaLock />}
+					type='password'
+					placeholder='Senha'
+					register={register('password', { required: 'Senha é obrigatória' })}
+					error={errors.password?.message}
+				/>
 				<div className='forgot-password'>
 					<button>Esqueceu sua senha?</button>
 				</div>
-				<button type='submit' className='button-submit'>
+				<button type='submit' className='button-submit' disabled={isSubmitting}>
 					Entrar
 				</button>
-				{error && <div className='error'>{error}</div>}
+				<div className='error-server'>{errorServer} </div>
 			</form>
 			<div className='toggle'>
 				<span>

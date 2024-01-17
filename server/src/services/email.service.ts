@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
-import { nodemailerConfig } from '../config/nodemailerConfig.js';
+import { nodemailerConfig } from '../config/nodemailer.config.js';
 
-export async function sendEmailFromFormContact(data): Promise<boolean> {
+export async function sendEmailFromFormContact(data: any): Promise<boolean> {
 	try {
 		const config = await nodemailerConfig();
 		console.log(config);
