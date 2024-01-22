@@ -25,7 +25,7 @@ function FormRegister({ toggleHaveAccount }: FormLoginProps): React.FunctionComp
 		mode: 'all',
 		resolver: zodResolver(registerSchema),
 		defaultValues: {
-			name: '',
+			email: '',
 			password: '',
 			confirmPassword: ''
 		}
@@ -35,7 +35,7 @@ function FormRegister({ toggleHaveAccount }: FormLoginProps): React.FunctionComp
 
 	const handleSubmitData = async (data: any) => {
 		try {
-			const formData = { name: data.name, password: data.password };
+			const formData = { email: data.email, password: data.password };
 
 			const response = await fetch(`${apiUrl}/auth/register`, {
 				method: 'POST',
@@ -63,10 +63,10 @@ function FormRegister({ toggleHaveAccount }: FormLoginProps): React.FunctionComp
 			<form onSubmit={handleSubmit(handleSubmitData)}>
 				<InputsForAuthForm
 					icon={<FaEnvelope />}
-					type='name'
-					placeholder='Nome de Usuário'
-					register={register('name')}
-					error={errors.name?.message}
+					type='email'
+					placeholder='E-mail'
+					register={register('email')}
+					error={errors.email?.message}
 				/>
 
 				<InputsForAuthForm

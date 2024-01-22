@@ -1,36 +1,46 @@
-import { Request, Response, prisma, jwt, zod, secretKey } from '../config/router.config.js';
+import { Request, Response, prisma, bcrypt, zod } from '../config/router.config.js';
 import { authSchema } from '../schemas/auth.schema.js';
+import { sendEmailFromFormContact } from '../services/email.service.js';
+import createJWTToken from '../config/jsonWebToken.config.js';
 
 type UserCreateInput = {
-	id: number;
 	name: string;
+	email: string;
 	password: string;
 };
 
 type UserFindFirst = {
 	id: number;
-	name: string;
+	name?: string;
+	email: string;
 	password: string;
 };
 
 export const authRegister = async (req: Request, res: Response) => {
 	try {
-		const { name, password } = authSchema.parse(req.body);
+		const { email, password } = authSchema.parse(req.body);
 
 		const existingUser = await prisma.user.findFirst({
 			where: {
-				OR: [{ name }]
+				OR: [{ email }]
 			}
 		});
 
-		if (existingUser) return res.status(400).json({ message: 'Esse nome ja está cadastrado' });
+		if (existingUser) return res.status(400).json({ message: 'Esse e-mail ja está cadastrado' });
 
-		await prisma.user.create({
+		const passwordHashed: string = await bcrypt.hash(password, 12);
+
+		const username: string[] | null = email.match(/^(.+)@/);
+
+		const newUser = await prisma.user.create({
 			data: {
-				name,
-				password
+				name: username ? username[1] : 'user',
+				email,
+				password: passwordHashed
 			} as UserCreateInput
 		});
+
+		await sendEmailFromFormContact(newUser.email);
 
 		res.status(201).json({ message: 'Registrado com sucesso' });
 	} catch (error) {
@@ -41,30 +51,35 @@ export const authRegister = async (req: Request, res: Response) => {
 
 export const authLogin = async (req: Request, res: Response) => {
 	try {
-		const { name, password } = authSchema.parse(req.body);
+		const { email, password } = authSchema.parse(req.body);
 		const user: UserFindFirst | null = await prisma.user.findFirst({
 			where: {
-				name
+				email
 			}
 		});
 
 		if (!user) {
-			res.status(401).json({ message: 'Nome não cadastrado' });
+			res.status(401).json({ message: 'E-mail não cadastrado' });
 			return;
 		}
 
-		if (password !== user.password) {
+		if (!user.password) {
+			res.status(401).json({ message: 'Usuário sem senha' });
+			return;
+		}
+
+		const compareHash = await bcrypt.compare(password, user.password);
+
+		if (!compareHash) {
 			res.status(401).json({ message: 'Senha inválida' });
 			return;
 		}
 
-		const token = jwt.sign({ userId: user.id }, secretKey, {
-			expiresIn: '1d'
-		});
+		const token = createJWTToken(user.id);
 
 		res.cookie('jwt', token, { httpOnly: true });
 
-		res.status(201).json({ isAuthenticated: true, message: 'Login feito com sucesso', token });
+		res.status(201).json({ isAuthenticaded: true, message: 'Login feito com sucesso', token });
 	} catch (error) {
 		if (error instanceof zod.ZodError) {
 			console.error('Erro de validação ZodServer:', error.errors);
@@ -76,7 +91,6 @@ export const authLogin = async (req: Request, res: Response) => {
 	}
 };
 
-/*
 export const getAuthenticatedUserData = async (req: Request & any, res: Response) => {
 	try {
 		const user = await prisma.user.findUnique({
@@ -105,4 +119,4 @@ export const authLogOut = async (req: Request, res: Response) => {
 		console.error('Erro ao deslogar:', error);
 		res.status(500).json({ message: 'Erro interno do servidor' });
 	}
-}; */
+};

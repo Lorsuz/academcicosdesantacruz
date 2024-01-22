@@ -1,4 +1,4 @@
-import { jwt, Request, Response, NextFunction, secretKey } from '../config/router.config.js';
+import { jwt, Request, Response, NextFunction, secretKey } from '../config/router.config';
 
 const isAuthenticated = async (req: Request & any, res: Response, next: NextFunction) => {
 	const token = req.cookies.jwt || req.header('Authorization')?.replace('Bearer ', '');

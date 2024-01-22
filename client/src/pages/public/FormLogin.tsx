@@ -21,7 +21,7 @@ export function FormLogin({ toggleHaveAccount }: FormLoginProps): React.Function
 		mode: 'all',
 		resolver: zodResolver(loginSchema),
 		defaultValues: {
-			name: '',
+			email: '',
 			password: ''
 		}
 	});
@@ -30,16 +30,16 @@ export function FormLogin({ toggleHaveAccount }: FormLoginProps): React.Function
 
 	const onSubmit = async (data: any) => {
 		try {
-			const formData = { name: data.name, password: data.password };
+			const formData = { email: data.email, password: data.password };
 
 			const responseData = await loginAction(formData);
 
 			if (responseData === true) {
 				setErrorServer('');
 				reset();
-				navigate('/home');
+				navigate('/private/application');
 			} else {
-				throw new Error(responseData as string);
+				throw new Error(responseData.message);
 			}
 		} catch (error: any) {
 			setErrorServer(error.message);
@@ -52,10 +52,10 @@ export function FormLogin({ toggleHaveAccount }: FormLoginProps): React.Function
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<InputsForAuthForm
 					icon={<FaEnvelope />}
-					type='name'
-					placeholder='Digite seu Nome de Usuario'
-					register={register('name')}
-					error={errors.name?.message}
+					type='email'
+					placeholder='E-mail'
+					register={register('email')}
+					error={errors.email?.message}
 				/>
 
 				<InputsForAuthForm

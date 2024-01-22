@@ -11,7 +11,6 @@ export const AuthContext = createContext({
 	loginAction: (data: any) => {},
 	getUser: () => {},
 	logOut: () => {},
-	getTokenFromLocalStorage: () => {},
 	apiUrl: ''
 } as {
 	token: string;
@@ -19,7 +18,6 @@ export const AuthContext = createContext({
 	loginAction: (data: any) => void;
 	getUser: () => void;
 	logOut: () => void;
-	getTokenFromLocalStorage: () => void;
 	apiUrl: string;
 });
 
@@ -28,13 +26,6 @@ const AuthProvider = ({ children }: { children: any }): any => {
 	const [token, setToken] = useState(localStorage.getItem('site') || '');
 	const { apiUrl } = useEnv();
 	const navigate = useNavigate();
-
-	const getTokenFromLocalStorage = () => {
-		const token = localStorage.getItem('site');
-		if (token) {
-			setToken(token);
-		}
-	};
 
 	const loginAction = async (data: any) => {
 		try {
@@ -47,10 +38,10 @@ const AuthProvider = ({ children }: { children: any }): any => {
 			});
 			const res = await response.json();
 			if (res.token) {
+				setUser(res.data.user);
 				localStorage.setItem('site', res.token);
+				console.log(token);
 				toast.success(res.message, toastNotificationConfig);
-				setToken(res.token);
-				getUser();
 				return true;
 			} else {
 				return res.message;
@@ -62,20 +53,16 @@ const AuthProvider = ({ children }: { children: any }): any => {
 
 	const getUser = async () => {
 		try {
-			const response = await fetch(`${apiUrl}/api/user`, {
+			const response = await fetch(`${apiUrl}/auth/user`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: `Bearer ${token}`,
-					Cookie: `site=${token}`
+					Authorization: `Bearer ${token}`
 				}
 			});
-			const user = await response.json();
-			if (user) {
-				console.log('====================================');
-				console.log(user);
-				console.log('====================================');
-				setUser(user);
+			const res = await response.json();
+			if (res.data) {
+				setUser(res.data);
 				return true;
 			} else {
 				return false;
@@ -93,7 +80,7 @@ const AuthProvider = ({ children }: { children: any }): any => {
 	};
 
 	return (
-		<AuthContext.Provider value={{ token, user, loginAction, logOut, apiUrl, getUser, getTokenFromLocalStorage }}>
+		<AuthContext.Provider value={{ token, user, loginAction, logOut, apiUrl, getUser }}>
 			{children}
 		</AuthContext.Provider>
 	);

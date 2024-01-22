@@ -23,8 +23,8 @@ const router: express.Router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const productionKey = process.env.PRODUCTION_KEY || 'ariel';
-const developmentKey = process.env.DEVELOPMENT_KEY || 'ariel';
+const productionKey = process.env.PRODUCTION_KEY || '';
+const developmentKey = process.env.DEVELOPMENT_KEY || '';
 
 const secretKey = process.env.NODE_ENV === 'development' ? developmentKey : productionKey;
 
@@ -76,5 +76,5 @@ export {
 	jwt,
 	util,
 	secretKey,
-	__dirname 
+	__dirname
 };

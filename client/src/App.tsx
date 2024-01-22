@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import AuthProvider from './providers/AuthProvider';
 import EnvProvider from './providers/EnvProvider';
 import Layout from './layouts/MainLayout';
@@ -8,7 +8,6 @@ import Router from './router/Router';
 import ButtonBackToTop from './components/shared/ButtonBackToTop';
 
 function App(): React.FunctionComponentElement<JSX.Element> {
-
 	return (
 		<EnvProvider>
 			<AuthProvider>
