@@ -2,7 +2,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request /* as RequestExpress */, Response, NextFunction } from 'express';
 // import flash from 'connect-flash';
 import multer from 'multer';
 import path from 'path';
@@ -23,16 +23,22 @@ const router: express.Router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const productionKey = process.env.PRODUCTION_KEY || 'ariel';
+const developmentKey = process.env.DEVELOPMENT_KEY || 'ariel';
+
+const secretKey = process.env.NODE_ENV === 'development' ? developmentKey : productionKey;
+
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(cookieParser());
 router.use(
 	session({
-		secret: 'minhachavesecreta',
+		secret: secretKey,
 		resave: false,
 		saveUninitialized: true
 	})
 );
+
 // router.use(express.static(path.join(__dirname, 'public')));
 // router.use(flash());
 // router.use((req, res, next) => {
@@ -46,6 +52,9 @@ router.use(
 // 		super(message);
 // 		this.code = code;
 // 	}
+// }
+// interface Request extends RequestExpress {
+// 	userId: number;
 // }
 
 export {
@@ -66,5 +75,6 @@ export {
 	zod,
 	jwt,
 	util,
-	__dirname
+	secretKey,
+	__dirname 
 };

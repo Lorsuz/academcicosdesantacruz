@@ -1,59 +1,48 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FaEnvelope, FaLock } from 'react-icons/fa';
 
 import InputsForAuthForm from '../../components/inputs/InputsForAuthForm';
-import { AuthContext } from '../../context/AuthContext';
 import { loginSchema } from '../../schemas/authFormSchema';
+import { useAuth } from '../../context/AuthContext';
 
 type FormLoginProps = {
 	toggleHaveAccount: () => void;
 };
 
-type FormValues = {
-	email: string;
-	password: string;
-};
-
 export function FormLogin({ toggleHaveAccount }: FormLoginProps): React.FunctionComponentElement<JSX.Element> {
-	const { apiUrl, setToken } = useContext(AuthContext);
 	const [errorServer, setErrorServer] = React.useState<string>('');
 	const navigate = useNavigate();
+	const { loginAction } = useAuth();
 
 	const { register, handleSubmit, formState, reset } = useForm({
 		mode: 'all',
 		resolver: zodResolver(loginSchema),
 		defaultValues: {
-			email: '',
+			name: '',
 			password: ''
 		}
 	});
 
 	const { errors, isSubmitting } = formState;
 
-	const onSubmit = async (data: FormValues): Promise<void> => {
+	const onSubmit = async (data: any) => {
 		try {
-			const formData = { username: data.email, password: data.password };
+			const formData = { name: data.name, password: data.password };
 
-			const response = await fetch(`${apiUrl}/login`, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(formData)
-			});
+			const responseData = await loginAction(formData);
 
-			const responseData = await response.json();
-
-			if (!response.ok) {
-				throw new Error(responseData.message);
+			if (responseData === true) {
+				setErrorServer('');
+				reset();
+				navigate('/home');
+			} else {
+				throw new Error(responseData as string);
 			}
-
-			setToken(responseData.token);
-			reset();
-			navigate('/private/application');
-		} catch (error) {
-			console.error('Error:', error);
+		} catch (error: any) {
+			setErrorServer(error.message);
 		}
 	};
 
@@ -63,10 +52,10 @@ export function FormLogin({ toggleHaveAccount }: FormLoginProps): React.Function
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<InputsForAuthForm
 					icon={<FaEnvelope />}
-					type='email'
-					placeholder='E-mail'
-					register={register('email')}
-					error={errors.email?.message}
+					type='name'
+					placeholder='Digite seu Nome de Usuario'
+					register={register('name')}
+					error={errors.name?.message}
 				/>
 
 				<InputsForAuthForm
@@ -80,7 +69,7 @@ export function FormLogin({ toggleHaveAccount }: FormLoginProps): React.Function
 					<button>Esqueceu sua senha?</button>
 				</div>
 				<button type='submit' className='button-submit' disabled={isSubmitting}>
-					Entrar
+					{isSubmitting ? 'Validando...' : 'Entrar'}
 				</button>
 				<div className='error-server'>{errorServer} </div>
 			</form>

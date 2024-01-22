@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 import { BsCheck2 } from 'react-icons/bs';
 
@@ -9,7 +9,7 @@ const HomeContact = (): React.FunctionComponentElement<JSX.Element> => {
 	const [formResponse, setFormResponse] = React.useState<string>('Enviar Formulário');
 	const [colorButton, setColorButton] = React.useState<string>('#494949');
 	const [buttonState, setButtonState] = React.useState<string>('default');
-	const { apiUrl } = useContext(AuthContext);
+	const { apiUrl } = useAuth();
 	const [name, setName] = React.useState<string>('');
 	const [email, setEmail] = React.useState<string>('');
 	const [tell, setTell] = React.useState<string>('');

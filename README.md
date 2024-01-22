@@ -78,3 +78,24 @@ Validation:
 	must contain a maximum of characters;
 
 	npx prisma migrate dev --name reset
+
+# Rules
+Quero um sistema react tsc, node tsc, para anotar palavras em ingles, tags relacionadas a ela, e sinonimos, com styled components e prisma pro sqlite com a relaçao de tabelas
+
+# Database
+users: id, name
+words: id, name, meaning, user_id
+tags: id, name, user_id
+wordTags: id, tags_id, word_id
+relatedWords: id, tags_id user_id
+relationList: id, relatedWords_id, word_id
+
+# Telas e rotas:
+
+register apenas escrevendo o nome
+login apenas escrevendo o nome
+crud de palavras
+crud de tags
+crud de sinonimos
+
+

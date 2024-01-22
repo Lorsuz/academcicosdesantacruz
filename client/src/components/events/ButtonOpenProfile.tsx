@@ -3,10 +3,11 @@ import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { FaBrazilianRealSign } from 'react-icons/fa6';
-import { /* FaShoppingCart ,*/ FaGem, /* FaUser */ } from 'react-icons/fa';
+import { /* FaShoppingCart ,*/ FaGem /* FaUser */ } from 'react-icons/fa';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const ButtonOpenProfile = () => {
-	const [userIsLogged/* , setUserIsLogged */] = React.useState(false);
+	const { user, logOut } = React.useContext(AuthContext);
 
 	const [profileOptionsIsOpen, setProfileOptionsIsOpen] = React.useState(false);
 
@@ -17,7 +18,7 @@ const ButtonOpenProfile = () => {
 	return (
 		<StyledComponent>
 			<div className='profile-container'>
-				{!userIsLogged ? (
+				{!user ? (
 					<div className='button-sign'>
 						<span>Gostaria de usar uma conta?</span>
 						<NavLink to='/form/sign'>Entrar</NavLink>
@@ -34,10 +35,17 @@ const ButtonOpenProfile = () => {
 				<nav className='profile-options'>
 					<div className='user'>
 						<div className='name'>
-							<Link to='/user'>Ariel Souza</Link>
+							<Link to='/user'>{user.name}</Link>
 						</div>
 						<div className='logout'>
-							<button onClick={() => {}}>Sair</button>
+							<button
+								onClick={() => {
+									setProfileOptionsIsOpen(!profileOptionsIsOpen);
+									logOut();
+								}}
+							>
+								Sair
+							</button>
 						</div>
 					</div>
 					<ul>
@@ -148,6 +156,7 @@ const StyledComponent = styled.section`
 		overflow: hidden;
 		border: 1px solid #66666692;
 		padding: 10px 20px;
+		z-index: 9999;
 
 		.user {
 			display: flex;
@@ -155,7 +164,7 @@ const StyledComponent = styled.section`
 			justify-content: space-between;
 			border-bottom: 1px solid #66666692;
 			padding: 10px 0px;
-			
+
 			.name {
 				a {
 					font-size: 1.2rem;
@@ -209,7 +218,8 @@ const StyledComponent = styled.section`
 
 					cursor: pointer;
 
-					&:hover,&.active {
+					&:hover,
+					&.active {
 						background: #1a9d3fbd;
 						color: #fff;
 					}

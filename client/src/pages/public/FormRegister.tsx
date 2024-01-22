@@ -1,10 +1,13 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { FaEnvelope, FaLock, FaLockOpen } from 'react-icons/fa';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm, FormState } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
+
+
 import InputsForAuthForm from '../../components/inputs/InputsForAuthForm';
+import toastNotificationConfig from '../../config/toastNotification.config';
 
 import { toast } from 'react-toastify';
 
@@ -15,14 +18,14 @@ type FormLoginProps = {
 };
 
 function FormRegister({ toggleHaveAccount }: FormLoginProps): React.FunctionComponentElement<JSX.Element> {
-	const { apiUrl } = useContext(AuthContext);
+	const { apiUrl } = useAuth();
 	const [errorServer, setErrorServer] = useState<string>('');
 
 	const { register, handleSubmit, formState, reset } = useForm({
 		mode: 'all',
 		resolver: zodResolver(registerSchema),
 		defaultValues: {
-			email: '',
+			name: '',
 			password: '',
 			confirmPassword: ''
 		}
@@ -32,7 +35,7 @@ function FormRegister({ toggleHaveAccount }: FormLoginProps): React.FunctionComp
 
 	const handleSubmitData = async (data: any) => {
 		try {
-			const formData = { email: data.email, password: data.password };
+			const formData = { name: data.name, password: data.password };
 
 			const response = await fetch(`${apiUrl}/auth/register`, {
 				method: 'POST',
@@ -45,19 +48,11 @@ function FormRegister({ toggleHaveAccount }: FormLoginProps): React.FunctionComp
 			if (!response.ok) {
 				throw new Error(responseData.message);
 			} else {
-				toast.success(responseData.message, {
-					position: 'top-right',
-					autoClose: 3000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					closeButton: true
-				});
+				toast.success(responseData.message, toastNotificationConfig);
 				setErrorServer('');
 				reset();
 			}
-		} catch (error) {
+		} catch (error: any) {
 			setErrorServer(error.message);
 		}
 	};
@@ -68,10 +63,10 @@ function FormRegister({ toggleHaveAccount }: FormLoginProps): React.FunctionComp
 			<form onSubmit={handleSubmit(handleSubmitData)}>
 				<InputsForAuthForm
 					icon={<FaEnvelope />}
-					type='email'
-					placeholder='E-mail'
-					register={register('email')}
-					error={errors.email?.message}
+					type='name'
+					placeholder='Nome de Usuário'
+					register={register('name')}
+					error={errors.name?.message}
 				/>
 
 				<InputsForAuthForm

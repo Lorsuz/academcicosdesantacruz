@@ -1,16 +1,22 @@
-import { jwt, Request, Response, util, NextFunction } from '../config/router.config';
+import { jwt, Request, Response, NextFunction, secretKey } from '../config/router.config.js';
 
-export const isAuthenticated = async (req: Request, res: Response, next: NextFunction) => {
+const isAuthenticated = async (req: Request & any, res: Response, next: NextFunction) => {
+	const token = req.cookies.jwt || req.header('Authorization')?.replace('Bearer ', '');
+
+	if (!token) {
+		return res.status(401).json({ isAuthenticated: false, message: 'Token não fornecido' });
+	}
+
 	try {
-		const token = req.cookies.jwt;
-		console.log('token', token);
-		console.log('env ', process.env.JWT_SECRET);
-		const verifyAsync = util.promisify(jwt.verify);
-		const decoded = await verifyAsync(token, process.env.JWT_SECRET);
-		req.user = decoded;
-		return next();
+		const decoded: any = jwt.verify(token, secretKey);
+		console.log('====================================');
+		console.log('decoded:', decoded);
+		console.log('====================================');
+		req.userId = decoded.userId;
+		next();
 	} catch (error) {
-		return res.status(401).json({ auth: false, message: error.message });
+		console.error('Erro na verificação do token:', error);
+		res.status(401).json({ isAuthenticated: false, message: 'Token inválido' });
 	}
 };
 

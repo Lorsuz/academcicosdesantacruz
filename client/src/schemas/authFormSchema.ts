@@ -1,7 +1,7 @@
 import { string, object } from 'zod';
 
 export const registerSchema: any = object({
-	email: string().email({ message: 'Insira um endereço de e-mail válido' }),
+	name: string().min(3, { message: 'Seu nome deve conter pelo menos 3 caracteres' }),
 	password: string().min(8, 'A senha deve ter pelo menos 8 caracteres'),
 	confirmPassword: string()
 }).refine(({ password, confirmPassword }) => password === confirmPassword, {
@@ -10,6 +10,6 @@ export const registerSchema: any = object({
 });
 
 export const loginSchema = object({
-	email: string().email({ message: 'Insira um endereço de e-mail válido' }),
+	name: string().min(3, { message: 'Este campo deve conter pelo menos 3 caracteres' }),
 	password: string().min(8, 'A senha deve ter pelo menos 8 caracteres')
 });

@@ -1,15 +1,6 @@
-import React from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../providers/AuthProvider';
 
-export type AuthContextType = {
-	apiUrl: string;
-	token: string;
-	setToken: React.Dispatch<React.SetStateAction<string>>;
+export const useAuth = (): any => {
+	return useContext(AuthContext);
 };
-
-const defaultValue: AuthContextType = {
-	apiUrl: '',
-	token: '',
-	setToken: () => {}
-};
-
-export const AuthContext: React.Context<AuthContextType> = React.createContext(defaultValue);

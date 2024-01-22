@@ -1,26 +1,24 @@
-import React from 'react';
-import { AuthContext, AuthContextType } from './context/AuthContext';
+import React, { useEffect } from 'react';
+import AuthProvider from './providers/AuthProvider';
+import EnvProvider from './providers/EnvProvider';
 import Layout from './layouts/MainLayout';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Router from './router/Router';
 import ButtonBackToTop from './components/shared/ButtonBackToTop';
 
 function App(): React.FunctionComponentElement<JSX.Element> {
-	const [token, setToken] = React.useState<string>('');
-
-	const authContext: AuthContextType = {
-		apiUrl: 'http://localhost:3001',
-		token,
-		setToken
-	};
 
 	return (
-		<AuthContext.Provider value={authContext}>
-			<Layout title='index'>
-				<Router />
-			</Layout>
-			<ButtonBackToTop></ButtonBackToTop>
-		</AuthContext.Provider>
+		<EnvProvider>
+			<AuthProvider>
+				<Layout title='index'>
+					<Router />
+				</Layout>
+				<ToastContainer />
+				<ButtonBackToTop />
+			</AuthProvider>
+		</EnvProvider>
 	);
 }
 
