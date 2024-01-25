@@ -1,7 +1,7 @@
 // import React from 'react';
 import { FaCheck } from 'react-icons/fa';
 import styled from 'styled-components';
-import wallpapperGrayLines from '../../assets/images/wallpaper-gray-lines.avif';
+import wallpaperGrayLines from '../../assets/images/wallpaper-gray-lines.avif';
 
 type CardsForSupporterMemberElementProps = {
 	id: string;
@@ -72,7 +72,7 @@ const StyledComponent = styled.article<StyledComponentProps>`
 		width: 100%;
 		height: 100%;
 		position: absolute;
-		background: #ffffff url('src/assets/images/wallpaper-gray-lines.webp') no-repeat center center;
+		background: #ffffff url(${wallpaperGrayLines}) no-repeat center center;
 		background-size: cover;
 		z-index: 0;
 		opacity: 0.2;

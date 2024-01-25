@@ -15,31 +15,6 @@ const ButtonOpenProfile = () => {
 		setProfileOptionsIsOpen(!profileOptionsIsOpen);
 	};
 
-	const profileOptionsRef = useRef(null);
-
-	useEffect(() => {
-		console.log('====================================');
-		console.log(profileOptionsRef.current);
-		console.log('====================================');
-		const handleClickOutside = () => {
-			if (profileOptionsRef.current && !profileOptionsRef.current?.classList.contains('profile-options')) {
-				setProfileOptionsIsOpen(false);
-			}
-		};
-
-		if (profileOptionsIsOpen) {
-			console.log('====================================');
-			console.log('add');
-			console.log('====================================');
-
-			document.body.addEventListener('click', handleClickOutside);
-		}
-
-		return () => {
-			document.body.removeEventListener('click', handleClickOutside);
-		};
-	}, [profileOptionsIsOpen]);
-
 	return (
 		<StyledComponent>
 			<div className='profile-container'>
@@ -57,7 +32,7 @@ const ButtonOpenProfile = () => {
 				)}
 			</div>
 			{profileOptionsIsOpen && (
-				<nav className='profile-options' ref={profileOptionsRef}>
+				<nav className='profile-options'>
 					<div className='user'>
 						<div className='name'>
 							<Link to='/user'>{user.name}</Link>

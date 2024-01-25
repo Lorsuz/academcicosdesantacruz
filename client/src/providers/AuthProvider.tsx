@@ -8,7 +8,7 @@ import toastNotificationConfig from '../config/toastNotification.config';
 export const AuthContext = createContext({
 	token: '',
 	user: null,
-	loginAction: (data: any) => {},
+	loginAction: (data: any) => data,
 	getUser: () => {},
 	logOut: () => {},
 	getTokenFromLocalStorage: () => {},
