@@ -8,6 +8,6 @@ router.post('/auth/login', authLogin);
 
 router.get('/auth/me', isAuthenticated, getAuthenticatedUserData);
 
-router.get('/auth/logout', isAuthenticated, authLogOut);
+router.get('/auth/logout', authLogOut);
 
 export default router;

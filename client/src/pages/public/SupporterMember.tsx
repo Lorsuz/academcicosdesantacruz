@@ -6,7 +6,6 @@ import CardsForSupporterMember from '../../components/cards/CardsForSupporterMem
 
 const SupporterMember = (): React.FunctionComponentElement<JSX.Element> => {
 	const plans = data.supporterMember;
-	console.log(plans);
 	
 
 	return (

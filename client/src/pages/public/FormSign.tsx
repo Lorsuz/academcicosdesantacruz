@@ -7,7 +7,6 @@ import Layout from '../../layouts/PagesLayout';
 import BackgroundForOverlay from '../../assets/images/Logo/gresasc-overlay.jpg';
 
 const FormSign = () => {
-	console.log('FormSign');
 	const [haveAccount, setHaveAccount] = React.useState<boolean>(false);
 
 	const toggleHaveAccount = () => {

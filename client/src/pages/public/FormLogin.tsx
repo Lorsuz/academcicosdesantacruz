@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -15,7 +15,7 @@ type FormLoginProps = {
 export function FormLogin({ toggleHaveAccount }: FormLoginProps): React.FunctionComponentElement<JSX.Element> {
 	const [errorServer, setErrorServer] = React.useState<string>('');
 	const navigate = useNavigate();
-	const { loginAction } = useAuth();
+	const { loginAction, token } = useAuth();
 
 	const { register, handleSubmit, formState, reset } = useForm({
 		mode: 'all',
@@ -25,6 +25,13 @@ export function FormLogin({ toggleHaveAccount }: FormLoginProps): React.Function
 			password: ''
 		}
 	});
+	useEffect(() => {
+		if (token) {
+			setErrorServer('');
+			reset();
+			navigate('/private/application');
+		}
+	}, [token]);
 
 	const { errors, isSubmitting } = formState;
 
@@ -34,12 +41,8 @@ export function FormLogin({ toggleHaveAccount }: FormLoginProps): React.Function
 
 			const responseData = await loginAction(formData);
 
-			if (responseData === true) {
-				setErrorServer('');
-				reset();
-				navigate('/private/application');
-			} else {
-				throw new Error(responseData.message);
+			if (!responseData) {
+				throw new Error(responseData as string);
 			}
 		} catch (error: any) {
 			setErrorServer(error.message);

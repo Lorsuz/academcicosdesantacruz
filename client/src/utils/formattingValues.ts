@@ -32,7 +32,6 @@ export const formatDate = (value: string): string => {
 
 export const formatPhoneNumber = (value: string): string => {
 	let formattedValue = value.replace(/[^\d]/g, '');
-	console.log(formattedValue.length);
 
 	if (formattedValue.length >= 11) {
 		formattedValue = formattedValue.slice(0, 11);

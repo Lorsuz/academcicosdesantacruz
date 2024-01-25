@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -14,6 +14,31 @@ const ButtonOpenProfile = () => {
 	const handleProfileOptions = () => {
 		setProfileOptionsIsOpen(!profileOptionsIsOpen);
 	};
+
+	const profileOptionsRef = useRef(null);
+
+	useEffect(() => {
+		console.log('====================================');
+		console.log(profileOptionsRef.current);
+		console.log('====================================');
+		const handleClickOutside = () => {
+			if (profileOptionsRef.current && !profileOptionsRef.current?.classList.contains('profile-options')) {
+				setProfileOptionsIsOpen(false);
+			}
+		};
+
+		if (profileOptionsIsOpen) {
+			console.log('====================================');
+			console.log('add');
+			console.log('====================================');
+
+			document.body.addEventListener('click', handleClickOutside);
+		}
+
+		return () => {
+			document.body.removeEventListener('click', handleClickOutside);
+		};
+	}, [profileOptionsIsOpen]);
 
 	return (
 		<StyledComponent>
@@ -32,7 +57,7 @@ const ButtonOpenProfile = () => {
 				)}
 			</div>
 			{profileOptionsIsOpen && (
-				<nav className='profile-options'>
+				<nav className='profile-options' ref={profileOptionsRef}>
 					<div className='user'>
 						<div className='name'>
 							<Link to='/user'>{user.name}</Link>

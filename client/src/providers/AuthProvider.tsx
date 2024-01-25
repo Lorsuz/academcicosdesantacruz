@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -11,6 +11,7 @@ export const AuthContext = createContext({
 	loginAction: (data: any) => {},
 	getUser: () => {},
 	logOut: () => {},
+	getTokenFromLocalStorage: () => {},
 	apiUrl: ''
 } as {
 	token: string;
@@ -18,6 +19,7 @@ export const AuthContext = createContext({
 	loginAction: (data: any) => void;
 	getUser: () => void;
 	logOut: () => void;
+	getTokenFromLocalStorage: () => void;
 	apiUrl: string;
 });
 
@@ -27,42 +29,63 @@ const AuthProvider = ({ children }: { children: any }): any => {
 	const { apiUrl } = useEnv();
 	const navigate = useNavigate();
 
+	const getTokenFromLocalStorage = () => {
+		const token = localStorage.getItem('site');
+		if (token) {
+			setToken(token);
+		}
+	};
+
 	const loginAction = async (data: any) => {
 		try {
-			const response = await fetch(`${apiUrl}/auth/login`, {
+			const responseData = await fetch(`${apiUrl}/auth/login`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify(data)
+			}).then((response: any) => {
+				if (response.ok) {
+					return response.json();
+				} else {
+					throw new Error('Erro ao fazer login');
+				}
 			});
-			const res = await response.json();
-			if (res.token) {
-				setUser(res.data.user);
-				localStorage.setItem('site', res.token);
-				console.log(token);
-				toast.success(res.message, toastNotificationConfig);
-				return true;
+			if (responseData && responseData.token) {
+				localStorage.setItem('site', responseData.token);
+				toast.success(responseData.message, toastNotificationConfig);
+				setToken(responseData.token);
 			} else {
-				return res.message;
+				return responseData.message;
 			}
 		} catch (err) {
 			console.error(err);
 		}
 	};
+	useEffect(() => {
+		if (token) {
+			getUser();
+		}
+	}, [token]);
 
 	const getUser = async () => {
 		try {
-			const response = await fetch(`${apiUrl}/auth/user`, {
+			const responseData = await fetch(`${apiUrl}/api/user`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: `Bearer ${token}`
+					Authorization: `Bearer ${token}`,
+					Cookie: `site=${token}`
+				}
+			}).then(response => {
+				if (response.ok) {
+					return response.json();
+				} else {
+					throw new Error('Erro ao obter dados do usuário');
 				}
 			});
-			const res = await response.json();
-			if (res.data) {
-				setUser(res.data);
+			if (responseData) {
+				setUser(responseData.user);
 				return true;
 			} else {
 				return false;
@@ -72,15 +95,36 @@ const AuthProvider = ({ children }: { children: any }): any => {
 		}
 	};
 
-	const logOut = () => {
+	const logOut = async () => {
+		navigate('/');
+
 		setUser(null);
 		setToken('');
 		localStorage.removeItem('site');
-		navigate('/');
+		const responseData = await fetch(`${apiUrl}/auth/logout`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+				Cookie: `site=${token}`
+			}
+		}).then(response => {
+			if (response.ok) {
+				return response.json();
+			} else {
+				throw new Error('Erro no server');
+			}
+		});
+
+		if (responseData) {
+			toast.success(responseData.message, toastNotificationConfig);
+		} else {
+			toast.error(responseData.message, toastNotificationConfig);
+		}
 	};
 
 	return (
-		<AuthContext.Provider value={{ token, user, loginAction, logOut, apiUrl, getUser }}>
+		<AuthContext.Provider value={{ token, user, loginAction, logOut, apiUrl, getUser, getTokenFromLocalStorage }}>
 			{children}
 		</AuthContext.Provider>
 	);

@@ -28,10 +28,7 @@ export async function nodemailerConfig(): Promise<EmailConfig> {
 			user: testAccount.user,
 			pass: testAccount.pass
 		};
-		console.log(JSON.stringify(testAccount));
 	}
-	console.log(JSON.stringify(nodemailerConfig));
-	console.log(nodemailerConfig);
 
 	return nodemailerConfig;
 }

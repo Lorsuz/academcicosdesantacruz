@@ -7,7 +7,6 @@ import LogoWritten from '../assets/images/Logo/logo_written.png';
 import ButtonOpenProfile from '../components/events/ButtonOpenProfile';
 
 const Header: React.FunctionComponent = () => {
-	console.log('Header');
 
 	return (
 		<HeaderFixed>

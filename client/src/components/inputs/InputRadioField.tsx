@@ -35,7 +35,6 @@ const InputRadioField = ({
 }: Props): React.FunctionComponentElement<JSX.Element> => {
 	const [selectedValue, setSelectedValue] = useState<string>('');
 
-	console.log(additionalInput);
 	
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

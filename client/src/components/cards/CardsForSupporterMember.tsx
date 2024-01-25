@@ -17,7 +17,6 @@ type CardsForSupporterMemberProps = {
 };
 
 const CardsForSupporterMember = ({ element }: CardsForSupporterMemberProps): React.FunctionComponentElement<JSX.Element> => {
-	console.log(wallpapperGrayLines);
 	return (
 		<StyledComponent $background={element.color}>
 			<div className='background'></div>

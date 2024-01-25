@@ -39,13 +39,11 @@ const HomeSponsors = (): React.FunctionComponentElement<JSX.Element> => {
 	useEffect(() => {
 		const swiperWrapper = document.querySelector('.swiper-wrapper') as HTMLElement;
 		swiperWrapper.addEventListener('click', () => {
-			console.log('mousedown');
 
 			setIsGrabbing(true);
 		});
 		swiperWrapper.addEventListener('mouseup', () => {
 			setIsGrabbing(false);
-			console.log('mouseup');
 		});
 	}, []);
 
