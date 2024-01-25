@@ -22,7 +22,7 @@ type Props = {
 	placeholder: string;
 	error?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	// additionalInput?: AdditionalInputProps;
+	additionalInput?: AdditionalInputProps;
 };
 
 const InputRadioField = ({
@@ -30,8 +30,8 @@ const InputRadioField = ({
 	name = 'name',
 	placeholder = 'Selecione seu dado',
 	radios = [],
-	onChange
-	// additionalInput: additionalInput
+	onChange,
+	additionalInput: additionalInput
 }: Props): React.FunctionComponentElement<JSX.Element> => {
 	const [selectedValue, setSelectedValue] = useState<string>('');
 
@@ -41,6 +41,8 @@ const InputRadioField = ({
 			onChange(e);
 		}
 	};
+	console.log(additionalInput);
+	
 
 	return (
 		<StyledComponent>
