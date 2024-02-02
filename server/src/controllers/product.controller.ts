@@ -26,7 +26,7 @@ const createProduct = asyncHandler(async (req, res) => {
 		});
 		const createdProduct = await product.save();
 		res.status(201).json(createdProduct);
-	} catch (error) {
+	} catch (error:any) {
 		res.status(400).json({ message: error.message });
 	}
 });
@@ -77,7 +77,7 @@ const getProducts = asyncHandler(async (req, res) => {
 		]);
 
 		res.json({ offers, products, pageNumber, pages: Math.ceil(count / pageSize) });
-	} catch (error) {
+	} catch (error:any) {
 		res.status(404).json({ message: error.message });
 	}
 });
@@ -91,7 +91,7 @@ const getProductById = asyncHandler(async (req, res) => {
 		} else {
 			res.status(404).json({ message: 'Product not found' });
 		}
-	} catch (error) {
+	} catch (error:any) {
 		res.status(404).json({ message: error.message });
 	}
 });
@@ -114,7 +114,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 		} else {
 			res.status(404).json({ message: 'Product not found' });
 		}
-	} catch (error) {
+	} catch (error:any) {
 		res.status(404).json({ message: error.message });
 	}
 });
@@ -128,7 +128,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 		} else {
 			res.status(404).json({ message: 'Product not found' });
 		}
-	} catch (error) {
+	} catch (error:any) {
 		res.status(404).json({ message: error.message });
 	}
 });
@@ -153,7 +153,7 @@ const getAllTags = asyncHandler(async (req, res) => {
 			}
 		]);
 		res.json(tags);
-	} catch (error) {
+	} catch (error:any) {
 		res.status(404).json({ message: error.message });
 	}
 });
