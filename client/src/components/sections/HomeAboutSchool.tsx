@@ -4,7 +4,6 @@ import pavillion from '../../assets/images/pavillion.jpeg';
 import styled from 'styled-components';
 
 const HomeAboutSchool = (): React.FunctionComponentElement<JSX.Element> => {
-	console.log('HomeAboutSchool');
 
 	return (
 		<StyledComponent>

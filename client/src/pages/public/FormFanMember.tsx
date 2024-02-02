@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InputField from '../../components/inputs/InputField';
 import InputSelectField from '../../components/inputs/InputSelectField';
 import InputRadioField from '../../components/inputs/InputRadioField';
@@ -8,7 +8,14 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 
 import styled from 'styled-components';
 
-import { formatCPF, formatCEP, formatPhoneNumber, formatDate } from '../../utils/formatingValues';
+import { formatCPF, formatCEP, formatPhoneNumber, formatDate } from '../../utils/formattingValues';
+import {
+	validateEmail,
+	validateNoLetters,
+	validateNoNumbers,
+	validateNoSpecialChars
+} from '../../utils/validateValues';
+
 const LegendForFieldset = ({ children }: { children: string }): React.FunctionComponentElement<JSX.Element> => (
 	<legend>
 		<div className='before'></div>
@@ -16,38 +23,99 @@ const LegendForFieldset = ({ children }: { children: string }): React.FunctionCo
 		<div className='after'></div>
 	</legend>
 );
+
 const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 	const [currentPage, setCurrentPage] = useState(1);
-	const [fildsetPages] = useState<Array<JSX.Element>>([
-		<fieldset>
+	const [formData, setFormData] = useState({});
+
+	const SendInputValueForParent = (name: string, value: string): void => {
+		setFormData(prevFormData => ({
+			...prevFormData,
+			[name]: value
+		}));
+	};
+
+	const [fieldsetPages] = useState<Array<JSX.Element>>([
+		<>
 			<LegendForFieldset>Dados Pessoais</LegendForFieldset>
-			<InputField name='name' label='Nome' placeholder='Ex.: João Silva' />
-			<InputField name='birth' label='Data de Nascimento' formatValueFunction={formatDate}/>
-			<InputField name='cpf' label='CPF' placeholder='Ex.: 123.456.789-00' formatValueFunction={formatCPF} />
-		</fieldset>,
-		<fieldset>
-			<LegendForFieldset>Dados de Contato</LegendForFieldset>
-			<InputField name='email' label='Email' placeholder='Ex.: joao.silva@xpto.com.br' type='email' />
 			<InputField
+				onChangeFromParent={SendInputValueForParent}
+				name='name'
+				label='Nome'
+				placeholder='Ex.: João Silva'
+				validateValueFunctions={[validateNoNumbers, validateNoSpecialChars]}
+			/>
+
+			<InputField
+				onChangeFromParent={SendInputValueForParent}
+				name='birth'
+				label='Data de Nascimento'
+				formatValueFunction={formatDate}
+				validateValueFunctions={[validateNoLetters]}
+			/>
+			<InputField
+				onChangeFromParent={SendInputValueForParent}
+				name='cpf'
+				label='CPF'
+				placeholder='Ex.: 123.456.789-00'
+				formatValueFunction={formatCPF}
+				validateValueFunctions={[validateNoLetters]}
+			/>
+		</>,
+		<>
+			<LegendForFieldset>Dados de Contato</LegendForFieldset>
+			<InputField
+				onChangeFromParent={SendInputValueForParent}
+				name='email'
+				label='Email'
+				placeholder='Ex.: joao.silva@xpto.com.br'
+				type='email'
+				validateValueFunctions={[validateEmail]}
+			/>
+			<InputField
+				onChangeFromParent={SendInputValueForParent}
 				name='tell'
-				label='Telefone:'
+				label='Telefone'
 				placeholder='Ex.: (XX) X.XXX-XXXX'
 				type='tell'
 				formatValueFunction={formatPhoneNumber}
+				validateValueFunctions={[]}
 			/>
-		</fieldset>,
-		<fieldset>
+		</>,
+		<>
 			<LegendForFieldset>Endereço</LegendForFieldset>
-			<InputField name='street' label='Logradouro' placeholder='Ex.: Rua Soares' />
-			<InputField name='number' label='Número' placeholder='Ex.: 123' />
-			<InputField name='cep' label='CEP' placeholder='Ex.: 12345-678' formatValueFunction={formatCEP} />
-			<InputField name='complement' label='Complemento' placeholder='Ex.: Apt. 456' />
-			<InputField name='neighborhood' label='Bairro' placeholder='Ex.: Centro' />
-			<InputField name='city' label='Cidade' placeholder='Ex.: Juatina' />
+			<InputField
+				onChangeFromParent={SendInputValueForParent}
+				name='street'
+				label='Logradouro'
+				placeholder='Ex.: Rua Soares'
+			/>
+			<InputField onChangeFromParent={SendInputValueForParent} name='number' label='Número' placeholder='Ex.: 123' />
+			<InputField
+				onChangeFromParent={SendInputValueForParent}
+				name='cep'
+				label='CEP'
+				placeholder='Ex.: 12345-678'
+				formatValueFunction={formatCEP}
+			/>
+			<InputField
+				onChangeFromParent={SendInputValueForParent}
+				name='complement'
+				label='Complemento'
+				placeholder='Ex.: Apt. 456'
+			/>
+			<InputField
+				onChangeFromParent={SendInputValueForParent}
+				name='neighborhood'
+				label='Bairro'
+				placeholder='Ex.: Centro'
+			/>
+			<InputField onChangeFromParent={SendInputValueForParent} name='city' label='Cidade' placeholder='Ex.: Juatina' />
 
 			<InputSelectField
 				name='state'
-				label='Estado:'
+				onChangeFromParent={SendInputValueForParent}
+				label='Estado'
 				placeholder='Selecione seu estado'
 				options={[
 					'Acre',
@@ -79,23 +147,25 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 					'Tocantins'
 				]}
 			/>
-			<InputField name='country' label='País' placeholder='Ex.: Brasil' />
-		</fieldset>,
-		<fieldset>
+			<InputField onChangeFromParent={SendInputValueForParent} name='country' label='País' placeholder='Ex.: Brasil' />
+		</>,
+		<>
 			<LegendForFieldset>Perfil</LegendForFieldset>
-			<InputField name='height' label='Altura' placeholder='Ex.: 1.75m' />
-			<InputField name='weight' label='Peso' placeholder='Ex.: 65Kg' />
+			<InputField onChangeFromParent={SendInputValueForParent} name='height' label='Altura' placeholder='Ex.: 1.75m' />
+			<InputField onChangeFromParent={SendInputValueForParent} name='weight' label='Peso' placeholder='Ex.: 65Kg' />
 			<InputSelectField
 				name='mannequin'
-				label='Manequim:'
+				onChangeFromParent={SendInputValueForParent}
+				label='Manequim'
 				placeholder='Selecione seu manequim'
 				options={['PP', 'P', 'M', 'G', 'GG', 'XXG']}
 			/>
-		</fieldset>,
-		<fieldset>
+		</>,
+		<>
 			<LegendForFieldset>Sobre Você</LegendForFieldset>
 			<InputRadioField
 				name='experience'
+				// onChangeFromParent={SendInputValueForParent}
 				placeholder='Você possui experiência em desfiles?'
 				radios={[
 					{
@@ -110,6 +180,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 			/>
 			<InputRadioField
 				name='fanMember'
+				// onChangeFromParent={SendInputValueForParent}
 				placeholder='Você é sócio torcedor da escola?'
 				radios={[
 					{
@@ -129,10 +200,10 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 					type: 'text'
 				}}
 			/>
-		</fieldset>
+		</>
 	]);
 
-	const totalPages = fildsetPages.length;
+	const totalPages = fieldsetPages.length;
 
 	const setPrevPage = (e: React.MouseEvent<HTMLButtonElement>): void => {
 		e.preventDefault();
@@ -146,12 +217,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 		scrollToTop();
 	};
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-		e.preventDefault();
-		console.log('Submit');
-	};
-
-	const scrollToTop = () => {
+	const scrollToTop = (): void => {
 		const currentPosition = window.scrollY;
 
 		if (currentPosition > 0) {
@@ -163,6 +229,23 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 			}
 		}
 	};
+
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		await fetch('https://api.sheetmonkey.io/form/wWVMUL5B6kh4HWcTZoJHqA', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(formData)
+		}).then(response => {
+			console.log(response);
+		});
+	};
+
+	useEffect(() => {
+		console.log(formData);
+	}, [formData]);
 
 	return (
 		<Layout title='Home Page'>
@@ -179,13 +262,16 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 							</>
 						))}
 					</div>
-					{fildsetPages[currentPage - 1]}
+					{fieldsetPages.map((fieldset, index) => (
+						<fieldset key={index} className={currentPage === index + 1 ? 'active' : ''}>
+							{fieldset}
+						</fieldset>
+					))}
 					<div className='actions'>
 						<button onClick={setPrevPage} disabled={currentPage === 1} className='button-prev'>
 							<FaAngleLeft />
 							<span>Anterior</span>
 						</button>
-						{/* ({currentPage} de {totalPages}) */}
 
 						<button onClick={setNextPage} type={currentPage === totalPages ? 'submit' : 'button'}>
 							{currentPage === totalPages ? (
@@ -208,51 +294,7 @@ const StyledFormFanMember = styled.main`
 	padding: 150px 0 100px;
 	display: flex;
 	justify-content: center;
-
-	* {
-		/* outline: 1px dotted; */
-	}
-	h1 {
-		background: var(--color-primary);
-		color: #fff;
-		padding: 20px 30px;
-		font-size: 2.4rem;
-	}
-	.pagination {
-		margin: 30px 50px;
-		display: flex;
-		justify-content: space-between;
-		align-content: center;
-		align-items: center;
-		position: relative;
-
-		span {
-			align-items: center;
-			background-color: #ccc;
-			border-radius: 50%;
-			color: #fff;
-			display: flex;
-			font-size: 20px;
-			font-weight: bold;
-			height: 40px;
-			justify-content: center;
-			min-width: 40px;
-			z-index: 1;
-
-			&.active {
-				background-color: var(--color-primary-soft);
-			}
-		}
-		.line {
-			width: 100%;
-			height: 3px;
-			background: #ccc;
-
-			&.active {
-				background-color: var(--color-primary-soft);
-			}
-		}
-	}
+	align-items: center;
 
 	form {
 		width: 80%;
@@ -263,12 +305,74 @@ const StyledFormFanMember = styled.main`
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 		border-radius: 10px;
 		overflow: hidden;
+		/* height: 500px; */
+
+		* {
+			/* outline: 1px dotted; */
+		}
+
+		h1 {
+			background: var(--color-primary);
+			color: #fff;
+			padding: 20px 30px;
+			font-size: 2.4rem;
+			position: relative;
+
+			&::after {
+				content: 'dasdasdadsad';
+				position: absolute;
+				width: 100%;
+				height: 3px;
+				background: var(--color-primary);
+				bottom: -6px;
+				left: 0;
+			}
+		}
+		.pagination {
+			margin: 30px 50px;
+			display: flex;
+			justify-content: space-between;
+			align-content: center;
+			align-items: center;
+			position: relative;
+
+			span {
+				align-items: center;
+				background-color: #ccc;
+				border-radius: 50%;
+				color: #fff;
+				display: flex;
+				font-size: 20px;
+				font-weight: bold;
+				height: 40px;
+				justify-content: center;
+				min-width: 40px;
+				z-index: 1;
+
+				&.active {
+					background-color: var(--color-primary-soft);
+				}
+			}
+			.line {
+				width: 100%;
+				height: 3px;
+				background: #ccc;
+
+				&.active {
+					background-color: var(--color-primary-soft);
+				}
+			}
+		}
 
 		fieldset {
 			margin-bottom: 50px;
 			margin: 20px 50px;
 			/* width: 100%; */
-			display: block;
+			display: none;
+
+			&.active {
+				display: block;
+			}
 
 			legend {
 				width: 100%;
@@ -276,9 +380,11 @@ const StyledFormFanMember = styled.main`
 				background: var(--color-primary);
 				display: flex;
 				justify-content: space-between;
+				justify-content: center;
 				align-items: center;
 				border-radius: 10px 10px 0 0;
-				margin: 20px 0px;
+				margin: 20px 0px 50px;
+				overflow: hidden;
 
 				span {
 					font-size: 30px;
@@ -286,7 +392,7 @@ const StyledFormFanMember = styled.main`
 					color: var(--color-white);
 					white-space: nowrap;
 					display: block;
-					padding: 10px 10px;
+					padding: 15px 10px 10px;
 				}
 
 				.before,
@@ -301,6 +407,15 @@ const StyledFormFanMember = styled.main`
 				}
 				.after {
 					right: 0;
+				}
+				::after {
+					content: '';
+					position: absolute;
+					width: 100%;
+					height: 2px;
+					background: #ffffff;
+					bottom: 2px;
+					left: 0;
 				}
 			}
 		}
@@ -354,6 +469,12 @@ const StyledFormFanMember = styled.main`
 					}
 				}
 			}
+		}
+	}
+
+	@keyframes shake {
+		50% {
+			transform: translateX(10px);
 		}
 	}
 `;

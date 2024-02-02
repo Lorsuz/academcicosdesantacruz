@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import InputField from './InputField';
+// import InputField from './InputField';
 
 type RadiosProps = {
 	label: string;
@@ -41,6 +41,8 @@ const InputRadioField = ({
 			onChange(e);
 		}
 	};
+	console.log(additionalInput);
+	
 
 	return (
 		<StyledComponent>
@@ -61,14 +63,14 @@ const InputRadioField = ({
 				))}
 			</div>
 			<div className='input'>
-				{additionalInput && typeof additionalInput === 'object' && selectedValue === additionalInput.condition && (
+				{/* {additionalInput && typeof additionalInput === 'object' && selectedValue === additionalInput.condition && (
 					<InputField
 						name={additionalInput.name}
 						label={additionalInput.label}
 						placeholder={additionalInput.placeholder}
 						type={additionalInput.type}
 					/>
-				)}
+				)} */}
 			</div>
 			<span className='error-message'>{error}</span>
 		</StyledComponent>

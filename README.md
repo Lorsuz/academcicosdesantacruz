@@ -51,3 +51,30 @@ git pull => Update clone;
 Fork => pull a project to your remote repository;
 
 Pull Request => asks the project owner to change the product;# academicosdesantacruz
+
+Validation:
+	It must not be empty;
+	must not contain white spaces;
+	must not contain letters;
+	must not contain numbers;
+	must not contain special characters;
+	must not contain capital letters;
+	must not contain lowercase letters;
+ 
+	must contain only numbers;
+	must contain only letters;
+	must contain only capital letters;
+	must contain only lowercase letters;
+ 
+	must contain numbers;
+	must contain letters;
+
+	must contain capital letters;
+	must contain lowercase letters;
+ 
+	the content must be the same;
+
+	must contain a minimum of characters;
+	must contain a maximum of characters;
+
+	npx prisma migrate dev --name reset

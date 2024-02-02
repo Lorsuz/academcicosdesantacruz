@@ -13,11 +13,11 @@ module.exports = {
 		'react-hooks/rules-of-hooks': 'warn',
 		'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
-		'@typescript-eslint/no-explicit-any': 'warn',
-		'@typescript-eslint/explicit-function-return-type': 'warn',
+		'@typescript-eslint/no-explicit-any': 'off',
+		'@typescript-eslint/explicit-function-return-type': 'off',
 		'@typescript-eslint/explicit-module-boundary-types': 'warn',
+		'@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
 
-		'arrow-body-style': ['warn', 'as-needed'],
 		'no-duplicate-imports': ['warn', { includeExports: true }],
 		eqeqeq: ['warn', 'always'],
 		'func-name-matching': ['warn', 'always']

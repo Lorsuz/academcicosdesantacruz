@@ -45,5 +45,60 @@
 			"nome": "Ricardo",
 			"imagem": "diretoria-1.jpg"
 		}
-	]
+	],
+	"supporterMember": [
+		{
+			"id": "1",
+			"slogan": "A santa cruz me faz sonhar",
+			"status":"Príncipe da Batucada",
+			"price": "20",
+			"color": "#cd7f32",
+			"benefits": [
+				"Cartão Personalizado digital",
+				"Brinde exclusivo de adesão - conforme disponibilidade",
+				"Entrada gratuita nos ensaios",
+				"1 (um) agendamento de camarote na quadra para ensaio",
+				"Acesso livre aos ambientes da quadra em ensaio",
+				"Direito de participar dos sorteios e promoções",
+				"Desconto de 5% nas compras realizadas pela boutique virtual",
+				"1 (uma) joia da Santa Cruz (mensal)"
+			]
+		},
+		{
+			"id" : "3",
+			"slogan": "Feliz da vida é quem tem a Santa Cruz no coração",
+			"status":"Duque da Santa Cruz",
+			"price": "50",
+			"color": "#E9BB3B",
+			"benefits": [
+				"Cartão Personalizado digital",
+				"Brinde exclusivo de adesão - conforme disponibilidade",
+				"Entrada gratuita nos ensaios",
+				"5 (Cinco) agendamentos de camarote na quadra para ensaio",
+				"Acesso livre aos ambientes da quadra em ensaio",
+				"Direito de participar dos sorteios e promoções",
+				"Desconto de 10% nas compras realizadas pela boutique virtual",
+				"5 (cinco) joias da Santa Cruz (mensal)",
+				"Fantasias para o carnaval de 2024 somente para associados fora do Rio de Janeiro (vagas limitadas)",
+				"120 (cento e vinte) joias da Santa Cruz no ato da Adesão"
+			]
+		},
+		{
+			"id": "2",
+			"slogan": "Sou louco por ti, sou verde e branco",
+			"status":"Marquês do Samba",
+			"price": "30",
+			"color": "#8b8b8b",
+			"benefits": [
+				"Cartão Personalizado digital",
+				"Brinde exclusivo de adesão - conforme disponibilidade",
+				"Entrada gratuita nos ensaios",
+				"3 (Três) agendamentos de camarote na quadra para ensaio",
+				"Acesso livre aos ambientes da quadra em ensaio",
+				"Direito de participar dos sorteios e promoções",
+				"Desconto de 7% nas compras realizadas pela boutique virtual",
+				"2 (duas) joias da Santa Cruz (mensal)"
+			]
+		}
+	]	
 }

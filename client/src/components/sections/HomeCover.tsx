@@ -37,12 +37,10 @@ const HomeCover = (): React.FunctionComponentElement<JSX.Element> => (
 );
 
 const StyledComponent = styled.section`
-	height: 98dvh;
-	min-height: 700px;
+	height: 80dvh;
+	min-height: 600px;
 	max-height: 1200px;
 
-	.wrapper {
-	}
 	.wrapper > div {
 		&.left {
 			grid-column: 2/7;
