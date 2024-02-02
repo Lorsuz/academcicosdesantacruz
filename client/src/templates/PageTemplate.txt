@@ -1,0 +1,22 @@
+import React from 'react';
+import styled from 'styled-components';
+
+import Layout from '../../layouts/PagesLayout';
+
+const FormSign = () => {
+	const [state, setState] = React.useState<boolean>(false);
+
+	const toggleState = () => {
+		setState(!state);
+	};
+
+	return (
+		<Layout title='Template'>
+			<StyledComponent $state={state}></StyledComponent>
+		</Layout>
+	);
+};
+
+const StyledComponent = styled.section<{ $state: boolean }>``;
+
+export default FormSign;

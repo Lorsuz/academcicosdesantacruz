@@ -27,22 +27,22 @@ const Header: React.FunctionComponent = () => {
 								</NavLink>
 							</li>
 							<li>
-								<NavLink to='/store/home'>
+								<NavLink to='/store/'>
 									<span>Loja</span>
 								</NavLink>
 							</li>
 							<li>
-								<NavLink to='/store/home'>
+								<NavLink to='/gallery'>
 									<span>Galeria</span>
 								</NavLink>
 							</li>
 							<li>
-								<NavLink to='/a'>
+								<NavLink to='/school'>
 									<span>A Escola</span>
 								</NavLink>
 							</li>
 							<li>
-								<NavLink to='/a'>
+								<NavLink to='/history'>
 									<span>Nossa História</span>
 								</NavLink>
 							</li>
@@ -57,7 +57,7 @@ const Header: React.FunctionComponent = () => {
 								</NavLink>
 							</li>
 							<li>
-								<NavLink to='/a'>
+								<NavLink to='/credits'>
 									<span>Créditos</span>
 								</NavLink>
 							</li>
@@ -118,14 +118,15 @@ const HeaderFixed = styled.header`
 	}
 
 	.wrapper {
-		row-gap: 20px;
+		row-gap: 15px;
+		padding: 0 0 20px;
 
 		.top {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			grid-column: 2 / 12;
-			padding: 20px 0;
+			padding: 20px 0 0px;
 
 			section {
 				&.logo {
@@ -147,6 +148,7 @@ const HeaderFixed = styled.header`
 			justify-content: space-between;
 			align-items: center;
 			grid-column: 2 / 12;
+
 			nav.menu-desk {
 				display: flex;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import FormLogin from './FormLogin';
-import FormRegister from './FormRegister';
+import FormLogin from '../../components/forms/Login';
+import FormRegister from '../../components/forms/Register';
 
 import Layout from '../../layouts/PagesLayout';
 import BackgroundForOverlay from '../../assets/images/Logo/gresasc-overlay.jpg';

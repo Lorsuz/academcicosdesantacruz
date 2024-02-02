@@ -10,6 +10,8 @@ import FormFanMember from '../pages/public/FormFanMember';
 import NotFound from '../pages/public/NotFound';
 import FormSign from '../pages/public/FormSign';
 
+import Shop from '../pages/public/Shop';
+
 import Application from '../pages/private/Application';
 
 const Router: React.FunctionComponent = () => (
@@ -17,6 +19,11 @@ const Router: React.FunctionComponent = () => (
 		<Route path='/' element={<HomePage />} />
 		<Route path='/board' element={<Board />} />
 		<Route path='/supporter-member' element={<SupporterMember />} />
+
+		<Route path='/store'>
+			<Route path='' element={<Shop />} />
+			{/* <Route path='sign' element={<FormSign />} /> */}
+		</Route>
 
 		<Route path='/form'>
 			<Route path='fan-member' element={<FormFanMember />} />

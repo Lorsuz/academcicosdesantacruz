@@ -5,28 +5,39 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
+
+import { errorHandler } from './middlewares/error.middleware.js';
+import { connectDB } from './config/mongoose.config.js';
 
 dotenv.config();
 
-import indexRouter from './routes/index.route.js';
-import authRouter from './routes/auth.route.js';
-import userRouter from './routes/user.route.js';
-import apiRouter from './routes/api.route.js';
+connectDB();
+
+import indexRouter from './routers/index.route.js';
+import authRouter from './routers/auth.router.js';
+import userRouter from './routers/user.router.js';
+import categoriesRouter from './routers/category.router.js';
+import productsRouter from './routers/products.router.js';
+import ordersRouter from './routers/order.router.js';
 
 const app: Application = express();
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(logger('dev'));
 
-app.use('/', indexRouter);
-app.use('/auth', authRouter);
-app.use('/api', apiRouter);
-app.use('/user', userRouter);
+app.use('/api', indexRouter);
+app.use('/api/categories', categoriesRouter);
+app.use('/api/orders', ordersRouter);
+app.use('/api/products', productsRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
+
+app.use(errorHandler);
 
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response, next: NextFunction) => {
