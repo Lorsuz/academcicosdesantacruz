@@ -90,7 +90,7 @@ const StyledComponent = styled.section<{ $isGrabbing: boolean }>`
 		font-size: 2rem;
 		text-align: center;
 		text-transform: uppercase;
-		font-family: Poppins, sans-serif;
+		/* font-family: Poppins, sans-serif; */
 		color: var(--color-primary-soft);
 	}
 

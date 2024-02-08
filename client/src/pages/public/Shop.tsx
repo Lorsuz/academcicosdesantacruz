@@ -17,25 +17,41 @@ const Shop = () => {
 		setHaveAccount(!haveAccount);
 	};
 	const a = [
-		'Mais Populares',
+		'Populares',
+		'Recentes',
+		'Promoções',
 		'camisas',
+		'masculino',
+		'Feminino',
+		'Infantil',
+		'Infantil',
+		'Infantil',
+		'Infantil',
+		'Infantil',
+		'Infantil',
+		'Infantil',
+		'Infantil',
+		'Shorts',
 		'calças',
 		'bonés',
 		'meias',
 		'relógios',
 		'óculos',
 		'tênis',
-		'bolsas',
+		'bolsas'
 	];
 
 	return (
-		<Layout title='Formulario de Authenticação'>
+		<Layout title='Formulario de Authenticação' backgroundColor='#f5f5f5'>
 			<CoverBanner></CoverBanner>
 			<CategoriesSection list={a}></CategoriesSection>
-			{a.map((item, index) => (
-				<ProductsSection title={item} key={index}></ProductsSection>
-			))}
-			<Banner></Banner>
+			{a.map((item, index) => {
+				if (index <= 8) {
+					if (index % 3 === 0 && index !== 0) return <Banner></Banner>;
+					return <ProductsSection title={item} key={index}></ProductsSection>;
+				}
+			})}
+			{/* brands */}
 		</Layout>
 	);
 };

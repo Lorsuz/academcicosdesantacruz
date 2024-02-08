@@ -9,6 +9,7 @@ import ButtonBackToTop from './components/shared/ButtonBackToTop';
 
 function App(): React.FunctionComponentElement<JSX.Element> {
 	return (
+		
 		<EnvProvider>
 			<AuthProvider>
 				<Layout title='index'>

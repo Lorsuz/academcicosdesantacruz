@@ -40,7 +40,7 @@ const StyledComponent = styled.section`
 			h2 {
 				font-size: 2rem;
 				color: var(--color-primary);
-				font-family: Playpen Sans;
+				/* font-family: Playpen Sans; */
 			}
 
 			h1 {

@@ -50,13 +50,13 @@ const StyledComponent = styled.section`
 				font-size: 5rem;
 				color: var(--color-text);
 				text-align: center;
-				font-family: Playpen Sans;
+				/* font-family: Playpen Sans; */
 			}
 
 			h3 {
 				color: var(--color-text-soft);
 				text-align: center;
-				font-family: Playpen Sans;
+				/* font-family: Playpen Sans; */
 			}
 		}
 	}

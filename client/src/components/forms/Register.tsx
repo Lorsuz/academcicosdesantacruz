@@ -3,7 +3,7 @@ import { FaEnvelope, FaLock, FaLockOpen } from 'react-icons/fa';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import { useAuth } from '../../context/AuthContext';
+// import { useAuth } from '../../context/AuthContext';
 
 
 import InputsForAuthForm from '../inputs/InputsForAuthForm';
@@ -18,7 +18,7 @@ type FormLoginProps = {
 };
 
 function FormRegister({ toggleHaveAccount }: FormLoginProps): React.FunctionComponentElement<JSX.Element> {
-	const { apiUrl } = useAuth();
+	// const { apiUrl } = useAuth();
 	const [errorServer, setErrorServer] = useState<string>('');
 
 	const { register, handleSubmit, formState, reset } = useForm({

@@ -163,7 +163,7 @@ const HeaderFixed = styled.header`
 							color: var(--color-text-soft);
 							/* font-weight: bold; */
 							position: relative;
-							font-family: Playpen Sans;
+							/* font-family: Playpen Sans; */
 
 							&::after {
 								content: '';

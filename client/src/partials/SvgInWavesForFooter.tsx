@@ -5,7 +5,9 @@ import styled from 'styled-components';
 type SvgInWavesForFooterProps = {
 	backgroundColor?: string;
 };
-const SvgInWavesForFooter = ({ backgroundColor }: SvgInWavesForFooterProps): React.FunctionComponentElement<JSX.Element> => (
+const SvgInWavesForFooter = ({
+	backgroundColor = '#ffffff'
+}: SvgInWavesForFooterProps): React.FunctionComponentElement<JSX.Element> => (
 	<StyledComponent $backgroundColor={backgroundColor}>
 		<svg data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'>
 			<path
@@ -16,7 +18,7 @@ const SvgInWavesForFooter = ({ backgroundColor }: SvgInWavesForFooterProps): Rea
 	</StyledComponent>
 );
 
-const StyledComponent = styled.div<{ $backgroundColor?: string }>`
+const StyledComponent = styled.div<{ $backgroundColor: string }>`
 	float: left;
 	width: 100%;
 	overflow: hidden;
@@ -32,8 +34,7 @@ const StyledComponent = styled.div<{ $backgroundColor?: string }>`
 		width: 100%;
 		position: absolute;
 		height: 100%;
-
-		background: ${props => (props.$backgroundColor ? props.$backgroundColor : '#ffffff')};
+		background: ${props => props.$backgroundColor};
 
 		.shape-fill {
 			fill: #1c3b35;

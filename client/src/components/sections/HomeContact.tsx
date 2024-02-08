@@ -247,7 +247,7 @@ const StyledComponent = styled.section`
 			> h3 {
 				font-size: 1.2rem;
 				color: var(--color-gray);
-				font-family: Playpen Sans;
+				/* font-family: Playpen Sans; */
 			}
 
 			h2 {

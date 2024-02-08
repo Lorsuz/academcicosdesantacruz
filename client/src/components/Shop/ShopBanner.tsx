@@ -30,6 +30,7 @@ const Banner = () => {
 const StyledComponent = styled.article`
 	padding: 50px 0;
 	margin: 0 auto;
+	background-color: #f5f5f5;
 	* {
 		/* outline: 1px dotted; */
 	}
@@ -40,7 +41,7 @@ const StyledComponent = styled.article`
 		justify-content: space-between;
 		align-items: center;
 		background: #0080244e;
-		box-shadow: 0 0 20px 0 #d2d2d2;
+		box-shadow: 0 0 20px 0 #ffffff;
 		padding: 80px;
 		border-radius: 20px;
 		gap: 50px;

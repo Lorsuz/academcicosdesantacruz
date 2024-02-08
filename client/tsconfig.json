@@ -111,6 +111,6 @@
 		"skipLibCheck": true /* Skip type checking all .d.ts files. */
 	},
 
-	"include": ["src"],
+	"include": ["src", "src/redux/reducers", "src/redux/Protection.ts", "src/redux/store.ts", "src/redux/constants", "src/redux/API", "src/redux/actions", "export/data"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }

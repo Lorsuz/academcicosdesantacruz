@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay, Mousewheel } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -13,10 +13,9 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import 'swiper/css/mousewheel';
 import { Link } from 'react-router-dom';
-import { array } from 'zod';
 
 const CategoriesSection = ({ list }: { list: any }) => {
-	const [slidesPerView, setSlidesPerView] = useState(5);
+	const [slidesPerView, setSlidesPerView] = useState(9);
 
 	useEffect(() => {
 		window.addEventListener('resize', () => {
@@ -34,22 +33,24 @@ const CategoriesSection = ({ list }: { list: any }) => {
 		<StyledComponent>
 			<div className='wrapper'>
 				<div className='slide-container'>
+					<h2>Categorias</h2>
 					<Swiper
-						modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+						modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay, Mousewheel]}
 						autoplay={{ delay: 5000, disableOnInteraction: false }}
 						mousewheel={true}
 						loop={true}
 						slidesPerView={slidesPerView}
 						// pagination={{ clickable: true }}
-						spaceBetween={50}
+						spaceBetween={0}
 						centeredSlides={true}
+						// preloadSlides={5}
 					>
 						{list.map((item: any, index: any) => (
 							<SwiperSlide key={index}>
 								<Link to='/'>
 									<div className='slide-pag'>
 										<img src='http://placeholder.co/50x50' alt='' />
-										<h4>{item}</h4>
+										<span>{item}</span>
 									</div>
 								</Link>
 							</SwiperSlide>
@@ -63,35 +64,47 @@ const CategoriesSection = ({ list }: { list: any }) => {
 
 const StyledComponent = styled.section`
 	padding: 40px 0;
+	background-color: #f5f5f5;
 	* {
 		/* outline: 1px dotted; */
 	}
 
 	.slide-container {
+		background-color: #fff;
+		padding: 30px 25px;
 		grid-column: 2 / 12;
+		h2{
+			text-align: center;
+			margin-bottom: 20px;
+			/* border-bottom: 1px solid #eaeaea; */
+			color: #787878;
+			text-transform: uppercase;
+		}
 		.slide-pag {
-			min-height: 70px;
-			min-width: 200px;
+			height: 120px;
+			width: 100px;
 			display: flex;
-			/* justify-content: center; */
+			justify-content: center;
+			flex-direction: column;
 			align-items: center;
-			border-radius: 5px;
-			box-shadow: 0px 0px 15px 0 #eaeaea;
-			padding: 5px 20px;
-			/* border-radius: 100% 69% 73% 77% / 50% 40% 22% 44%; */
+			border: 1px solid #eaeaea;
 			cursor: pointer;
+
 			&:hover {
 				/* box-shadow: 0px 0px 15px 0 #eaeaea; */
-
 			}
 			img {
 				width: 50px;
 				height: 50px;
 				margin-right: 20px;
 				border-radius: 50%;
+				margin: 0 auto 15px;
 			}
-			h4{
+			span {
 				text-transform: capitalize;
+				text-align: center;
+				line-height: 1em;
+				height: 1em;
 			}
 		}
 	}
@@ -99,7 +112,7 @@ const StyledComponent = styled.section`
 	.swiper {
 		display: block;
 		.swiper-wrapper {
-			padding: 25px 0;
+			padding: 5px 0;
 
 			.swiper-slide {
 				display: flex;

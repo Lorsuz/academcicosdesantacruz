@@ -12,7 +12,11 @@ import FormSign from '../pages/public/FormSign';
 
 import Shop from '../pages/public/Shop';
 
-import Application from '../pages/private/Application';
+import Application from '../pages/private/Account';
+import UserOutlet from '../layouts/UserOutlet';
+import AccountOutlet from '../layouts/AccountOutlet';
+
+import Profile from '../pages/private/account/Profile';
 
 const Router: React.FunctionComponent = () => (
 	<Routes>
@@ -31,7 +35,22 @@ const Router: React.FunctionComponent = () => (
 		</Route>
 
 		<Route path='/private' element={<PrivateRoutes />}>
-			<Route path='application' element={<Application />} />
+			<Route path='user' element={<UserOutlet />}>
+				<Route path='account' element={<AccountOutlet />}>
+					<Route path='profile' element={<Profile />} />
+					{/* <Route path='address' element={<Application />} /> */}
+					{/* <Route path='password' element={<Application />} /> */}
+					{/* <Route path='password' element={<Application />} /> */}
+				</Route>
+				{/* <Route path='/purchase' element={<PrivateRoutes />} />
+				<Route path='/notification' element={<PrivateRoutes />}>
+					<Route path='order' element={<Application />} />
+					<Route path='promotion' element={<Application />} />
+					<Route path='updates' element={<Application />} />
+				</Route>
+				<Route path='/coupons' element={<PrivateRoutes />} />
+				<Route path='/coin' element={<PrivateRoutes />} /> */}
+			</Route>
 		</Route>
 
 		{/* <Route index element={<Navigate to='/home' />} /> */}

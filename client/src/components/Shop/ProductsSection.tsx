@@ -43,7 +43,7 @@ const CategoriesSection = ({ title }: { title: string }) => {
 						loop={true}
 						slidesPerView={slidesPerView}
 						// pagination={{ clickable: true }}
-						spaceBetween={50}
+						spaceBetween={20}
 						centeredSlides={true}
 					>
 						{a.map((item, index) => (
@@ -62,7 +62,7 @@ const CategoriesSection = ({ title }: { title: string }) => {
 										/>
 									</div>
 									<div className='text'>
-										<h4>Produto {item}</h4>
+										<Link to='/'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, earum? {item}</Link>
 										<div className='stock'>
 											<span>Stock</span>
 											<span>123</span>
@@ -83,24 +83,29 @@ const CategoriesSection = ({ title }: { title: string }) => {
 };
 
 const StyledComponent = styled.section`
-	padding: 40px 0;
+	padding: 20px 0;
+	background-color: #f5f5f5;
+
 	* {
 		/* outline: 1px dotted; */
 	}
 
 	.slide-container {
 		grid-column: 2 / 12;
+		background-color: #fff;
+		border-radius: 5px;
+		padding: 40px;
 		.slide-pag {
 			display: flex;
 			flex-direction: column;
 			border-radius: 5px;
 			overflow: hidden;
 			cursor: pointer;
-			width: 300px;
+			width: 200px;
 
 			.img {
 				width: 100%;
-				height: 230px;
+				height: 170px;
 				margin-right: 20px;
 				overflow: hidden;
 				position: relative;
@@ -137,7 +142,7 @@ const StyledComponent = styled.section`
 				flex-grow: 1;
 
 				h4 {
-					font-size: 1.2rem;
+					font-size: 1.1rem;
 					margin-bottom: 10px;
 					display: -webkit-box;
 					-webkit-line-clamp: 2;

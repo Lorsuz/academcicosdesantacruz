@@ -16,7 +16,6 @@ const FormSign = () => {
 	return (
 		<Layout title='Formulario de Authenticação'>
 			<StyledComponent $haveAccount={haveAccount}>
-				
 				<article>
 					<section className='in'>
 						<FormLogin toggleHaveAccount={toggleHaveAccount}></FormLogin>
@@ -39,7 +38,7 @@ const FormSign = () => {
 
 const StyledComponent = styled.section<{ $haveAccount: boolean }>`
 	padding: 80px 0;
-	font-family: Playpen Sans;
+	/* font-family: Playpen Sans; */
 	height: 100vh;
 	* {
 		/* outline: 1px dotted; */
