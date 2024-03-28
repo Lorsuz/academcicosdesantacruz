@@ -1,5 +1,5 @@
-import Categories from '../Models/category.model.js';
-import { categories } from '../../database/data.js';
+import Categories from '../models/category.model.js';
+import { categories } from '../exports/preDatabase.js';
 import expressAsyncHandler from 'express-async-handler';
 
 // @desc    Import categories

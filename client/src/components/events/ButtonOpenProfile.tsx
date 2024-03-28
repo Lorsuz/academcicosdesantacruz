@@ -1,33 +1,41 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutAction } from '../../redux/actions/UserActions';
+import { AppRoutes } from '../../config/appRoutes.config';
 import { FaBrazilianRealSign } from 'react-icons/fa6';
 import { /* FaShoppingCart ,*/ FaGem /* FaUser */ } from 'react-icons/fa';
-import { AuthContext } from '../../providers/AuthProvider';
 
 const ButtonOpenProfile = () => {
-	const { user, logOut } = React.useContext(AuthContext);
-
 	const [profileOptionsIsOpen, setProfileOptionsIsOpen] = React.useState(false);
-
+	const { userInfo } = useSelector((state: any) => state.userLogin);
+	const dispatch = useDispatch();
 	const handleProfileOptions = () => {
 		setProfileOptionsIsOpen(!profileOptionsIsOpen);
+	};
+	const logOut = async () => {
+		try {
+			dispatch(logoutAction() as any);
+		} catch (error: any) {
+			console.log(error.message);
+		}
 	};
 
 	return (
 		<StyledComponent>
 			<div className='profile-container'>
-				{!user ? (
+				{userInfo?.token ? (
+					<button className='profile' onClick={handleProfileOptions}>
+						<div className='img'>
+							<img src={userInfo.profileImage} alt='' />
+						</div>
+						<div className='name'>{userInfo.name}</div>
+					</button>
+				) : (
 					<div className='button-sign'>
 						<span>Gostaria de usar uma conta?</span>
-						<NavLink to='/form/sign'>Entrar</NavLink>
-					</div>
-				) : (
-					<div className='profile'>
-						<button className='img' onClick={handleProfileOptions}>
-							<img src='https://avatars.githubusercontent.com/u/42711935?v=4' alt='' />
-						</button>
+						<NavLink to={AppRoutes.sign}>Entrar</NavLink>
 					</div>
 				)}
 			</div>
@@ -35,7 +43,7 @@ const ButtonOpenProfile = () => {
 				<nav className='profile-options'>
 					<div className='user'>
 						<div className='name'>
-							<Link to='/user'>{user.name}</Link>
+							<Link to='/user'>{userInfo.name}</Link>
 						</div>
 						<div className='logout'>
 							<button
@@ -50,19 +58,22 @@ const ButtonOpenProfile = () => {
 					</div>
 					<ul>
 						<li>
-							<NavLink to='/user/'>Perfil</NavLink>
+							<NavLink to={AppRoutes.userDetails}>Perfil</NavLink>
 						</li>
 						<li>
-							<NavLink to='/user/settings'>Configurações</NavLink>
+							<NavLink to={AppRoutes.userAccountProfile}>Configurações</NavLink>
+						</li>
+						<li>
+							<NavLink to='/user/settings'>Desfile Conosco</NavLink>
 						</li>
 						<li>
 							<NavLink to='/store'>Carrinho</NavLink>
 						</li>
 						<li>
-							<NavLink to='/store'>Pedidos</NavLink>
+							<NavLink to='/storew'>Pedidos</NavLink>
 						</li>
 						<li>
-							<NavLink to='/'>Assinaturas</NavLink>
+							<NavLink to='/s'>Assinaturas</NavLink>
 						</li>
 						<li>
 							<NavLink to='/'>Suporte</NavLink>
@@ -130,25 +141,35 @@ const StyledComponent = styled.section`
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			margin-right: 20px;
 			cursor: pointer;
+			flex-direction: column;
 
-			button {
+			.img {
 				width: 50px;
 				height: 50px;
 				border-radius: 50%;
-				margin-right: 10px;
 				overflow: hidden;
-				/* border: 2px solid #bbbbbb; */
+				margin-bottom: 5px;
+				border: 2px solid #e4e4e4;
 				img {
 					width: 100%;
+				}
+			}
+			.name {
+				font-size: 1.2rem;
+				color: var(--color-text-soft);
+				transition: 300ms;
+				font-size: 1rem;
+				&:hover {
+					color: var(--color-primary);
+					text-decoration: underline;
 				}
 			}
 		}
 	}
 	.profile-options {
 		position: absolute;
-		top: 100%;
+		top: 110%;
 		right: 0;
 		background: #ffffff;
 		width: 250px;
@@ -218,10 +239,14 @@ const StyledComponent = styled.section`
 
 					cursor: pointer;
 
-					&:hover,
-					&.active {
-						background: #1a9d3fbd;
+					&:hover{
+						background: #1a9d3f70;
 						color: #fff;
+					}
+					&.active {
+						background: #1a9d3f;
+						color: #fff;
+						cursor: default;	
 					}
 				}
 			}

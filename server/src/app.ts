@@ -15,11 +15,12 @@ dotenv.config();
 connectDB();
 
 import indexRouter from './routers/index.route.js';
-import authRouter from './routers/auth.router.js';
+// import authRouter from './routers/auth.router.js';
+
 import userRouter from './routers/user.router.js';
-import categoriesRouter from './routers/category.router.js';
+// import categoriesRouter from './routers/category.router.js';
 import productsRouter from './routers/products.router.js';
-import ordersRouter from './routers/order.router.js';
+// import ordersRouter from './routers/order.router.js';
 
 const app: Application = express();
 
@@ -31,11 +32,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(logger('dev'));
 
 app.use('/api', indexRouter);
-app.use('/api/categories', categoriesRouter);
-app.use('/api/orders', ordersRouter);
+
+// app.use('/api/auth', authRouter);
+
+// app.use('/api/categories', categoriesRouter);
+// app.use('/api/orders', ordersRouter);
 app.use('/api/products', productsRouter);
-app.use('/api/auth', authRouter);
-app.use('/api/user', userRouter);
+app.use('/api/users', userRouter);
 
 app.use(errorHandler);
 

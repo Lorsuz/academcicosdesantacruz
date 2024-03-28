@@ -39,6 +39,10 @@ const StyledComponent = styled.div`
 			font-size: 1.5em;
 			font-weight: 500;
 			text-transform: capitalize;
+			font-family: 'Advent Pro', sans-serif;
+			color: var(--color-primary);
+			font-weight: 500;
+			font-size: 2rem;
 		}
 		.icon * {
 			color: var(--color-primary);

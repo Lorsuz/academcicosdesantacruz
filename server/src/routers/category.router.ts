@@ -1,12 +1,12 @@
 import * as CategoryController from '../controllers/category.controller.js';
 // import { isAdmin, isAuth } from "../middleware/authMiddleware.js";
-import { protect } from '../middlewares/auth.middleware.js';
+import { isAuthenticated } from '../middlewares/auth.middleware.js';
 import { router } from '../config/router.config.js';
 
-router.route('/').get(CategoryController.getCategories).post(protect, CategoryController.createCategory);
+router.route('/').get(CategoryController.getCategories).post(isAuthenticated, CategoryController.createCategory);
 
-router.route('/import').post(protect, CategoryController.importCategories);
+router.route('/import').post(isAuthenticated, CategoryController.importCategories);
 
-router.route('/:id').put(protect, CategoryController.updateCategory).delete(protect, CategoryController.deleteCategory);
+router.route('/:id').put(isAuthenticated, CategoryController.updateCategory).delete(isAuthenticated, CategoryController.deleteCategory);
 
 export default router;

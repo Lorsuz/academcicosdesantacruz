@@ -4,13 +4,15 @@ export const users = [
         name: 'Admin User',
         email: 'admin@gmail.com',
         password: bcrypt.hashSync('123456', 10),
-        phone: '1234567890'
+        phone: '1234567890',
+				verified: true
     },
     {
         name: 'John Doe',
         email: 'onlineshop@gmail.com',
         password: bcrypt.hashSync('123456', 10),
-        phone: '1234567890'
+        phone: '1234567890',
+				verified: true
     }
 ];
 export const categories = [

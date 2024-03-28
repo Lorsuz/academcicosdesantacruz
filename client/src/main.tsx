@@ -10,6 +10,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<BrowserRouter>
+				{/* <div className='bg-green-700 text-white p-2 text-center'>
+					Seja bem-vindo a nossa aplicação!!
+				</div> */}
 				<App />
 			</BrowserRouter>
 		</Provider>

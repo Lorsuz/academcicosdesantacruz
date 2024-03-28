@@ -5,9 +5,9 @@ import styled from 'styled-components';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import LogoWritten from '../assets/images/Logo/logo_written.png';
 import ButtonOpenProfile from '../components/events/ButtonOpenProfile';
+import { AppRoutes } from '../config/appRoutes.config';
 
 const Header: React.FunctionComponent = () => {
-
 	return (
 		<HeaderFixed>
 			<div className='wrapper'>
@@ -22,43 +22,38 @@ const Header: React.FunctionComponent = () => {
 					<nav className='menu-desk'>
 						<ul>
 							<li>
-								<NavLink to='/'>
+								<NavLink to={AppRoutes.homePage}>
 									<span>Página Inicial</span>
 								</NavLink>
 							</li>
 							<li>
-								<NavLink to='/store/'>
-									<span>Loja</span>
+								<NavLink to={AppRoutes.store}>
+									<span>Loja da Escola</span>
 								</NavLink>
 							</li>
 							<li>
-								<NavLink to='/gallery'>
-									<span>Galeria</span>
+								<NavLink to={AppRoutes.carnivalDecades}>
+									<span>Carnavais</span>
 								</NavLink>
 							</li>
 							<li>
-								<NavLink to='/school'>
+								<NavLink to={AppRoutes.school}>
 									<span>A Escola</span>
 								</NavLink>
 							</li>
 							<li>
-								<NavLink to='/history'>
-									<span>Nossa História</span>
-								</NavLink>
-							</li>
-							<li>
-								<NavLink to='/form/fan-member'>
+								<NavLink to={AppRoutes.fanMember}>
 									<span>Desfile Conosco</span>
 								</NavLink>
 							</li>
 							<li>
-								<NavLink to='/supporter-member'>
+								<NavLink to={AppRoutes.supporterMember}>
 									<span>Sócio Torcedor</span>
 								</NavLink>
 							</li>
 							<li>
-								<NavLink to='/credits'>
-									<span>Créditos</span>
+								<NavLink to={AppRoutes.site}>
+									<span>O Site</span>
 								</NavLink>
 							</li>
 						</ul>
@@ -112,10 +107,6 @@ const HeaderFixed = styled.header`
 	left: 0;
 	background: rgba(255, 255, 255, 0.95);
 	z-index: 100;
-
-	* {
-		/* outline: 1px dotted; */
-	}
 
 	.wrapper {
 		row-gap: 15px;

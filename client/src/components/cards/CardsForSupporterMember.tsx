@@ -64,9 +64,7 @@ const StyledComponent = styled.article<StyledComponentProps>`
 	position: relative;
 	height: auto;
 	* {
-		/* outline: 1px dotted; */
 		z-index: 1;
-		/* font-family: Playpen Sans; */
 	}
 	.background {
 		width: 100%;

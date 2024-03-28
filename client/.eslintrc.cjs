@@ -11,12 +11,13 @@ module.exports = {
 		'react/prop-types': 'off',
 		'react/react-in-jsx-scope': 'off',
 		'react-hooks/rules-of-hooks': 'warn',
-		'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+		'react-refresh/only-export-components': ['off', { allowConstantExport: true }],
 
 		'@typescript-eslint/no-explicit-any': 'off',
 		'@typescript-eslint/explicit-function-return-type': 'off',
 		'@typescript-eslint/explicit-module-boundary-types': 'warn',
 		'@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+		'no-prototype-builtins': 'off',
 
 		'no-duplicate-imports': ['warn', { includeExports: true }],
 		eqeqeq: ['warn', 'always'],

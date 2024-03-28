@@ -1,20 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Outlet, Navigate } from 'react-router-dom';
 
-import { toast } from 'react-toastify';
-
-import { useAuth } from '../context/AuthContext';
-import toastNotificationConfig from '../config/toastNotification.config';
-
 const PrivateRoute = (): React.FunctionComponentElement<JSX.Element> => {
-	const { token }: any = useAuth();
+	const { userInfo } = useSelector((state: any) => state.userLogin);
 
-	if (!token) {
-		toast.error('Faça login para continuar', toastNotificationConfig);
-		return <Navigate to='/form/sign' />;
-	} else {
-		return <Outlet />;
-	}
+	return userInfo?.token ? <Outlet /> : <Navigate to='/form/sign' />;
 };
 
 export default PrivateRoute;

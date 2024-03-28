@@ -44,9 +44,6 @@ const CoverBanner = (): React.FunctionComponentElement<JSX.Element> => {
 };
 
 const StyledComponent = styled.section`
-	* {
-		/* outline: 1px dotted; */
-	}
 
 	.banner {
 		background-color: var(--color-background);

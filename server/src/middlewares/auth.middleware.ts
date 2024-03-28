@@ -2,47 +2,54 @@ import { jwt, Request, Response, NextFunction, secretKey } from '../config/route
 import User from '../models/user.model.js';
 import expressAsyncHandler from 'express-async-handler';
 
-const generateToken = (id: number) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+const generateToken = (id: number | string) => jwt.sign({ id }, secretKey, { expiresIn: '1d' });
 
-const isAuthenticated = async (req: Request & any, res: Response, next: NextFunction) => {
-	const token = req.cookies.jwt || req.header('Authorization')?.replace('Bearer ', '');
+const isAuthenticated = expressAsyncHandler(async (req: Request & any, res: Response, next: NextFunction) => {
+  try {
+    let token: string = '';
+    if (req.headers.authorization && typeof req.headers.authorization === 'string' && req.headers.authorization.startsWith('Bearer')) {
+      token = req.headers.authorization.split(' ')[1];
+    }
+    if (!token) {
+      throw new Error('Faça login para acessar esta página');
+    }
 
-	if (!token) {
-		return res.status(401).json({ message: 'Token não fornecido' });
-	}
+    const decoded: any = await new Promise((resolve, reject) => {
+      jwt.verify(token, secretKey, (err, decoded) => {
+        if (err) reject(err);
+        else resolve(decoded);
+      });
+    });
 
-	try {
-		const decoded: any = jwt.verify(token, secretKey);
-		req.userId = decoded.userId;
+    if (decoded.id) {
+      const user = await User.findById(decoded.id).select('-password');
+      
+      if (user) {
+        req.user = user;
+        next();
+      } else {
+        console.error('Nenhum usuário encontrado com este ID:', decoded.id);
+        throw new Error('Nenhum usuário encontrado com este token');
+      }
+    } else {
+      console.error('ID não encontrado no token decodificado:', decoded);
+      throw new Error('Nenhum ID encontrado no token decodificado');
+    }
+
+  } catch (error: any) {
+    console.error('Erro na verificação do token:', error);
+    res.status(401).json({ message: error.message ? error.message : 'O token fornecido é inválido' });
+    throw error;
+  }
+});
+
+
+const isAdmin = (req: Request & any, res: Response, next: NextFunction) => {
+	if (req.user && req.user.isAdmin) {
 		next();
-	} catch (error) {
-		console.error('Erro na verificação do token:', error);
-		res.status(401).json({ message: 'Token inválido' });
+	} else {
+		res.status(401).json({ message: 'Este token não pertence a um administrador ' });
 	}
 };
 
-const protect = expressAsyncHandler(async (req, res, next) => {
-	let token;
-
-	if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-		try {
-			token = req.headers.authorization.split(' ')[1];
-
-			const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-			req.user = await User.findById(decoded.id).select('-password');
-
-			next();
-		} catch (error) {
-			console.error(error);
-			res.status(401).json({ message: 'Not authorized, token failed' });
-		}
-	}
-
-	if (!token) {
-		res.status(401);
-		throw new Error('Not authorized, no token');
-	}
-});
-
-export { isAuthenticated, generateToken, protect };
+export { isAuthenticated, generateToken, isAdmin };

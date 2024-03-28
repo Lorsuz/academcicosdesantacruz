@@ -3,7 +3,8 @@ import * as user from './reducers/UserReducer';
 // import logger from 'redux-logger';
 
 const rootReducer = combineReducers({
-	userLogin: user.LoginReducer
+	userLogin: user.LoginReducer,
+	userRegister: user.RegisterReducer
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

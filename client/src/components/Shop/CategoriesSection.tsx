@@ -33,17 +33,14 @@ const CategoriesSection = ({ list }: { list: any }) => {
 		<StyledComponent>
 			<div className='wrapper'>
 				<div className='slide-container'>
-					<h2>Categorias</h2>
 					<Swiper
 						modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay, Mousewheel]}
 						autoplay={{ delay: 5000, disableOnInteraction: false }}
 						mousewheel={true}
 						loop={true}
 						slidesPerView={slidesPerView}
-						// pagination={{ clickable: true }}
 						spaceBetween={0}
 						centeredSlides={true}
-						// preloadSlides={5}
 					>
 						{list.map((item: any, index: any) => (
 							<SwiperSlide key={index}>
@@ -65,21 +62,12 @@ const CategoriesSection = ({ list }: { list: any }) => {
 const StyledComponent = styled.section`
 	padding: 40px 0;
 	background-color: #f5f5f5;
-	* {
-		/* outline: 1px dotted; */
-	}
 
 	.slide-container {
 		background-color: #fff;
 		padding: 30px 25px;
 		grid-column: 2 / 12;
-		h2{
-			text-align: center;
-			margin-bottom: 20px;
-			/* border-bottom: 1px solid #eaeaea; */
-			color: #787878;
-			text-transform: uppercase;
-		}
+		
 		.slide-pag {
 			height: 120px;
 			width: 100px;

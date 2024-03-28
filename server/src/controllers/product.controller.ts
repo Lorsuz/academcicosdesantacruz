@@ -1,5 +1,5 @@
-import { products } from '../../database/data.js';
-import Products from '../Models/product.model.js';
+import { products } from '../exports/preDatabase.js';
+import Products from '../models/product.model.js';
 import asyncHandler from 'express-async-handler';
 
 const importProducts = asyncHandler(async (req, res) => {
@@ -85,8 +85,8 @@ const getProducts = asyncHandler(async (req, res) => {
 const getProductById = asyncHandler(async (req, res) => {
 	try {
 		const product = await Products.findById(req.params.id);
-		const relatedProducts = await Products.find({ category: product.category, _id: { $ne: product._id } }).limit(4);
 		if (product) {
+			const relatedProducts = await Products.find({ category: product.category, _id: { $ne: product._id } }).limit(4);
 			res.json(product, relatedProducts);
 		} else {
 			res.status(404).json({ message: 'Product not found' });

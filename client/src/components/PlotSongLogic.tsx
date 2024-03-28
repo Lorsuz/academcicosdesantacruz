@@ -230,9 +230,6 @@ const StyledComponent = styled.section`
 			opacity: 1;
 		}
 	}
-	* {
-		/* outline: 1px dotted; */
-	}
 	.audio {
 		display: grid;
 		grid-template-columns: repeat(12, 1fr);

@@ -18,17 +18,30 @@ const userSchema = new mongoose.Schema( {
 		type: String,
 		required: true
 	},
-	image: {
+	profileImage: {
 		type: String,
 		required: true,
-		default: 'https://ui-avatars.com/api/?background=DDEFC&color=3474e3&name=Profile&size=1'
+		default: 'https://ui-avatars.com/api/?background=008025&color=ffffff&name=Profile&size=100'
+	},
+	backgroundImage: {
+		type: String,
+		required: true,
+		default: 'https://ui-avatars.com/api/?background=008025&color=ffffff&name=Profile&size=100'
 	},
 	isAdmin: {
 		type: Boolean,
 		required: true,
 		default: false
+	},
+	verified: {
+		type: Boolean,
+		default: false
+	},
+	jewel:{
+		type: Number,
+		default: 0
 	}
-},
+	},
 	{
 		timestamps: true
 	} );

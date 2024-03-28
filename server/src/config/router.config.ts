@@ -8,7 +8,7 @@ import multer from 'multer';
 import path from 'path';
 import session from 'express-session';
 import zod from 'zod';
-import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '@prisma/client'; 
 import { fileURLToPath } from 'url';
 import { parseISO, format } from 'date-fns';
 import util from 'util';
@@ -16,7 +16,7 @@ import util from 'util';
 import { promises as fs } from 'fs';
 import jwt from 'jsonwebtoken';
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 const router: express.Router = express.Router();
 
@@ -68,7 +68,7 @@ export {
 	multer,
 	parseISO,
 	path,
-	prisma,
+	// prisma,
 	bcrypt,
 	router,
 	NextFunction,

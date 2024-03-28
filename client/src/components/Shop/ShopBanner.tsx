@@ -31,16 +31,13 @@ const StyledComponent = styled.article`
 	padding: 50px 0;
 	margin: 0 auto;
 	background-color: #f5f5f5;
-	* {
-		/* outline: 1px dotted; */
-	}
 
 	section {
 		grid-column: 3 / 11;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		background: #0080244e;
+		background: #00802430;
 		box-shadow: 0 0 20px 0 #ffffff;
 		padding: 80px;
 		border-radius: 20px;

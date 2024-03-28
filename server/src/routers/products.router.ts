@@ -1,15 +1,15 @@
 import * as productsController from '../controllers/product.controller.js';
-import { protect } from '../middlewares/auth.middleware.js';
+import { isAuthenticated } from '../middlewares/auth.middleware.js';
 import { router } from '../config/router.config.js';
 
-router.route('/').get(productsController.getProducts).post(protect, productsController.createProduct);
+router.route('/').get(productsController.getProducts).post(isAuthenticated, productsController.createProduct);
 
-router.route('/import').post(protect, productsController.importProducts);
+router.route('/import').post(/* isAuthenticated, */ productsController.importProducts);
 
-router
-	.get('/:id', productsController.getProductById)
-	.delete(protect, productsController.deleteProduct)
-	.put(protect, productsController.updateProduct);
+router.route('/:id')
+	.get(productsController.getProductById)
+	.delete(isAuthenticated, productsController.deleteProduct)
+	.put(isAuthenticated, productsController.updateProduct);
 
 router.get('/all/tags', productsController.getAllTags);
 

@@ -1,11 +1,31 @@
 import axios from 'axios';
+import { ApiRoutes } from '../../config/apiRoutes.config';
+import { AppConfig } from '../../config/app.config';
 
 const loginService = async (user: any) => {
-	const { data } = await axios.post('http://localhost:3001/login', user);
-	if (data) {
-		localStorage.setItem('userInfo', JSON.stringify(data));
+	try {
+		const { data } = await axios.post(`${AppConfig.apiUrl}${ApiRoutes.login}`, user);
+		if (data) {
+			localStorage.setItem('userInfo', JSON.stringify(data));
+		}
+		return data;
+	} catch (error) {
+		console.error('Erro durante o login:', error);
+		throw error;
 	}
-	return data;
+};
+
+const registerService = async (user: any) => {
+	try {
+		const { data } = await axios.post(`${AppConfig.apiUrl}${ApiRoutes.register}`, user);
+		if (data) {
+			localStorage.setItem('userInfo', JSON.stringify(data));
+		}
+		return data;
+	} catch (error) {
+		console.error('Erro durante o registro:', error);
+		throw error;
+	}
 };
 
 const logoutService = () => {
@@ -13,4 +33,21 @@ const logoutService = () => {
 	return null;
 };
 
-export { loginService, logoutService };
+const upadateProfileService = async (user: any, token: string) => {
+	try {
+		const { data } = await axios.put(`${AppConfig.apiUrl}user`, user, {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		});
+		if (data) {
+			localStorage.setItem('userInfo', JSON.stringify(data));
+		}
+		return data;
+	} catch (error) {
+		console.error('Erro durante a atualização do perfil:', error);
+		throw error;
+	}
+};
+
+export { loginService, logoutService, registerService, upadateProfileService };

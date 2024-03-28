@@ -127,10 +127,8 @@ const StyledComponent = styled.footer`
 
 	* {
 		color: #fff;
-		/* font-family: Playpen Sans; */
 		font-size: 1rem;
 		font-weight: normal;
-		/* outline: 1px dotted; */
 	}
 
 	.wrapper {

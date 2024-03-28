@@ -50,16 +50,13 @@ const CategoriesSection = ({ title }: { title: string }) => {
 							<SwiperSlide key={index}>
 								<div className='slide-pag'>
 									<div className='img'>
+										{
+											// se promoçao for igual a zero nao mostrar a div
+										}
 										<div className='discount'>30%</div>
 										{/* <img src='http://placeholder.co/300x200' alt='' /> */}
-										<img
-											// src='https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSHOQXnZWQTCqFlhA1K2dfoCaSn3hlviFfpQoxkWb9QsmDCrduXvPhsLE5UmcaiKvVj75__8neXuY8kx5FBHzHSr1-D7sDK1ohI36ZTAYqn_-UO65-PTRVRCfVYq23zqBgq0MZRaEUb1Oo&usqp=CAc'
-											alt=''
-										/>
-										<img
-											src='https://m.media-amazon.com/images/G/32/Moda/2021/SpringFlip/ShoppingPages/950.Shoppingpages_35_800x800._SS600_QL85_.jpg'
-											alt=''
-										/>
+
+										<img src='https://m.media-amazon.com/images/G/32/Moda/2021/SpringFlip/ShoppingPages/950.Shoppingpages_35_800x800._SS600_QL85_.jpg' alt='' />
 									</div>
 									<div className='text'>
 										<Link to='/'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, earum? {item}</Link>
@@ -85,10 +82,6 @@ const CategoriesSection = ({ title }: { title: string }) => {
 const StyledComponent = styled.section`
 	padding: 20px 0;
 	background-color: #f5f5f5;
-
-	* {
-		/* outline: 1px dotted; */
-	}
 
 	.slide-container {
 		grid-column: 2 / 12;
