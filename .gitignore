@@ -1,8 +1,8 @@
 # ROOT
 .swift
 TODO.md
-client/.vscode/*
-client/!.vscode/extensions.json
+.vscode
+# client/!.vscode/extensions.json
 
 # CLIENT
 client/node_modules
