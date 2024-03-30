@@ -18,6 +18,7 @@ Ao contribuir para este projeto, é importante seguir as seguintes regras de uni
 
 - Nunca declarar variáveis do tipo `var` em JavaScript/Typescript.
 - Sempre que possível utilize `const` à `let` em JavaScript/Typescript.
+- Tudo que não é visto pelo usuário deve estar em inglês, exceto arquivos ".md".
 
 ### Convenções de Nomenclatura
 

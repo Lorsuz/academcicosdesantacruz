@@ -7,10 +7,8 @@
 import app from '../app.js';
 import * as http from 'http';
 
-// Importe a função diretamente
 import createDebug from 'debug';
 
-// Use a função para criar uma instância de debug
 const debug = createDebug('server:server');
 
 /**

@@ -10,21 +10,17 @@
 # Shop
 
 - Home
- 	- Banner
- 	- Categorias
+  - Banner
+  - Categorias
 
 - Item
- -
+-
 
 # Galeria
 
 ## Funcionalidades
 
 # Backend
-
-##
-[![wakatime](https://wakatime.com/badge/user/b63b8d81-47de-48a0-bc20-14c5864fdb07.svg)](https://wakatime.com/@b63b8d81-47de-48a0-bc20-14c5864fdb07) 
-###
 
 Create a local and remote repository and first commit{
 
@@ -62,8 +58,7 @@ git pull => Update clone;
 
 Fork => pull a project to your remote repository;
 
-Pull Request => asks the project owner to change the product;# academicosdesantacruz
-
+Pull Request => asks the project owner to change the product;
 
  <!-- npx prisma migrate dev --name reset -->
 

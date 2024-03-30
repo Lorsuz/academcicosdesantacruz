@@ -1,23 +1,23 @@
 # Gresasc
 
-***EM DESENVOLVIMENTO***
+***EM DESENVOLVIMENTO...***
 
-Este projeto é uma proposta de criação de um site institucional mesclado com um e-commerce para o **Grêmio Recreativo Escola de Samba Acadêmico de Santa Cruz** - ***GRESASC*** -, e tem como objetivo fornecer e automatizar parcialmente o gerenciamento de dados da escola referente aos dados dos associados referentes aos produtos da loja , ao mesmo tempo em que coleta informações sobre a história da escola para usuários comuns, a fim de ter um design atraente e agradável baseado em técnicas de design UI e UX.
+Este projeto é uma proposta de criação de um site institucional mesclado com um e-commerce para o **Grêmio Recreativo Escola de Samba Acadêmico de Santa Cruz** - ***GRESASC*** -, e tem como objetivo fornecer e automatizar parcialmente o gerenciamento de dados da escola referente aos dados dos associados e produtos da loja, ao mesmo tempo em que reuni informações sobre a história da escola para usuários comuns, a fim de ter um design atraente e agradável baseado em técnicas de design UI e UX.
 
 ## Sumário
 
-1. ***[Como executar o projeto para desenvolvimento?](#instalação)***
-1. ***[Requisitos do Sistema](#requisitos)***
-1. ***[Visão Geral](#visao)***
-1. ***[Fluxogramas da Aplicação E-commerce](#fluxogramas)***
-1. ***[Estrutura do Banco de Dados](#database)***
-1. ***[Links para Contato dos Desenvolvedores](#contato)***
-1. ***[Notas de Versão](#notas)***
-1. ***[Perguntas Frequentes](#faq)***
-1. ***[Licença do Projeto](#licença)***
-1. ***[Créditos](#créditos)***
+1. ***Como executar o projeto para desenvolvimento***
+1. ***Requisitos do Sistema***
+1. ***Visão Geral***
+1. ***Fluxogramas da Aplicação E-commerce***
+1. ***Estrutura do Banco de Dados***
+1. ***Links para Contato dos Desenvolvedores***
+1. ***Notas de Versão***
+1. ***Perguntas Frequentes***
+1. ***Licença do Projeto***
+1. ***Créditos***
 
-## Como executar o projeto para desenvolvimento? {#instalação}
+## Como executar o projeto para desenvolvimento?
 
 1. Faça download do Projeto em sua máquina pelo git clone ou arquivo zip
 2. Abra o diretório do Projeto no terminal.
@@ -46,7 +46,7 @@ npm run dev
 
 ***OBS**: Caso não seja a primeira vez executando o projeto não se faz necessário o comando `npm i`.*
 
-## Requisitos do Sistema {#requisitos}
+## Requisitos do Sistema
 
 Para instalar e executar o nosso software, o seu sistema deve atender aos seguintes requisitos mínimos:
 
@@ -70,7 +70,7 @@ Para instalar e executar o nosso software, o seu sistema deve atender aos seguin
 - Recomendamos que o seu sistema esteja sempre atualizado com as últimas atualizações de software e drivers de hardware para garantir o melhor desempenho e compatibilidade com o nosso software.
 - Estes são os requisitos mínimos para executar o software. Recomendamos hardware mais poderoso para uma experiência ideal.
 
-## Visão Geral da Aplicação {#visao}
+## Visão Geral da Aplicação
 
 ### Elementos Gráficos
 
@@ -108,7 +108,7 @@ Para instalar e executar o nosso software, o seu sistema deve atender aos seguin
   - TypeScript
   - MongoDB
 
-## Fluxogramas da Loja {#fluxogramas}
+## Fluxogramas da Loja
 
 Futuramente, serão adicionado com detalhes e imagens para melhor entendimento sobre o funcionamento da aplicação, mas no momento esta sessão terá como conteúdo apenas sobre para o que se planeja utiliza-la.
 
@@ -160,7 +160,7 @@ Mapear a navegação do usuário pelo site de e-commerce. Ele mostrará as pági
 5. **Revise e Refine**:
     Após criar o fluxograma de navegação inicial, revise-o cuidadosamente para garantir que todas as páginas e transições importantes tenham sido incluídas. Faça ajustes conforme necessário para tornar a navegação mais clara e intuitiva para os usuários.
 
-## Estrutura do Banco de Dados {#database}
+## Estrutura do Banco de Dados
 
 ```sql
 CREATE DATABASE gresasc;
@@ -283,7 +283,7 @@ CREATE TABLE ItensPedido (
 );
 ```
 
-## Contato da Equipe de Desenvolvedores {#contato}
+## Contato da Equipe de Desenvolvedores
 
 |              |Integrante 1|Integrante 2|Integrante 3|
 |--------------|:----------:|:----------:|:----------:|
@@ -292,7 +292,7 @@ CREATE TABLE ItensPedido (
 |**GitHub**    |            |            |            |
 |**Email**     |            |            |            |
 
-## Perguntas Frequentes (FAQ) {#faq}
+## Perguntas Frequentes (FAQ)
 
 ### Como faço para instalar o software?
 
@@ -314,7 +314,7 @@ Para relatar bugs ou solicitar novos recursos, abra uma nova issue no repositór
 
 Se você deseja contribuir para o desenvolvimento do software, consulte as diretrizes de contribuição no arquivo [CONTRIBUTING.md](./CONTRIBUTING.md) do projeto. Lá, você encontrará informações sobre como enviar pull requests, diretrizes de codificação e outros detalhes importantes para contribuir com sucesso para o projeto.
 
-## Notas de Versão {#notas}
+## Notas de Versão
 
 ***OBS:** Os modelos a seguir são meramente ilustrativos e não refletem a realidade do desenvolvimento.*
 
