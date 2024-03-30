@@ -2,7 +2,6 @@
 .swift
 TODO.md
 .vscode
-# client/!.vscode/extensions.json
 
 # CLIENT
 client/node_modules
