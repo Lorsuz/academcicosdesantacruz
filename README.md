@@ -6,16 +6,16 @@ Este projeto é uma proposta de criação de um site institucional mesclado com 
 
 ## Sumário
 
-1. ***Como executar o projeto para desenvolvimento***
-1. ***Requisitos do Sistema***
-1. ***Visão Geral***
-1. ***Fluxogramas da Aplicação E-commerce***
-1. ***Estrutura do Banco de Dados***
-1. ***Links para Contato dos Desenvolvedores***
-1. ***Notas de Versão***
-1. ***Perguntas Frequentes***
-1. ***Licença do Projeto***
-1. ***Créditos***
+01. ***Como executar o projeto para desenvolvimento***
+01. ***Requisitos do Sistema***
+01. ***Visão Geral***
+01. ***Fluxogramas da Aplicação E-commerce***
+01. ***Estrutura do Banco de Dados***
+01. ***Links para Contato dos Desenvolvedores***
+01. ***Notas de Versão***
+01. ***Perguntas Frequentes***
+01. ***Licença do Projeto***
+01. ***Créditos***
 
 ## Como executar o projeto para desenvolvimento?
 
@@ -237,6 +237,14 @@ CREATE TABLE ImagensProduto(
  FOREIGN KEY (Produtos_id) REFERENCES Produtos(id)
 )
 
+CREATE TABLE Propriedades (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ produto_id INT;
+ nome VARCHAR(255),
+ valor VARCHAR(255)
+ FOREIGN KEY (Produtos_id) REFERENCES Produtos(id);
+);
+
 CREATE TABLE PromocaoProduto(
  id INT AUTO_INCREMENT PRIMARY KEY,
  produtos_id INT,
@@ -255,7 +263,7 @@ CREATE RelacaoProdutosCategorias(
  FOREIGN KEY (Categoria_id) REFERENCES Categoria(id)
 );
 
-CREATE TABLE CarrinhoCompras (
+CREATE TABLE ProdutosNoCarrinho (
  id INT AUTO_INCREMENT PRIMARY KEY,
  cliente_id INT,
  produto_id INT,
