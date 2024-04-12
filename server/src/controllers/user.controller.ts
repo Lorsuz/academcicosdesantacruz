@@ -78,9 +78,7 @@ const register = expressAsyncHandler(async (req, res) => {
 				{ userId: newUser._id, token: crypto.randomBytes(16).toString('hex') }
 			)
 			await registerToken.save();
-			console.log("sou lindo", registerToken);
 			const url = `${process.env.API_URL}/user/verify?token=${registerToken.token}`;
-			// Enviar um e-mail com o link de confirmação de cadastro
 			await verifyEmail(newUser.email, url);
 
 			

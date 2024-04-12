@@ -220,30 +220,4 @@ BackEnd --> API: Retorna resultados
 API --> FrontEnd: Retorna resposta
 FrontEnd --> User: Exibe resultados
 
-start
-:Início do Processo;
-
-repeat
-    :Loop (Iteração);
-    -->[Chamada Assíncrona] AsynchronousCall;
-    if (Erro?) then (sim)
-        -->[Tratamento de Erro] ErrorHandling;
-    else (não)
-        -->[Validação de Dados] DataValidation;
-        if (Dados Válidos?) then (sim)
-            -->[Autenticação e Autorização] AuthenticationAuthorization;
-            if (Usuário Autenticado e Autorizado?) then (sim)
-                -->[Integração com Serviços Externos] ExternalServiceIntegration;
-                -->[Transação de Banco de Dados] DatabaseTransaction;
-            else (não)
-                :Acesso Negado;
-            endif
-        else (não)
-            :Rejeitar Dados;
-        endif
-    endif
-    -->[Temporizador] Timer;
-repeat while (Condição de Continuação?)
-
-stop
 @enduml

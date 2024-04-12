@@ -29,7 +29,14 @@ npm i
 npm run dev
 ```
 
-4. Em um novo terminal, execute os seguintes comandos:
+4. Certifique-se de ter o MongoDB (Compass) instalado e configurado corretamente em sua máquina. Em um prompt de comando, inicie o servidor MongoDB:
+
+```bash
+cd /d C:\
+mongod
+```
+
+5. Em um novo terminal, execute os seguintes comandos:
 
 ```bash
 cd server
@@ -37,7 +44,7 @@ npm i
 npm run tsc
 ```
 
-5. Em um novo terminal, execute os seguintes comandos
+6. Em um novo terminal, execute os seguintes comandos:
 
 ```bash
 cd server

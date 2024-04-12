@@ -18,6 +18,7 @@ export async function sendEmailFromFormContact(data: any): Promise<boolean> {
 			// 	<p>${data.subject}.</p>
 			// 	<p>Desde já agradeço!</p>
 			// 	<p>OBS: Confirmo que li e aceito os termos de uso e a política de privacidade da aplicação.</p>`
+			
 			html:`
 			<!DOCTYPE html>
 <html lang="en">
@@ -189,7 +190,6 @@ export const verifyEmail = async (email: string, link: string) => {
 		}
 		
 
-		// Return url of sent message for testing purposes
 		return nodemailer.getTestMessageUrl(info);
 	}catch(error){
 		console.log(error);

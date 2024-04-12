@@ -25,7 +25,7 @@ const getCategories = expressAsyncHandler(async (req, res) => {
 	try {
 		const categories = await Categories.find({});
 		res.status(200).json(categories);
-	} catch (error) {
+	} catch (error:any) {
 		res.status(400).json({ message: error.message });
 	}
 });
@@ -45,7 +45,7 @@ const createCategory = expressAsyncHandler(async (req, res) => {
 			const savedCategory = await createdCategory.save();
 			res.status(201).json(savedCategory);
 		}
-	} catch (error) {
+	} catch (error: any) {
 		res.status(400).json({ message: error.message });
 	}
 });
@@ -66,7 +66,7 @@ const updateCategory = expressAsyncHandler(async (req, res) => {
 		} else {
 			res.status(404).json({ message: 'Category not found' });
 		}
-	} catch (error) {
+	} catch (error:any) {
 		res.status(400).json({ message: error.message });
 	}
 });
@@ -84,7 +84,7 @@ const deleteCategory = expressAsyncHandler(async (req, res) => {
 		} else {
 			res.status(404).json({ message: 'Category not found' });
 		}
-	} catch (error) {
+	} catch (error:any) {
 		res.status(400).json({ message: error.message });
 	}
 });

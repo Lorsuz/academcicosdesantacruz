@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 import Layout from '../../layouts/PagesLayout';
 
-const FormSign = () => {
+const FormSign = (props: { corItem: string }) => {
+	props.corItem;
+
 	const [state, setState] = React.useState<boolean>(false);
 
 	const toggleState = () => {
@@ -17,6 +19,10 @@ const FormSign = () => {
 	);
 };
 
-const StyledComponent = styled.section<{ $state: boolean }>``;
+const props = { $state: true };
+
+const StyledComponent = styled.section<{ $state: boolean }>`
+	${props => (props.$state ? 'white' : '#BF4F74')}
+`;
 
 export default FormSign;

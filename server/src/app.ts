@@ -31,25 +31,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(logger('dev'));
 
-app.use('/api', indexRouter);
+app.use('/', indexRouter);
 
-// app.use('/api/auth', authRouter);
+// app.use('/auth', authRouter);
 
-// app.use('/api/categories', categoriesRouter);
-// app.use('/api/orders', ordersRouter);
-app.use('/api/products', productsRouter);
-app.use('/api/users', userRouter);
+// app.use('/categories', categoriesRouter);
+// app.use('/orders', ordersRouter);
+app.use('/products', productsRouter);
+app.use('/users', userRouter);
 
 app.use(errorHandler);
 
-// catch 404 and forward to error handler
 app.use((req: Request, res: Response, next: NextFunction) => {
 	next(createError(404));
 });
 
-// error handler
 app.use((err: { message: string; status: number }, req: Request, res: Response) => {
-	// set locals, only providing error in development
 	res.locals.message = err.message;
 
 	res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -60,3 +57,11 @@ app.use((err: { message: string; status: number }, req: Request, res: Response) 
 });
 
 export default app;
+
+/*
+ ?
+ !
+ //
+ *
+ TODO:
+ */

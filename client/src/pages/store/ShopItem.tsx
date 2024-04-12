@@ -16,9 +16,7 @@ const ColorSelector: React.FC<ColorSelectorProps> = ({ colors }) => {
 					<button
 						key={color}
 						style={{ backgroundColor: color }}
-						className={`w-6 h-6 border rounded-full ${
-							selectedColor === color ? 'border-blue-500' : 'border-gray-300 hover:border-gray-400'
-						}`}
+						className={`w-6 h-6 border rounded-full ${selectedColor === color ? 'border-blue-500' : 'border-gray-300 hover:border-gray-400'}`}
 						onClick={() => setSelectedColor(color)}
 						disabled={selectedColor === color}
 					/>
@@ -42,9 +40,7 @@ const SizeSelector: React.FC<SizeSelectorProps> = ({ sizes }) => {
 				{sizes.map(size => (
 					<button
 						key={size}
-						className={`px-3 py-1 rounded-md font-medium text-sm ${
-							selectedSize === size ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-gray-300'
-						}`}
+						className={`px-3 py-1 rounded-md font-medium text-sm ${selectedSize === size ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-gray-300'}`}
 						onClick={() => setSelectedSize(size)}
 						disabled={selectedSize === size}
 					>
@@ -64,7 +60,7 @@ const ProductCard: React.FC = () => {
 			const response = await fetch(`/api/products/${id}`);
 			const data = await response.json();
 			setProduct(data);
-		}
+		};
 	}, [id]);
 
 	if (!product) {
