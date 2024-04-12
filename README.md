@@ -97,6 +97,9 @@ Para instalar e executar o nosso software, o seu sistema deve atender aos seguin
   - Eslint
   - Prettier
 
+- **Gestão de Qualidade**
+  - Orientado a testes.
+
 - **Front-End**
   - React
   - Vite
