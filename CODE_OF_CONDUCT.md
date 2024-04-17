@@ -1,0 +1,1 @@
+O código de conduta define as expectativas de comportamento para os contribuidores do seu projeto e ajuda a criar um ambiente comunitário seguro e acolhedor. Este arquivo deve explicar quais comportamentos são e não são aceitáveis dentro do projeto e como relatar problemas relacionados ao código de conduta.

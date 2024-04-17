@@ -2,8 +2,8 @@ import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { useEnv } from '../context/EnvContext';
-import toastNotificationConfig from '../config/toastNotification.config';
+import { useEnv } from '../contexts/EnvContext';
+import toastNotificationConfig from '../configs/toastNotification.config';
 
 export const AuthContext = createContext({
 	token: '',
@@ -123,11 +123,7 @@ const AuthProvider = ({ children }: { children: any }): any => {
 		}
 	};
 
-	return (
-		<AuthContext.Provider value={{ token, user, loginAction, logOut, apiUrl, getUser, getTokenFromLocalStorage }}>
-			{children}
-		</AuthContext.Provider>
-	);
+	return <AuthContext.Provider value={{ token, user, loginAction, logOut, apiUrl, getUser, getTokenFromLocalStorage }}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;

@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import BigLoader from '../components/shared/BigLoader';
+import BigLoader from '../components/loaders/BigLoader';
 
 import { AppRoutes } from '../config/appRoutes.config';
 

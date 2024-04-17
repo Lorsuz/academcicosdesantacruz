@@ -12,9 +12,9 @@
 		"lint:fix": "eslint --fix .",
 		"format": "prettier --write .",
 		"prisma": "npx prisma generate",
+		"test": "npx jest --passWithNoTests",
 		"migrate": "npx prisma migrate dev",
 		"prisma:reset": "npx prisma migrate reset --force",
-		"test": "npx jest --passWithNoTests",
 		"db:drop": "del database\\\\database.sqlite"
 	},
 	"dependencies": {
