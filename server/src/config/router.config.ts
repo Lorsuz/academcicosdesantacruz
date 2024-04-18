@@ -53,6 +53,7 @@ async function getAuthSheets ()
 	} );
 
 	const spreadsheetId = "1elXUlcQVFIkRErtqy-2TXHByqCSwpnLmsDf9rcI52gw";
+	console.log(spreadsheetId)
 
 	return {
 		auth,
