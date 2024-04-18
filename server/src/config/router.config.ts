@@ -15,29 +15,53 @@ import util from 'util';
 
 import { promises as fs } from 'fs';
 import jwt from 'jsonwebtoken';
-
+import { google } from 'googleapis';
 // const prisma = new PrismaClient();
 
 const router: express.Router = express.Router();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath( import.meta.url );
+const __dirname = path.dirname( __filename );
 
 const productionKey = process.env.PRODUCTION_KEY || 'ariel';
 const developmentKey = process.env.DEVELOPMENT_KEY || 'ariel';
 
 const secretKey = process.env.NODE_ENV === 'development' ? developmentKey : productionKey;
 
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({ extended: false }));
-router.use(cookieParser());
+router.use( bodyParser.json() );
+router.use( bodyParser.urlencoded( { extended: false } ) );
+router.use( cookieParser() );
 router.use(
-	session({
+	session( {
 		secret: secretKey,
 		resave: false,
 		saveUninitialized: true
-	})
+	} )
 );
+
+async function getAuthSheets ()
+{
+	const auth = new google.auth.GoogleAuth( {
+		keyFile: "../json/credentials.json",
+		scopes: "https://www.googleapis.com/auth/spreadsheets"
+	} );
+	const client = await auth.getClient();
+
+	const googleSheets = google.sheets( {
+		version: "v4",
+		// auth: client
+	} );
+
+	const spreadsheetId = "1elXUlcQVFIkRErtqy-2TXHByqCSwpnLmsDf9rcI52gw";
+
+	return {
+		auth,
+		client,
+		googleSheets,
+		spreadsheetId
+	};
+}
+
 
 // router.use(express.static(path.join(__dirname, 'public')));
 // router.use(flash());
@@ -57,24 +81,26 @@ router.use(
 // 	userId: number;
 // }
 
-export {
+export
+{
 	// HTTPError,
+	// prisma,
+	NextFunction,
 	Request,
 	Response,
+	__dirname,
+	bcrypt,
 	crypto,
 	express,
 	format,
 	fs,
+	getAuthSheets,
+	jwt,
 	multer,
 	parseISO,
 	path,
-	// prisma,
-	bcrypt,
 	router,
-	NextFunction,
-	zod,
-	jwt,
-	util,
 	secretKey,
-	__dirname
+	util,
+	zod,
 };

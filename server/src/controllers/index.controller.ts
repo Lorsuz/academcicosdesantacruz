@@ -12,3 +12,7 @@ export const formForContactWithEmail = async (req: Request, res: Response) => {
 		res.json({ status: '401' });
 	}
 };
+
+export const formForParadeWithUs = async(req: Request, res: Response)=>{
+	
+}
