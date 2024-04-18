@@ -9,7 +9,12 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import styled from 'styled-components';
 
 import { formatCPF, formatCEP, formatPhoneNumber, formatDate } from '../utils/formattingValues';
-import { validateEmail, validateNoLetters, validateNoNumbers, validateNoSpecialChars } from '../utils/validateValues';
+import {
+	validateEmail,
+	validateNoLetters,
+	validateNoNumbers,
+	validateNoSpecialChars
+} from '../utils/validateValues';
 
 const LegendForFieldset = ({ children }: { children: string }): React.FunctionComponentElement<JSX.Element> => (
 	<legend>
@@ -79,11 +84,32 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 		</>,
 		<>
 			<LegendForFieldset>Endereço</LegendForFieldset>
-			<InputField onChangeFromParent={SendInputValueForParent} name='street' label='Logradouro' placeholder='Ex.: Rua Soares' />
+			<InputField
+				onChangeFromParent={SendInputValueForParent}
+				name='street'
+				label='Logradouro'
+				placeholder='Ex.: Rua Soares'
+			/>
 			<InputField onChangeFromParent={SendInputValueForParent} name='number' label='Número' placeholder='Ex.: 123' />
-			<InputField onChangeFromParent={SendInputValueForParent} name='cep' label='CEP' placeholder='Ex.: 12345-678' formatValueFunction={formatCEP} />
-			<InputField onChangeFromParent={SendInputValueForParent} name='complement' label='Complemento' placeholder='Ex.: Apt. 456' />
-			<InputField onChangeFromParent={SendInputValueForParent} name='neighborhood' label='Bairro' placeholder='Ex.: Centro' />
+			<InputField
+				onChangeFromParent={SendInputValueForParent}
+				name='cep'
+				label='CEP'
+				placeholder='Ex.: 12345-678'
+				formatValueFunction={formatCEP}
+			/>
+			<InputField
+				onChangeFromParent={SendInputValueForParent}
+				name='complement'
+				label='Complemento'
+				placeholder='Ex.: Apt. 456'
+			/>
+			<InputField
+				onChangeFromParent={SendInputValueForParent}
+				name='neighborhood'
+				label='Bairro'
+				placeholder='Ex.: Centro'
+			/>
 			<InputField onChangeFromParent={SendInputValueForParent} name='city' label='Cidade' placeholder='Ex.: Juatina' />
 
 			<InputSelectField

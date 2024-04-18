@@ -1,7 +1,7 @@
 import InputsForAuthForm from '../inputs/InputsForAuthForm';
 import toastNotificationConfig from '../../config/toastNotification.config';
 import { FaEnvelope, FaLock, FaLockOpen } from 'react-icons/fa';
-import { registerSchema } from '../../utils/schemas/authFormSchema';
+import { registerSchema } from '../../schemas/authFormSchema';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';

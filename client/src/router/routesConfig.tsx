@@ -1,6 +1,4 @@
 import { lazy } from 'react';
-import loadable from '@loadable/component';
-
 // const HomePage = lazy(() => import('../pages/HomePage'));
 import HomePage from '../pages/HomePage';
 /* const ExecutiveBoard = loadable(() => import('../pages/school/ExecutiveBoard'));
