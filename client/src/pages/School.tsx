@@ -3,13 +3,12 @@ import { FC } from 'react';
 import Layout from '../layouts/PagesLayout';
 import BackgroundImage from '../assets/images/64-anos-de-historia.jpeg';
 
-export const School: FC = () => {
+const School: FC = () => {
 	return (
-		<Layout title='Home Page' backgroundColor='#0B1127'>
+		<Layout title='Home Page' backgroundColor='#fff'>
 			<div className='w-full flex flex-col items-center justify-center'>
-				<img className='w-[74%]' src={BackgroundImage} alt='' />
-
 				<h1 className='mt-10 font-bold text-2xl mb-5'>G.R.E.S Acadêmicos de Santa Cruz</h1>
+				<img className='w-[74%] pb-10' src={BackgroundImage} alt='' />
 
 				<p className='w-[74%] mb-3 text-lg'>
 					Grêmio Recreativo Escola de Samba Acadêmicos de Santa Cruz (ou simplesmente Santa Cruz) é uma escola de samba brasileira da cidade do Rio de Janeiro, com sede no bairro
@@ -238,3 +237,5 @@ export const School: FC = () => {
 		</Layout>
 	);
 };
+
+export default School;

@@ -4,9 +4,10 @@ import { Route, Routes } from 'react-router-dom';
 import BigLoader from '../components/shared/BigLoader';
 
 import { AppRoutes } from '../config/appRoutes.config';
-import { School } from '../pages/School';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
+const Site = lazy(() => import('../pages/Site'));
+const School = lazy(() => import('../pages/School'));
 const ExecutiveBoard = lazy(() => import('../pages/school/ExecutiveBoard'));
 const CarnivalDecades = lazy(() => import('../pages/carnivals/CarnivalDecades'));
 const CarnivalDecade = lazy(() => import('../pages/carnivals/CarnivalDecade'));
@@ -40,6 +41,7 @@ const LazyComponent = ({ element: Component }: any) => {
 const Router: React.FunctionComponent = () => (
 	<Routes>
 		<Route path={AppRoutes.homePage} element={<LazyComponent element={HomePage} />} />
+		<Route path={AppRoutes.site} element={<LazyComponent element={Site} />} />
 		<Route path={AppRoutes.executiveBoard} element={<LazyComponent element={ExecutiveBoard} />} />
 		<Route path={AppRoutes.school} element={<LazyComponent element={School} />} />
 		<Route path={AppRoutes.carnivalDecades} element={<LazyComponent element={CarnivalDecades} />} />

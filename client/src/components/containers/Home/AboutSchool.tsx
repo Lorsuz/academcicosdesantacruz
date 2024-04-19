@@ -2,6 +2,7 @@ import React from 'react';
 import pavillion from '../../../assets/images/pavillion.jpeg';
 
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const AboutSchool = (): React.FunctionComponentElement<JSX.Element> => {
 	return (
@@ -26,10 +27,12 @@ const AboutSchool = (): React.FunctionComponentElement<JSX.Element> => {
 							a manutenção destes projetos.
 						</p>
 						<div className='read-more'>
-							<a target='_blank' href='https://pt.wikipedia.org/wiki/Acad%C3%AAmicos_de_Santa_Cruz'>
+							{/* <a target='_blank' href='https://pt.wikipedia.org/wiki/Acad%C3%AAmicos_de_Santa_Cruz'> */}
+							<Link to='/school'>
 								<i className='fa-solid fa-arrow-up-right-from-square'></i>
 								<span>Continuar Lendo</span>
-							</a>
+							</Link>
+							{/* </a> */}
 						</div>
 					</div>
 				</div>
