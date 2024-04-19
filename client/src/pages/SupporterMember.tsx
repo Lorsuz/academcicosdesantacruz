@@ -6,7 +6,6 @@ import CardsForSupporterMember from '../components/cards/CardsForSupporterMember
 
 const SupporterMember = (): React.FunctionComponentElement<JSX.Element> => {
 	const plans = data.supporterMember;
-	
 
 	return (
 		<Layout title='Diretoria'>
@@ -26,16 +25,18 @@ const SupporterMember = (): React.FunctionComponentElement<JSX.Element> => {
 
 const StyledComponent = styled.main`
 	background: #ffffff;
-	padding: 200px 0 100px;
+	padding: 50px 0 100px;
 
 	.plansForSupporterMemberSection {
-		h2{
+		h2 {
 			font-weight: bold;
-			font-size: 36px;
-			line-height: 42px;
+			font-size: 3rem;
 			color: #000000;
 			text-align: center;
 			margin-bottom: 100px;
+			font-family: 'Advent Pro', sans-serif;
+			color: var(--color-primary);
+			font-weight: 400;
 		}
 		.container {
 			display: grid;

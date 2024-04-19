@@ -265,7 +265,7 @@ const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 };
 
 const StyledFormFanMember = styled.main`
-	padding: 150px 0 100px;
+	padding: 50px 0 100px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

@@ -7,7 +7,8 @@ GET {{host}}/users/all
 GET {{host}}/users/all
 # GET {{urlBase}}/products/importAll
 
-
+###
+GET {{host}}/form/parade-with-us
 
 # Rotas da aplicaçao
 ### C. Administrador geral

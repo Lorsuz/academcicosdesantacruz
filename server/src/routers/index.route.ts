@@ -1,4 +1,4 @@
-import { formForContactWithEmail } from '../controllers/index.controller.js';
+import { formForContactWithEmail, formForParadeWithUs } from '../controllers/index.controller.js';
 import { router, Request, Response } from '../config/router.config.js';
 
 router.get('/', (req: Request, res: Response) => {
@@ -6,5 +6,6 @@ router.get('/', (req: Request, res: Response) => {
 });
 
 router.post('/form/contact', formForContactWithEmail);
+router.get('/form/parade-with-us', formForParadeWithUs);
 
 export default router;
