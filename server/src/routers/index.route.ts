@@ -5,7 +5,6 @@ router.get('/', (req: Request, res: Response) => {
 	res.send('API is running here! got to /api/users to see the users');
 });
 
-
 router.post('/form/contact', formForContactWithEmail);
 router.get('/form/parade-with-us', formForParadeWithUs);
 

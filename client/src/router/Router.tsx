@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import BigLoader from '../components/shared/BigLoader';
 
 import { AppRoutes } from '../config/appRoutes.config';
+import { School } from '../pages/School';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const ExecutiveBoard = lazy(() => import('../pages/school/ExecutiveBoard'));
@@ -40,6 +41,7 @@ const Router: React.FunctionComponent = () => (
 	<Routes>
 		<Route path={AppRoutes.homePage} element={<LazyComponent element={HomePage} />} />
 		<Route path={AppRoutes.executiveBoard} element={<LazyComponent element={ExecutiveBoard} />} />
+		<Route path={AppRoutes.school} element={<LazyComponent element={School} />} />
 		<Route path={AppRoutes.carnivalDecades} element={<LazyComponent element={CarnivalDecades} />} />
 		<Route path={AppRoutes.carnivalDecade + ':decade'} element={<LazyComponent element={CarnivalDecade} />} />
 		<Route path={AppRoutes.carnival + ':year'} element={<LazyComponent element={Carnival} />} />
