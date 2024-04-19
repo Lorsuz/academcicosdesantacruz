@@ -42,18 +42,17 @@ router.use(
 async function getAuthSheets ()
 {
 	const auth = new google.auth.GoogleAuth( {
-		keyFile: "../json/credentials.json",
+		keyFile: "./src/json/credentials.json",
 		scopes: "https://www.googleapis.com/auth/spreadsheets"
 	} );
 	const client = await auth.getClient();
 
 	const googleSheets = google.sheets( {
 		version: "v4",
-		// auth: client
+		auth: client
 	} );
 
-	const spreadsheetId = "1elXUlcQVFIkRErtqy-2TXHByqCSwpnLmsDf9rcI52gw";
-	console.log(spreadsheetId)
+	const spreadsheetId = process.env.GOOGLE_SPREADSHEET_ID;
 
 	return {
 		auth,
