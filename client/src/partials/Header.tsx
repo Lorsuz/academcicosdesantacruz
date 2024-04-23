@@ -26,16 +26,16 @@ const Header: React.FunctionComponent = () => {
 									<span>Página Inicial</span>
 								</NavLink>
 							</li>
-							<li>
+							{/* <li>
 								<NavLink to={AppRoutes.store}>
 									<span>Loja da Escola</span>
 								</NavLink>
-							</li>
-							<li>
+							</li> */}
+							{/* <li>
 								<NavLink to={AppRoutes.carnivalDecades}>
 									<span>Carnavais</span>
 								</NavLink>
-							</li>
+							</li> */}
 							<li>
 								<NavLink to={AppRoutes.school}>
 									<span>A Escola</span>
