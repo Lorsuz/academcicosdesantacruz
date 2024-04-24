@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import React, { useEffect } from 'react';
 
-import { AppConfig } from '../../config/app.config';
+import { AppConfig } from '@config/app.config';
 
 import { BsCheck2 } from 'react-icons/bs';
 import { useForm } from 'react-hook-form';

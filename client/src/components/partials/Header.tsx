@@ -1,15 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoPng from '../assets/images/Logo/santa-cruz-logo-removebg-preview.png';
+import LogoPng from '@image/Logo/santa-cruz-logo-removebg-preview.png';
 import styled from 'styled-components';
 import { RxHamburgerMenu } from 'react-icons/rx';
-import LogoWritten from '../assets/images/Logo/logo_written.png';
-import ButtonOpenProfile from '../components/events/ButtonOpenProfile';
-import { AppRoutes } from '../config/appRoutes.config';
+import LogoWritten from '@image/Logo/logo_written.png';
+import ButtonOpenProfile from '@component/ButtonOpenProfile';
+import { AppRoutes } from '@config/appRoutes.config';
 
 const Header: React.FunctionComponent = () => {
 	return (
-		<HeaderFixed>
+		<StyledComponent>
 			<div className='wrapper'>
 				<article className='top'>
 					<section className='logo'>
@@ -26,16 +26,16 @@ const Header: React.FunctionComponent = () => {
 									<span>Página Inicial</span>
 								</NavLink>
 							</li>
-							<li>
+							{/* <li>
 								<NavLink to={AppRoutes.store}>
 									<span>Loja da Escola</span>
 								</NavLink>
-							</li>
-							<li>
+							</li> */}
+							{/* <li>
 								<NavLink to={AppRoutes.carnivalDecades}>
 									<span>Carnavais</span>
 								</NavLink>
-							</li>
+							</li> */}
 							<li>
 								<NavLink to={AppRoutes.school}>
 									<span>A Escola</span>
@@ -97,11 +97,11 @@ const Header: React.FunctionComponent = () => {
 					</nav>
 				</article>
 			</div>
-		</HeaderFixed>
+		</StyledComponent>
 	);
 };
 
-const HeaderFixed = styled.header`
+const StyledComponent = styled.header`
 	width: 100vw;
 	top: 0;
 	left: 0;

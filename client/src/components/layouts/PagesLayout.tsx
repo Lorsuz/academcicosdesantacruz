@@ -1,7 +1,7 @@
 import React from 'react';
-import SvgInWavesForFooter from '../partials/SvgInWavesForFooter';
+import SvgInWavesForFooter from '@partial/SvgInWavesForFooter';
 
-import Head from '../partials/Head';
+import Head from '@partial/Head';
 
 type Props = {
 	children: React.ReactNode;

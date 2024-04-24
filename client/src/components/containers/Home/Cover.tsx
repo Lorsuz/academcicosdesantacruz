@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SocialMedia from '../../shared/SocialMedia';
-import LogoPng from '../../../assets/images/Logo/santa-cruz-logo-removebg-preview.png';
+import SocialMedia from '@component/shared/SocialMedia';
+import LogoPng from '@image/Logo/santa-cruz-logo-removebg-preview.png';
 
 import styled from 'styled-components';
 

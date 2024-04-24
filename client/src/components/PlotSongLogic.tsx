@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { BsFillPlayFill, BsFillPauseFill } from 'react-icons/bs';
 import { FaVolumeHigh, FaVolumeLow, FaVolumeOff, FaVolumeXmark } from 'react-icons/fa6';
 
-import plotImage from '../assets/images/Plot/plot-2024.jpeg';
-import song from '../assets/audios/plot-song.mp3';
+import plotImage from '@image/Plot/plot-2024.jpeg';
+import song from '/public/assets/audios/plot-song.mp3';
 
 import styled from 'styled-components';
 

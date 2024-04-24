@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Chat</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				border: none;
+				outline: none;
+			}
+
+			body {
+				font-family: Arial, sans-serif;
+				height: 100vh;
+				background-color: #f1f1f1;
+				display: flex;
+				flex-direction: column;
+				min-width: 320px;
+				background: url('https://images.unsplash.com/photo-1557683316-973673baf926') no-repeat center center fixed;
+			}
+
+			.friend-profile {
+				background: #0979b0;
+			}
+
+			.friend-profile h1 {
+				color: white;
+				padding: 20px;
+				text-align: center;
+				font-size: 20px;
+				font-weight: bold;
+			}
+
+			#chat {
+				overflow-y: scroll;
+				padding: 10px;
+				height: 1400px;
+			}
+
+			#chat::-webkit-scrollbar {
+				width: 5px;
+				/* Largura da barra de rolagem */
+			}
+
+			#chat::-webkit-scrollbar-track {
+				background-color: #f1f1f1;
+				/* Cor do fundo da barra de rolagem */
+			}
+
+			#chat::-webkit-scrollbar-thumb {
+				background-color: #0979b0;
+			}
+
+			#chat .mens {
+				margin: 10px;
+			}
+			
+			.mens>div {
+				padding: 15px 25px;
+				border-radius: 5px;
+				display: flex;
+				flex-direction: column;
+				width: fit-content;
+				box-shadow: 0 0 5px #ccc;
+				max-width: 600px;
+				background: #ffffff;
+			}
+
+			.mens>div p {
+				margin: 0;
+			}
+
+			.mens:has(.left) {
+				padding-right: 50px;
+			}
+			.mens:has(.right) {
+				padding-left: 50px;
+			}
+			.right {
+				margin: 10px 0 10px auto;
+			}
+
+			#form {
+				display: flex;
+				padding: 20px;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				
+			}
+
+			#message {
+				flex: 1;
+				padding: 10px;
+				font-size: 16px;
+				border-radius: 10px 0 0 10px;
+				color: #767676;
+				padding: 10px 20px;
+			}
+
+			button {
+				padding: 10px 30PX;
+				font-size: 16px;
+				background: #0979b0;
+				color: #fff;
+				border: none;
+				cursor: pointer;
+				border-radius: 0 10px  10px 0;
+
+			}
+
+			button:hover {
+				background-color: #046595;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="friend-profile">
+			<h1>John Walker</h1>
+		</div>
+		<div id="chat">
+			<div class="mens">
+				<div class="left">
+					Hi, how are you?
+				</div>
+			</div>
+			<div class="mens">
+				<div class="right">
+					Hi, I'm fine, thank you!
+				</div>
+			</div>
+			<div class="mens">
+				<div class="left">
+					What are you doing?
+				</div>
+			</div>
+			<div class="mens">
+				<div class="right">
+					I'm working on a project
+				</div>
+			</div>
+			<div class="mens">
+				<div class="left">
+					What project?
+				</div>
+			</div>
+			<div class="mens">
+				<div class="right">
+					A chat project
+				</div>
+			</div>
+			<div class="mens">
+				<div class="left">
+					Interesting
+				</div>
+			</div>
+			<div class="mens">
+				<div class="right">
+					Yes, I'm learning a lot
+				</div>
+			</div>
+			<div class="mens">
+				<div class="right">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt perferendis explicabo soluta ducimus quasi ab, excepturi dolore dignissimos exercitationem fuga? Voluptatibus hic deserunt aliquid maiores ex ea laudantium eligendi consectetur obcaecati excepturi reiciendis ipsam facere blanditiis ipsum magni voluptatem in accusantium sunt aut qui doloribus nam, veritatis eos! Sapiente soluta beatae asperiores, cumque voluptatibus labore nemo provident perferendis! Debitis illum, quaerat iste soluta itaque hic esse voluptate quidem officia facere deserunt in ducimus, eos modi molestias recusandae unde quasi consequatur!
+				</div>
+			</div>
+		</div>
+		<form id="form">
+			<input type="text" id="message">
+			<button>Send</button>
+		</form>
+		<script src="app.js"></script>
+	</body>
+</html>

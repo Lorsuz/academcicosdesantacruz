@@ -1,34 +1,34 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import BigLoader from '../components/shared/BigLoader';
+import BigLoader from '@component/shared/BigLoader';
 
-import { AppRoutes } from '../config/appRoutes.config';
+import { AppRoutes } from '@config/appRoutes.config.ts';
 
-const HomePage = lazy(() => import('../pages/HomePage'));
-const Site = lazy(() => import('../pages/Site'));
-const School = lazy(() => import('../pages/School'));
-const ExecutiveBoard = lazy(() => import('../pages/school/ExecutiveBoard'));
-const CarnivalDecades = lazy(() => import('../pages/carnivals/CarnivalDecades'));
-const CarnivalDecade = lazy(() => import('../pages/carnivals/CarnivalDecade'));
-const Carnival = lazy(() => import('../pages/carnivals/Carnival'));
+const HomePage = lazy(() => import('@page/HomePage'));
+const Site = lazy(() => import('@page/Site'));
+const School = lazy(() => import('@page/School'));
+const ExecutiveBoard = lazy(() => import('@page/school/ExecutiveBoard'));
+const CarnivalDecades = lazy(() => import('@page/carnivals/CarnivalDecades'));
+const CarnivalDecade = lazy(() => import('@page/carnivals/CarnivalDecade'));
+const Carnival = lazy(() => import('@page/carnivals/Carnival'));
 
-const SupporterMember = lazy(() => import('../pages/SupporterMember'));
+const SupporterMember = lazy(() => import('@page/SupporterMember'));
 
-const AccountOutlet = lazy(() => import('../layouts/AccountOutlet'));
-const FormFanMember = lazy(() => import('../pages/FormFanMember'));
-const FormSign = lazy(() => import('../pages/FormSign'));
-const PrivateRoutes = lazy(() => import('../layouts/PrivateRoute'));
-const Details = lazy(() => import('../pages/auth/account/Details'));
-const Profile = lazy(() => import('../pages/auth/account/Profile'));
-const UserDetails = lazy(() => import('../pages/auth/account/UserDetails'));
-const Address = lazy(() => import('../pages/auth/account/Address'));
-const Password = lazy(() => import('../pages/auth/account/Password'));
-const Shop = lazy(() => import('../pages/store/Shop'));
-const ShopItem = lazy(() => import('../pages/store/ShopItem'));
-const UserOutlet = lazy(() => import('../layouts/UserOutlet'));
+const AccountOutlet = lazy(() => import('@layout/AccountOutlet'));
+const FormFanMember = lazy(() => import('@page/FormFanMember'));
+const FormSign = lazy(() => import('@page/FormSign'));
+const PrivateRoutes = lazy(() => import('@layout/PrivateRoute'));
+const Details = lazy(() => import('@page/auth/account/Details'));
+const Profile = lazy(() => import('@page/auth/account/Profile'));
+const UserDetails = lazy(() => import('@page/auth/account/UserDetails'));
+const Address = lazy(() => import('@page/auth/account/Address'));
+const Password = lazy(() => import('@page/auth/account/Password'));
+const Shop = lazy(() => import('@page/store/Shop'));
+const ShopItem = lazy(() => import('@page/store/ShopItem'));
+const UserOutlet = lazy(() => import('@layout/UserOutlet'));
 
-const NotFound = lazy(() => import('../pages/NotFound'));
+const NotFound = lazy(() => import('@page/NotFound'));
 
 const LazyComponent = ({ element: Component }: any) => {
 	return (

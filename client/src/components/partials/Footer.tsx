@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SocialMedia from '../components/shared/SocialMedia';
+import SocialMedia from '@component/shared/SocialMedia';
 
 import { IoSend } from 'react-icons/io5';
 import styled from 'styled-components';

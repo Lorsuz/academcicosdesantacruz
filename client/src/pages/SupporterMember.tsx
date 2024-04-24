@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../layouts/PagesLayout';
+import Layout from '@layout/PagesLayout';
 import styled from 'styled-components';
-import data from '../json/data.json';
-import CardsForSupporterMember from '../components/cards/CardsForSupporterMember';
+import data from '@json/data.json';
+import CardsForSupporterMember from '@component/cards/CardsForSupporterMember';
 
 const SupporterMember = (): React.FunctionComponentElement<JSX.Element> => {
 	const plans = data.supporterMember;

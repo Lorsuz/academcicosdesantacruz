@@ -4,7 +4,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import Layout from './PagesLayout';
 import { FaGem } from 'react-icons/fa';
-import { AppRoutes } from '../config/appRoutes.config';
+import { AppRoutes } from '@config/appRoutes.config';
 import { useSelector } from 'react-redux';
 
 const UserOutlet = (): React.FunctionComponentElement<JSX.Element> => {

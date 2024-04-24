@@ -25,7 +25,7 @@ const routes = [
 		path: '/',
 		component: HomePage,
 		exact: true
-	},
+	}
 	// {
 	// 	path: '/executive-board',
 	// 	element: <ExecutiveBoard />

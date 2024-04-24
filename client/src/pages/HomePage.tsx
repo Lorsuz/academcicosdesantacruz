@@ -1,15 +1,15 @@
 import React from 'react';
-import Layout from '../layouts/PagesLayout';
+import Layout from '@layout/PagesLayout';
 import styled from 'styled-components';
 
-import HomeCover from '../components/containers/Home/Cover';
-import Carousel from '../components/containers/Home/Carousel';
-import SchoolNumbers from '../components/containers/Home/SchoolNumbers';
-import HomePlot from '../components/containers/Home/Plot';
-import AboutSchool from '../components/containers/Home/AboutSchool';
-import HomeSponsors from '../components/containers/Home/Sponsors';
-import Contact from '../components/containers/Home/Contact';
-import HomeNavInfo from '../components/containers/Home/NavInfo';
+import AboutSchool from '@component/containers/Home/AboutSchool';
+import Carousel from '@component/containers/Home/Carousel';
+import Contact from '@component/containers/Home/Contact';
+import HomeCover from '@component/containers/Home/Cover';
+import HomeNavInfo from '@component/containers/Home/NavInfo';
+import HomePlot from '@component/containers/Home/Plot';
+import HomeSponsors from '@component/containers/Home/Sponsors';
+import SchoolNumbers from '@component/containers/Home/SchoolNumbers';
 
 const HomePage: React.FunctionComponent = () => (
 	<Layout title='Home Page' backgroundColor='#0B1127'>

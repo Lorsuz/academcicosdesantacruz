@@ -1,7 +1,7 @@
 // import React from 'react';
 import { FaCheck } from 'react-icons/fa';
 import styled from 'styled-components';
-import wallpaperGrayLines from '../../assets/images/wallpaper-gray-lines.avif';
+import wallpaperGrayLines from '@image/wallpaper-gray-lines.avif';
 
 type CardsForSupporterMemberElementProps = {
 	id: string;

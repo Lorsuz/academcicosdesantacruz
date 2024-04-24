@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 // import dataAPI from '../../json/data.json';
 
-import Drogamix from '../../../assets/images/Sponsors/Drogamix.png';
-import LFbets from '../../../assets/images/Sponsors/LFbets.png';
-import Haras from '../../../assets/images/Sponsors/Haras.png';
-import LaDameFemme from '../../../assets/images/Sponsors/La-Dame-Femme.png';
+import Drogamix from '@image/Sponsors/Drogamix.png';
+import LFbets from '@image/Sponsors/LFbets.png';
+import Haras from '@image/Sponsors/Haras.png';
+import LaDameFemme from '@image/Sponsors/La-Dame-Femme.png';
 
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 

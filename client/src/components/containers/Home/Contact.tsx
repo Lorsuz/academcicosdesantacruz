@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ContactForm from '../../forms/ContactForm';
+import ContactForm from '@component/forms/ContactForm';
 
 const Contact = (): React.FunctionComponentElement<JSX.Element> => {
 	return (

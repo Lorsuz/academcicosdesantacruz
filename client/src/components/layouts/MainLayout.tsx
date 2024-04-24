@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 
-import Head from '../partials/Head';
-import Header from '../partials/Header';
-import Footer from '../partials/Footer';
-import { useAuth } from '../context/AuthContext';
+import Head from '@partial/Head';
+import Header from '@partial/Header';
+import Footer from '@partial/Footer';
+// import { useAuth } from '@context/AuthContext';
 
 type Props = {
 	children: React.ReactNode;
@@ -11,10 +11,10 @@ type Props = {
 };
 
 const Layout: React.FunctionComponent<Props> = ({ children, title }: Props) => {
-	const { getTokenFromLocalStorage, getUser } = useAuth();
+	// const { getTokenFromLocalStorage, getUser } = useAuth();
 	useEffect(() => {
-		getTokenFromLocalStorage();
-		getUser();
+		// getTokenFromLocalStorage();
+		// getUser();
 	}, []);
 	return (
 		<>
