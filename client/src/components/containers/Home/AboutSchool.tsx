@@ -1,5 +1,5 @@
 import React from 'react';
-import pavillion from '../../../assets/images/pavillion.jpeg';
+import pavillion from '@image/pavillion.jpeg';
 
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';

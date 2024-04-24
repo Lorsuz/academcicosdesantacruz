@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import InputField from '../components/inputs/InputField';
-import InputSelectField from '../components/inputs/InputSelectField';
-import InputRadioField from '../components/inputs/InputRadioField';
-import Layout from '../layouts/PagesLayout';
+import InputField from '@/components/forms/inputs/InputField';
+import InputSelectField from '@/components/forms/inputs/InputSelectField';
+import InputRadioField from '@/components/forms/inputs/InputRadioField';
+import Layout from '@layout/PagesLayout';
 
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 
 import styled from 'styled-components';
 
-import { formatCPF, formatCEP, formatPhoneNumber, formatDate } from '../utils/formattingValues';
-import { validateEmail, validateNoLetters, validateNoNumbers, validateNoSpecialChars } from '../utils/validateValues';
+import { formatCPF, formatCEP, formatPhoneNumber, formatDate } from '@formatter/values';
+import { validateEmail, validateNoLetters, validateNoNumbers, validateNoSpecialChars } from '@validator/string';
 
 const LegendForFieldset = ({ children }: { children: string }): React.FunctionComponentElement<JSX.Element> => (
 	<legend>
@@ -22,6 +22,8 @@ const LegendForFieldset = ({ children }: { children: string }): React.FunctionCo
 const FormFanMember = (): React.FunctionComponentElement<JSX.Element> => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [formData, setFormData] = useState({});
+	
+	
 
 	const SendInputValueForParent = (name: string, value: string): void => {
 		setFormData(prevFormData => ({

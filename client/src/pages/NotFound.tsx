@@ -1,6 +1,6 @@
 import React from 'react';
-import gifNotFound from '../assets/videos/funny-404-error-page-design.gif';
-import Layout from '../layouts/PagesLayout';
+import gifNotFound from '/public/assets/videos/funny-404-error-page-design.gif';
+import Layout from '@layout/PagesLayout';
 
 import styled from 'styled-components';
 const NotFound = (): React.FunctionComponentElement<JSX.Element> => (

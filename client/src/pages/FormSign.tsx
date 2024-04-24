@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import FormLogin from '../components/forms/LoginForm';
-import FormRegister from '../components/forms/RegisterForm';
+import FormLogin from '@component/forms/LoginForm';
+import FormRegister from '@component/forms/RegisterForm';
 
-import Layout from '../layouts/PagesLayout';
-import BackgroundForOverlay from '../assets/images/Logo/gresasc-overlay.jpg';
+import Layout from '@layout/PagesLayout';
+import BackgroundForOverlay from '@image/Logo/gresasc-overlay.jpg';
 
 const FormSign = () => {
 	const [haveAccount, setHaveAccount] = React.useState<boolean>(true);

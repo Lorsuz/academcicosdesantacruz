@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import Layout from '../layouts/PagesLayout';
-import BackgroundImage from '../assets/images/64-anos-de-historia.jpeg';
+import Layout from '@layout/PagesLayout';
+import BackgroundImage from '@image/64-anos-de-historia.jpeg';
 
 const School: FC = () => {
 	return (

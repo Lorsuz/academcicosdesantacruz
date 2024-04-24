@@ -25,8 +25,8 @@ const InputField = ({
 }: Props): React.FunctionComponentElement<JSX.Element> => {
 	const [inputValue, setInputValue] = useState<string>('');
 	const [inputError, setInputError] = useState<string>('');
-	const [itAlreadyHasContent, setItAlreadyHasContent] = useState<boolean>(false);
 	const [colorError, setColorError] = useState<boolean>(false);
+	const [itAlreadyHasContent, setItAlreadyHasContent] = useState<boolean>(false);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		const formattedValue = formatValue(e.target.value);
@@ -51,11 +51,8 @@ const InputField = ({
 
 		setInputError(error);
 
-		setInputError(error);
 		onChangeFromParent(name, inputValue);
-	}, [inputValue]);
 
-	useEffect(() => {
 		if (required && itAlreadyHasContent && inputValue === '') {
 			// setInputError('Campo obrigatório');
 			setColorError(true);

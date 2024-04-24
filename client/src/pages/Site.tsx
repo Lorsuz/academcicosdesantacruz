@@ -1,7 +1,7 @@
 import React from 'react';
-import Layout from '../layouts/PagesLayout';
+import Layout from '@layout/PagesLayout';
 import styled from 'styled-components';
-import LogoImg from '../assets/images/logo - gresasc.jpg';
+import LogoImg from '@image/logo - gresasc.jpg';
 // #region lembrar de usar isso depois
 const Site = (): React.FunctionComponentElement<JSX.Element> => {
 	console.log('');

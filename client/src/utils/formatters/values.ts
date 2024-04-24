@@ -14,7 +14,6 @@ export const formatCPF = (value: string): string => {
 
 	return formattedValue;
 };
-
 export const formatDate = (value: string): string => {
 	let formattedValue = value.replace(/[^\d]/g, '');
 
@@ -112,3 +111,5 @@ export const formatTimeForMinutesAndSeconds = (seconds: number): string => {
 
 	return `${formattedMinutes}:${formattedSeconds}`;
 };
+
+console.log('ariel'.isValidRangeLength(2,4));

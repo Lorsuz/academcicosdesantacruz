@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from './layouts/MainLayout';
+import Layout from '@layout/MainLayout';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Router from './router/Router';
-import ButtonBackToTop from './components/shared/ButtonBackToTop';
+import Router from '@router/Router';
+import ButtonBackToTop from '@component/shared/ButtonBackToTop';
 
 function App(): React.FunctionComponentElement<JSX.Element> {
 	return (

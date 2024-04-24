@@ -6,10 +6,7 @@
 		"moduleResolution": "bundler",
 		"allowSyntheticDefaultImports": true,
 		"types": ["node","jest"],
-		"baseUrl": "./",
-		"paths": {
-			"@components/*": ["src/components/*"]
-		},  
+		 
 	},
 	"include": ["vite.config.ts"]
 }

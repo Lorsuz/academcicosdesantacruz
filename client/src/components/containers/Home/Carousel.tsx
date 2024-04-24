@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 // import dataJson from '../../json/data.json';
 import { GoTriangleLeft, GoTriangleRight } from 'react-icons/go';
 
-import image_1 from '../../../assets/images/banner/image-1.jpg';
-import image_2 from '../../../assets/images/banner/image-2.jpg';
-import image_3 from '../../../assets/images/banner/image-3.jpg';
-import image_4 from '../../../assets/images/banner/image-4.jpg';
-import image_5 from '../../../assets/images/banner/image-5.jpg';
+import image_1 from '@image/banner/image-1.jpg';
+import image_2 from '@image/banner/image-2.jpg';
+import image_3 from '@image/banner/image-3.jpg';
+import image_4 from '@image/banner/image-4.jpg';
+import image_5 from '@image/banner/image-5.jpg';
 
 import styled from 'styled-components';
 const Carousel = (): React.FunctionComponentElement<JSX.Element> => {

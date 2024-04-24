@@ -2,8 +2,8 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { logoutAction } from '../../redux/actions/UserActions';
-import { AppRoutes } from '../../config/appRoutes.config';
+import { logoutAction } from '@redux/actions/UserActions';
+import { AppRoutes } from '@config/appRoutes.config';
 import { FaBrazilianRealSign } from 'react-icons/fa6';
 import { /* FaShoppingCart ,*/ FaGem /* FaUser */ } from 'react-icons/fa';
 
