@@ -264,6 +264,7 @@ const StyledComponent = styled.section`
 
 			.range {
 				width: 100%;
+				display: flex;
 				input[type='range'] {
 					-webkit-appearance: none;
 					height: 3px;
@@ -294,8 +295,10 @@ const StyledComponent = styled.section`
 			}
 			&.progress {
 				grid-column: 1/9;
+				align-items: center;
 			}
 			&.volume {
+				align-items: center;
 				grid-column: 9/13;
 			}
 		}
