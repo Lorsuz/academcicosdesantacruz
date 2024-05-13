@@ -51,11 +51,11 @@ const Header: React.FunctionComponent = () => {
 									<span>Sócio Torcedor</span>
 								</NavLink>
 							</li>
-							<li>
+							{/* <li>
 								<NavLink to={AppRoutes.site}>
 									<span>O Site</span>
 								</NavLink>
-							</li>
+							</li> */}
 						</ul>
 					</nav>
 					<button id='menu-drop'>
