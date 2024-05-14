@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { useEnv } from '../context/EnvContext';
-import toastNotificationConfig from '../config/toastNotification.config';
+import toastNotificationConfig from '@config/toastNotification.config';
 
 export const AuthContext = createContext({
 	token: '',

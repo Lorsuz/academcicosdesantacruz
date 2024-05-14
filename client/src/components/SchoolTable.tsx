@@ -20,7 +20,7 @@ export const SchoolTable: FC<SchoolTableProps> = ({ rows, title, columns }) => {
 
 			<div className='w-full'>
 				<div className='flex'>
-					{rows.map(itemRow => (
+					{rows.map(_ => (
 						<div className='w-full flex items-center'>
 						</div>
 					))}

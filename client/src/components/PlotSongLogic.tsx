@@ -264,7 +264,9 @@ const StyledComponent = styled.section`
 
 			.range {
 				width: 100%;
+				display: flex;
 				input[type='range'] {
+					appearance: none;
 					-webkit-appearance: none;
 					height: 3px;
 					background: var(--color-primary);
@@ -294,8 +296,10 @@ const StyledComponent = styled.section`
 			}
 			&.progress {
 				grid-column: 1/9;
+				align-items: center;
 			}
 			&.volume {
+				align-items: center;
 				grid-column: 9/13;
 			}
 		}
