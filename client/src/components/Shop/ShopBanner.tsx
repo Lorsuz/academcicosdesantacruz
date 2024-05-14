@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import UndrawBanner from '../../assets/images/undraw/undraw_undraw-shopping_bags.svg';
+import UndrawBanner from '@image/undraw/undraw_undraw-shopping_bags.svg';
 
 const Banner = () => {
 	return (

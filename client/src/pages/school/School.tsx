@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Layout from '../../layouts/PagesLayout';
+import Layout from '@layout/PagesLayout';
 
 const School = () => {
 	const [state, setState] = React.useState<boolean>(false);

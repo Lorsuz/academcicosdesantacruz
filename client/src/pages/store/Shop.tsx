@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import CoverBanner from '../../components/Shop/CoverBanner';
-import CategoriesSection from '../../components/Shop/CategoriesSection';
-import ProductsSection from '../../components/Shop/ProductsSection';
+import CoverBanner from '@component/Shop/CoverBanner';
+import CategoriesSection from '@component/Shop/CategoriesSection';
+import ProductsSection from '@component/Shop/ProductsSection';
 // import SessionTitle from '../../components/Shop/SessionTitle';
 // import ShopInfo from '../../components/Shop/ShopInfo';
 
-import Layout from '../../layouts/PagesLayout';
-import Banner from '../../components/Shop/ShopBanner';
+import Layout from '@layout/PagesLayout';
+import Banner from '@component/Shop/ShopBanner';
 
 const Shop = () => {
 	const [haveAccount, setHaveAccount] = React.useState<boolean>(false);

@@ -266,6 +266,7 @@ const StyledComponent = styled.section`
 				width: 100%;
 				display: flex;
 				input[type='range'] {
+					appearance: none;
 					-webkit-appearance: none;
 					height: 3px;
 					background: var(--color-primary);
