@@ -7,7 +7,7 @@ import { AppRoutes } from '@config/appRoutes.config.ts';
 
 const HomePage = lazy(() => import('@page/HomePage'));
 const Site = lazy(() => import('@page/Site'));
-const School = lazy(() => import('@page/School'));
+const School = lazy(() => import('@page/school/School'));
 const ExecutiveBoard = lazy(() => import('@page/school/ExecutiveBoard'));
 const CarnivalDecades = lazy(() => import('@page/carnivals/CarnivalDecades'));
 const CarnivalDecade = lazy(() => import('@page/carnivals/CarnivalDecade'));
